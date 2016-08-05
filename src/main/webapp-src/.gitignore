@@ -1,0 +1,14 @@
+node_modules
+bower_components
+dist
+build
+deploy
+
+bin/
+tmp/
+build/
+.settings/
+.gradle/
+.classpath
+.project
+.tmp

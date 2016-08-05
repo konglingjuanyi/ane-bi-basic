@@ -1,0 +1,61 @@
+<header id="header">
+    <div id="logo-group">
+        <span id="logo"> 
+                    <img src="images/logo.png" alt="SmartAdmin"> 
+                </span>
+    </div>
+    <div class="pull-right">
+        <div id="hide-menu" class="btn-header pull-right">
+            <span> 
+                    <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu">
+                        <i class="fa fa-reorder"></i>
+                    </a> 
+                </span>
+        </div>
+        <div id="logout" class="btn-header transparent pull-right">
+            <span> <a href="login.html" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+        </div>
+    </div>
+</header>
+<!-- END HEADER -->
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<aside id="left-panel" ng-controller="SmartadminController as vm">
+    <div class="login-info">
+        <span> 
+            <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                <img src="images/avatars/sunny.png" alt="me" class="online" /> 
+            <span>john.doe </span>
+        </a>
+        </span>
+    </div>
+    <!-- end user info -->
+    <!-- NAVIGATION : This navigation is also responsive-->
+    <nav>
+        <ul>
+            <li>
+        		<a href="#"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">系统管理</span></a>
+        		<ul>
+        			<li active-url="sysuser">
+        				<a href="sysuser" >用户管理</a>
+        			</li>
+        			<li active-url="role">
+        				<a href="role" >角色管理</a>
+        			</li>
+        			<li active-url="resource">
+        				<a href="resource">菜单管理</a>
+        			</li>
+        		</ul>
+        	</li>
+            <li>
+        		<a href="#"><i class="fa fa-lg fa-fw fa-desktop"></i> <span class="menu-item-parent">组织结构</span></a>
+        		<ul>
+        			<li active-url="department"><a href="department">部门</a></li>
+        		</ul>
+        	</li>
+        </ul>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu"> 
+            <i class="fa fa-arrow-circle-left hit"></i> 
+        </span>
+</aside>

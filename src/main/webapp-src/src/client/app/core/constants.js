@@ -11,7 +11,7 @@
      */
     angular.module("app.core")
     
-    .constant("SERVER_API_URL", "/ane-dispatch-platform/")
+    .constant("SERVER_API_URL", "/")
     
     ;
 

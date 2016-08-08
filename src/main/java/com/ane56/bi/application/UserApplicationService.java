@@ -14,7 +14,7 @@ import com.ane56.bi.domain.user.User;
 import com.ane56.bi.domain.user.UserDescripter;
 import com.ane56.bi.domain.user.UserRepository;
 import com.ane56.bi.domain.user.UserService;
-import com.ane56.db.mybatis.Pagination;
+import com.ane56.db.mybatis.core.Pagination;
 
 @Service
 public class UserApplicationService extends AssertionConcern {

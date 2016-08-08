@@ -1,6 +1,6 @@
 {
-  "name": "dispatchplatform",
-  "description": "ane56 dispatch platform for apps",
+  "name": "bi",
+  "description": "ane56 bi for apps",
   "version": "1.0.0",
   "scripts": {
     "init": "npm install",

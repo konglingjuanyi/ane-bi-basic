@@ -14,7 +14,7 @@ import com.ane56.bi.domain.user.Role;
 import com.ane56.bi.domain.user.RoleRepository;
 import com.ane56.bi.domain.user.RoleService;
 import com.ane56.bi.domain.user.UserRoleRepository;
-import com.ane56.db.mybatis.Pagination;
+import com.ane56.db.mybatis.core.Pagination;
 
 @Service
 public class RoleApplicationService extends AssertionConcern {

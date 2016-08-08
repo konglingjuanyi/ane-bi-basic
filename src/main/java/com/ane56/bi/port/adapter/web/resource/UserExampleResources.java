@@ -16,7 +16,7 @@ import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;
 import com.ane56.bi.port.adapter.rest.RestResultResponse;
 import com.ane56.bi.port.adapter.utils.PageUtils;
 import com.ane56.bi.port.adapter.web.resource.form.UserForm;
-import com.ane56.db.mybatis.Pagination;
+import com.ane56.db.mybatis.core.Pagination;
 
 @RestController
 public class UserExampleResources extends ResourceResponseSupport {

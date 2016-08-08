@@ -10,7 +10,7 @@ import com.ane56.bi.application.command.user.CreateUserCommand;
 import com.ane56.bi.domain.user.Role;
 import com.ane56.bi.domain.user.User;
 import com.ane56.bi.domain.user.UserRoleRepository;
-import com.ane56.db.mybatis.Pagination;
+import com.ane56.db.mybatis.core.Pagination;
 import com.ane56.dispatch.AbstractTest;
 
 public class UserApplicationServiceTest extends AbstractTest {

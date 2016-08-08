@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.ane56.bi.domain.user.User;
 import com.ane56.bi.domain.user.UserRepository;
-import com.ane56.db.mybatis.Pagination;
+import com.ane56.db.mybatis.core.Pagination;
 import com.ane56.db.mybatis.query.QueryBuilder;
 
 @Component

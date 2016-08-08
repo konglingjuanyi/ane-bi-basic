@@ -3,16 +3,16 @@
 
 <mapper namespace="com.ane56.dispatch.domain.user.UserRoleRepository">
 
-	<select id="findUsersByRoleId" resultType="com.ane56.dispatch.domain.user.User">
+	<select id="findUsersByRoleId" resultType="com.ane56.bi.domain.user.User">
 		SELECT u.* FROM user u , user_role ur WHERE u.id = ur.user_id AND  ur.role_id = #{roleId};
 	</select>
 	
 	
-	<select id="findRolesByUserId" resultType="com.ane56.dispatch.domain.user.Role">
+	<select id="findRolesByUserId" resultType="com.ane56.bi.domain.user.Role">
 		SELECT r.* FROM role r , user_role ur   WHERE r.id = ur.role_id AND ur.user_id = #{userId};
 	</select>
 	
-	<select id="findBy" resultType="com.ane56.dispatch.domain.user.Role">
+	<select id="findBy" resultType="com.ane56.bi.domain.user.Role">
 		SELECT * FROM  user_role   WHERE role_id = #{roleId} AND user_id = #{userId};
 	</select>
 	

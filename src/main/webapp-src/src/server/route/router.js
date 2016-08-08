@@ -34,8 +34,8 @@ router.get("/sidebar", function(req, res, next) {
    res.render("public/admin-sidebar");
 });
 
-router.get("/sysuser", function(req, res, next) {
-   res.render("sysuser");
+router.get("/user-example", function(req, res, next) {
+   res.render("user-example");
 });
 
 router.get("/role", function(req, res, next) {

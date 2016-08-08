@@ -1,7 +1,7 @@
 {
-  "name": "anedispatchhplatform",
+  "name": "bi",
   "version": "1.0.0",
-  "description": "ane dispatch platform dependency",
+  "description": "ane bi dependency",
   "ignore": [
     "**/.*",
     "node_modules",

@@ -2,7 +2,7 @@
     "appContext": {
         "prod": "http://localhost:8080",
         "dev": "http://localhost:8080",
-        "stage": "http://localhost:8080/ane-dispatch-platform"
+        "stage": "http://localhost:8080/ane-bi-basic"
     },
     "constants": {
         "local" : {
@@ -15,7 +15,7 @@
             "SERVER_API_URL": "/"
         },
         "stage": {
-            "SERVER_API_URL": "/ane-dispatch-platform/"
+            "SERVER_API_URL": "/ane-bi-basic/"
         }
     },
     "apps": {

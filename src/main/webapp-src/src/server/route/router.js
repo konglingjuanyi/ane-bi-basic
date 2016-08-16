@@ -50,6 +50,10 @@ router.get("/department", function(req, res, next) {
    res.render("department");
 });
 
+router.get("/api/planschedulesWithPage", function(req, res, next) {
+   buildResponse( res , data.getPlanschedulesWithPage() );
+});
+
 function buildResponse(res, result) {
     res.status(200)
         .send(result)

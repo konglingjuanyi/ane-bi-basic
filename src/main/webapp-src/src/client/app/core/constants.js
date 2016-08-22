@@ -11,7 +11,7 @@
      */
     angular.module("app.core")
     
-    .constant("SERVER_API_URL", "/ane-bi-basic/")
+    .constant("SERVER_API_URL", "/")
     
     ;
 

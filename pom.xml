@@ -11,6 +11,7 @@
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<spring.security.version>4.1.1.RELEASE</spring.security.version>
 		<pro.outerDirectory>src/main/webapp</pro.outerDirectory>
+		<project.artifactId>ane-bi-basic</project.artifactId>
 	</properties>
 
 	<repositories>
@@ -193,14 +194,6 @@
 				<configuration>
 					<outputDirectory>${pro.outerDirectory}/WEB-INF/lib</outputDirectory>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -209,6 +202,17 @@
 				<configuration>
 					<skipTests>true</skipTests>
 				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <version>2.1.1</version>
+			    <configuration>
+			        <packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+			        <failOnMissingWebXml>false</failOnMissingWebXml>
+			        <!-- 重点是这个配置 -->
+			        <warName>${project.artifactId}</warName>
+			    </configuration>
 			</plugin>
 		</plugins>
 	</build>

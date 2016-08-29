@@ -1,11 +1,10 @@
-package com.ane56.bi.port.adapter.web.resource;
+package com.ane56.bi.port.adapter.web.resource.g7;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +21,12 @@ import com.ane56.bi.g7.domain.PassInfoData;
 import com.ane56.bi.g7.service.ClasslineService;
 import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;
 @RestController
+@RequestMapping(value="g7")
 public class ClasslineControll  extends ResourceResponseSupport{
 
 	private ClasslineService classlineService = new ClasslineService();
 	
-	@RequestMapping(value = "/api/g7", method = RequestMethod.GET)
+	@RequestMapping(value = "/sync", method = RequestMethod.GET)
 	public PageResult insertG7DataToDB() {
 		PageResult pageResult=null;
 		G7QueryVO g7Vo = new G7QueryVO();

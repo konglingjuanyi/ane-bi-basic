@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="opt_kpiBasicDataDao">
+	<resultMap id="kpiResult" type="com.ane56.bi.domain.operation.KpiBasicData">
+		<result property="kpiId" column="KPI_ID" />
+		<result property="kpiName" column="KPI_NAME" />
+		<result property="kpiSimpleName" column="KPI_SIMPLE_NAME" />
+		<result property="kpiType" column="KPI_TYPE" />
+		<result property="effectiveBeginTime" column="EFFECTIVE_BEGIN_TIME" />
+		<result property="effectiveEndTime" column="EFFECTIVE_END_TIME" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+		<result property="createdName" column="CREATED_NAME" />
+		<result property="updatedName" column="UPDATED_NAME" />
+		<result property="createdId" column="CREATED_ID" />
+		<result property="updatedId" column="UPDATED_ID" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+	<sql id="dymnaic_sql">
+	    KPI_ID,
+	    KPI_NAME,
+		KPI_SIMPLE_NAME,
+		KPI_TYPE,
+		EFFECTIVE_BEGIN_TIME,
+		EFFECTIVE_END_TIME,
+		CREATE_TIME,
+		UPDATE_TIME,
+		CREATED_NAME,
+		UPDATED_NAME,
+		CREATED_ID,
+		UPDATED_ID,
+		STATUS
+	</sql>
+	<insert id="add" parameterType="com.ane56.bi.domain.operation.KpiBasicData"
+		useGeneratedKeys="true" keyProperty="kpiId">
+		INSERT INTO ane_bi_kpi
+		(
+		kpi_name,
+		kpi_simple_name,
+		kpi_type,
+		effective_begin_time,
+		effective_end_time,
+		create_time,
+		update_time,
+		created_name,
+		updated_name,
+		created_id,
+		updated_id,
+		status
+		)
+		VALUES
+		(
+		#{kpiName},
+		#{kpiSimpleName},
+		#{kpiType} ,
+		#{effectiveBeginTime},
+		#{effectiveEndTime},
+		#{createTime},
+		#{updateTime},
+		#{createdName},
+		#{updatedName},
+		#{createdId},
+		#{updatedId},
+		#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.ane56.bi.domain.operation.KpiBasicData">
+	  update ANE_BI_KPI a
+	  <trim prefix="set" suffixOverrides=",">
+	     <if test="kpiName !='' and kpiName !=null">
+	       a.kpi_name = #{kpiName},
+	     </if>
+	      <if test="kpiSimpleName!='' and kpiSimpleName !=null">
+	       a.kpi_simple_name = #{kpiSimpleName},
+	     </if>
+	      <if test="kpiType !='' and kpiType !=null">
+	       a.kpi_type = #{kpiType},
+	     </if>
+	      <if test="effectiveBeginTime !='' and effectiveBeginTime !=null">
+	       a.effective_begin_time = #{effectiveBeginTime},
+	     </if>
+	      <if test="effectiveEndTime !='' and effectiveEndTime !=null">
+	       a.effective_end_time = #{effectiveEndTime},
+	     </if>
+	      <if test="createTime !='' and createTime !=null">
+	       a.create_time = #{createTime},
+	     </if>
+	      <if test="updateTime !='' and updateTime !=null">
+	       a.update_time = #{updateTime},
+	     </if>
+	      <if test="createdName !='' and createdName !=null">
+	       a.created_name = #{createdName},
+	     </if>
+	      <if test="updatedName !='' and updatedName !=null">
+	       a.updated_name = #{updatedName},
+	     </if>
+	      <if test="createdId !='' and createdId !=null">
+	       a.created_id = #{createdId},
+	     </if>
+	      <if test="updatedId !='' and updatedId !=null">
+	       a.updated_id = #{updatedId},
+	     </if>
+	      <if test="status !='' and status !=null">
+	       a.status = #{status}
+	     </if>
+	  </trim>
+	  where a.kpi_id = #{kpiId}
+	</update>
+	<select id="findByParams" resultMap="kpiResult" parameterType="java.util.Map">
+		SELECT 
+		<include refid="dymnaic_sql"/> 
+		FROM ANE_BI_KPI A
+		<where>
+		  <if test="kpiId!='' and kpiId !=null">
+		   A.KPI_ID = #{kpiId}
+		  </if>
+		</where>
+	</select>
+</mapper>

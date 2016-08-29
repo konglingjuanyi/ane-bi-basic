@@ -27,7 +27,7 @@ public class ClasslineControll  extends ResourceResponseSupport{
 	private ClasslineService classlineService = new ClasslineService();
 	
 	@RequestMapping(value = "/api/g7", method = RequestMethod.GET)
-	public  boolean insertG7DataToDB() {
+	public PageResult insertG7DataToDB() {
 		PageResult pageResult=null;
 		G7QueryVO g7Vo = new G7QueryVO();
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
@@ -36,7 +36,6 @@ public class ClasslineControll  extends ResourceResponseSupport{
 		g7Vo.setPageSize("100");
 		g7Vo.setIs_passall("1");
 		g7Vo.setIs_share("0");
-		//g7Vo.setId("8620253B0B267EF55CE41CFDBDA7B4B3");
 		try {
 			paramsMap.put("data", mapper.writeValueAsString(g7Vo));
 			ApiResult result = ApiUtil.getResult("classline.postline.getPostLineInfo", paramsMap);
@@ -44,35 +43,11 @@ public class ClasslineControll  extends ResourceResponseSupport{
 			System.out.println(objData);
 			pageResult = convertResultToList(objData);
 			classlineService.addClassLine(pageResult);
-			//classlineService.findByBid("144");
-			/*Test test = new Test();
-			test.setId(222);
-			test.setName("yangdechao");
-			test.setAge(22);
-			test.setMoney(88.0);
-			test.setBirthday(new Date());
-			classlineService.addTest(test);*/
-			/*if (result.getCode() == 0) {
-				System.out.println(result);
-				
-			}*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return true;
+		return pageResult;
 	};
-	public boolean insertData(PageResult pageResult){
-		if(pageResult!=null){
-			List<Classline> list = pageResult.getResult();
-			if(!CollectionUtils.isEmpty(list)){
-				for(int i=0;i<list.size();i++){
-					Classline g7Bean= list.get(i);
-				}
-			}
-		}
-		
-		return true;
-	}
 	public static PageResult convertResultToList(Object obj){
 		PageResult pageResult = new PageResult();
 		List<Classline> g7List = new ArrayList<Classline>();

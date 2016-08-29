@@ -21,18 +21,21 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.ane56.bi.common.util.DateUtils;
+import com.ane56.bi.common.util.PropertiesUtil;
 
-/**
- * 货运人API工具类
- * @author harry.min(minzaohua@chinawayltd.com)
- *
- */
 public class ApiUtil {
-	public final static String DEFAULT_CHARSET = "utf-8";
-	public static final String appUrl = "http://test.api.g7s.chinawayltd.com/interface/index.php";
-	public static final String appKey = "ane_admin";
-	public static final String appSecret = "defff57e75da3721c47b0aa87481adcf";
+	public final static String DEFAULT_CHARSET;
+	public static final String appUrl;
+	public static final String appKey;
+	public static final String appSecret;
 
+	static{
+		PropertiesUtil.readProperties("config.properties");
+		DEFAULT_CHARSET = PropertiesUtil.getProperty("g7.defaultCharset");
+		appUrl = PropertiesUtil.getProperty("g7.appUrl");
+		appKey = PropertiesUtil.getProperty("g7.appKey");
+		appSecret = PropertiesUtil.getProperty("g7.appSecret");
+	}
 	/*
 	 * 组装请求参数，返回值为key1=value1&key2=value2形式
 	 */

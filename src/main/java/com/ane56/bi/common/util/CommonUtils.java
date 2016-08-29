@@ -5,11 +5,6 @@ import java.util.UUID;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 
-/**
- * 灏忓皬宸ュ叿
- * @author qdmmy6
- *
- */
 public class CommonUtils {
 	/**
 	 * 杩斿洖涓�釜涓嶉噸澶嶇殑瀛楃涓�
@@ -34,10 +29,19 @@ public class CommonUtils {
 			 * 1. 閫氳繃鍙傛暟clazz鍒涘缓瀹炰緥
 			 * 2. 浣跨敤BeanUtils.populate鎶妋ap鐨勬暟鎹皝闂埌bean涓�
 			 */
-			T bean = clazz.newInstance();
-			ConvertUtils.register(new DateConverter(), java.util.Date.class);
-			BeanUtils.populate(bean, map);
-			return bean;
+			if(map == null){
+				return null;
+			}else{
+				boolean result = map.isEmpty();
+				if(result){
+					return null;
+				}else{
+					T bean = clazz.newInstance();
+					ConvertUtils.register(new DateConverter(), java.util.Date.class);
+					BeanUtils.populate(bean, map);
+					return bean;
+				}
+			}
 		} catch(Exception e) {
 			throw new RuntimeException(e);
 		}

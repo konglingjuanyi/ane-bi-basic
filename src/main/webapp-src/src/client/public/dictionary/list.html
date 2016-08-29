@@ -22,6 +22,7 @@
             	<h2>查询条件</h2>
         	</header>
             <div style="padding:10px;">
+            	<form name="dictionaryQueryForm" ng-submit="vm.queryCode()">
             	<div class="dataTables_wrapper form-inline">
                    	<div class="row">
                     	<div class="col-sm-1 text-right"><label style="margin-top:6px;">类型：</label></div>
@@ -38,8 +39,13 @@
                         <div class="col-sm-2">
                         	<input id="codeNameQuery" class="form-control" ng-model="vm.codeQuery.codeName">
                     	</div>
+                    	
+                    	<div class="col-sm-1 text-right">
+                    		<button type="submit" ng-show="false" ng-click="vm.queryCode()"> 查询 </button>
+                    	</div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>   
         

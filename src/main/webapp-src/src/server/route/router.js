@@ -2,7 +2,12 @@ var router = require('express').Router();
 var data = require("./data");
 
 module.exports = router;
-
+router.get("/api/getExtradays", function(req, res, next) {
+	   buildResponse( res , data.getExtradays() );
+	});
+router.get("/api/getCodesWithPage", function(req, res, next) {
+	   buildResponse( res , data.getCodesWithPage() );
+	});
 
 router.get("/api/users", function(req, res, next) {
    buildResponse( res , data.getUsers() );
@@ -49,6 +54,7 @@ router.get("/resource", function(req, res, next) {
 router.get("/department", function(req, res, next) {
    res.render("department");
 });
+
 
 function buildResponse(res, result) {
     res.status(200)

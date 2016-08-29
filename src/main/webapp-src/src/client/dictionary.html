@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+    .ng-cloak {
+        display: none!important;
+    }
+    
+    .ng-hide {
+        display: none!important;
+    }
+    </style>
+    <title>Info</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="louis" name="author" />
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/dictionary.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+    <link rel="icon" href="images/favicon.ico" th:href="@{/images/favicon.ico}" type="image/x-icon">
+</head>
+
+<body class="ng-cloak">
+
+    <div ng-include="sidebar" ng-controller="SmartadminController"></div>
+
+    <div id="main" role="main">
+        <div id="ribbon">
+            <span class="ribbon-button-alignment"> 
+                <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+                        <i class="fa fa-refresh"></i>
+                </span>
+            </span>
+            <ol class="breadcrumb">
+                <li>系统</li>
+                <li>数据字典</li>
+            </ol>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div id="content">
+        <div ui-view></div>
+        </div>
+    </div>
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/jquery-ui/ui/jquery-ui.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js js/app.js -->
+    <!-- inject:js -->
+    <script src="/src/client/app/app.dictionary.module.js"></script>
+    <script src="/src/client/app/blocks/restful/restful.module.js"></script>
+    <script src="/src/client/app/blocks/router/router.module.js"></script>
+    <script src="/src/client/app/blocks/utils/utils.module.js"></script>
+    <script src="/src/client/app/core/core.module.js"></script>
+    <script src="/src/client/app/dictionary/dictionary.module.js"></script>
+    <script src="/src/client/app/smartadmin/smartadmin.module.js"></script>
+    <script src="/src/client/app/blocks/restful/restful-helper.factory.js"></script>
+    <script src="/src/client/app/blocks/restful/restful-query.factory.js"></script>
+    <script src="/src/client/app/blocks/router/router-helper.provider.js"></script>
+    <script src="/src/client/app/blocks/utils/active-url.directive.js"></script>
+    <script src="/src/client/app/blocks/utils/file-input.directive.js"></script>
+    <script src="/src/client/app/blocks/utils/form-validator.factory.js"></script>
+    <script src="/src/client/app/blocks/utils/local-storage.factory.js"></script>
+    <script src="/src/client/app/blocks/utils/pagination.directive.js"></script>
+    <script src="/src/client/app/blocks/utils/utils.factory.js"></script>
+    <script src="/src/client/app/core/constants.js"></script>
+    <script src="/src/client/app/dictionary/dictionary.controller.js"></script>
+    <script src="/src/client/app/dictionary/dictionary.route.js"></script>
+    <script src="/src/client/app/dictionary/dictionary.service.js"></script>
+    <script src="/src/client/app/smartadmin/app.config.js"></script>
+    <script src="/src/client/app/smartadmin/app.js"></script>
+    <script src="/src/client/app/smartadmin/smart.notification.js"></script>
+    <script src="/src/client/app/smartadmin/smartadmin.controller.js"></script>
+    <!-- endinject -->
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</body>
+
+</html>

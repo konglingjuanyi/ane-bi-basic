@@ -2,8 +2,12 @@ package com.ane56.bi.domain.basic;
 
 import java.util.Date;
 
-public class AneBiCodes {
-	private String domainId;
+import org.apache.ibatis.annotations.Update;
+
+import com.ane56.bi.domain.Entity;
+
+public class AneBiCodes extends Entity{
+	private static final long serialVersionUID = 1L;
 	private String codeType;//编码类型
 	private String codeName;//编码名称
 	private Date createTime;//系统生成时间
@@ -11,12 +15,13 @@ public class AneBiCodes {
 	private String createdName;//操作人
 	private String description;//中文描述
 	
-	public String getDomainId() {
-		return domainId;
+	public void update(String codeType,String description,String codeName){
+		this.codeType = codeType;
+		this.description = description;
+		this.codeName =codeName;
+		this.updateTime= new Date();
 	}
-	public void setDomainId(String domainId) {
-		this.domainId = domainId;
-	}
+	
 	public String getCodeType() {
 		return codeType;
 	}

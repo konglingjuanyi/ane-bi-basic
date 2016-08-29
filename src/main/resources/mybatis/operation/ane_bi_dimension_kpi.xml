@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Opt_DimensionKpiDao">
+	<resultMap id="dimensionKpiResult" type="com.ane56.bi.domain.operation.DimensionKpi">
+		<result property="dimensionId" column="DIMENSION_ID" />
+		<result property="dimensionName" column="DIMENSION_NAME" />
+		<result property="kpiId" column="KPI_ID" />
+		<result property="dimensionType" column="DIMENSION_TYPE" />
+		<result property="objDate" column="OBJ_DATE" />
+		<result property="targetValue" column="TARGET_VALUE" />
+		<result property="departmentId" column="DEPARTMENT_ID" />
+		<result property="departmentType" column="DEPARTMENT_TYPE" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+		<result property="createdName" column="CREATED_NAME" />
+		<result property="createdId" column="CREATED_ID" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+	<sql id="dymnaic_sql">
+		DIMENSION_ID, 
+		DIMENSION_NAME, 
+		KPI_ID, 
+		DIMENSION_TYPE,
+		OBJ_DATE, 
+		TARGET_VALUE,
+		DEPARTMENT_ID, 
+		DEPARTMENT_TYPE, 
+		CREATE_TIME, 
+		UPDATE_TIME,
+		CREATED_NAME, 
+		CREATED_ID, 
+		STATUS
+	</sql>
+	<insert id="add" parameterType="com.ane56.bi.domain.operation.DimensionKpi"
+		useGeneratedKeys="true" keyProperty="dimensionId">
+		INSERT INTO ANE_BI_DIMENSION
+		(
+		DIMENSION_NAME, 
+		KPI_ID, 
+		DIMENSION_TYPE,
+		OBJ_DATE, 
+		TARGET_VALUE,
+		DEPARTMENT_ID, 
+		DEPARTMENT_TYPE, 
+		CREATE_TIME, 
+		UPDATE_TIME,
+		CREATED_NAME, 
+		CREATED_ID, 
+		STATUS
+		)
+		VALUES
+		(
+		#{dimensionName},
+		#{kpiId},
+		#{dimensionType} ,
+		#{objDate},
+		#{targetValue},
+		#{departmentId},
+		#{departmentType},
+		#{createTime},
+		#{updateTime},
+		#{createdName},
+		#{createdId},
+		#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.ane56.bi.domain.operation.DimensionKpi">
+		UPDATE ANE_BI_DIMENSION A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="dimensionName !='' and dimensionName !=null">
+				A.DIMENSION_NAME = #{dimensionName},
+			</if>
+			<if test="kpiId !='' and kpiId !=null">
+				A.KPI_ID = #{kpiId},
+			</if>
+			<if test="dimensionType !='' and dimensionType !=null">
+				A.DIMENSION_TYPE = #{dimensionType},
+			</if>
+			<if test="objDate !='' and objDate !=null">
+				A.OBJ_DATE = #{objDate},
+			</if>
+			<if test="targetValue !='' and targetValue !=null">
+				A.TARGET_VALUE = #{targetValue},
+			</if>
+			<if test="departmentId !='' and departmentId !=null">
+				A.DEPARTMENT_ID = #{departmentId},
+			</if>
+			<if test="departmentType !='' and departmentType !=null">
+				A.DEPARTMENT_TYPE = #{departmentType},
+			</if>
+			<if test="createTime !='' and createTime !=null">
+				A.CREATE_TIME = #{createTime},
+			</if>
+			<if test="updateTime !='' and updateTime !=null">
+				A.UPDATE_TIME = #{updateTime},
+			</if>
+			<if test="createdName !='' and createdName !=null">
+				A.CREATED_NAME = #{createdName},
+			</if>
+			<if test="createdId !='' and createdId !=null">
+				A.CREATED_ID = #{createdId},
+			</if>
+			<if test="status !='' and status !=null">
+				A.STATUS = #{status}
+			</if>
+		</trim>
+		WHERE A.DIMENSION_ID = #{dimensionId}
+	</update>
+	<select id="findByParams" resultMap="dimensionKpiResult"
+		parameterType="java.util.Map">
+		SELECT
+		<include refid="dymnaic_sql" />
+		FROM ANE_BI_DIMENSION A
+		<where>
+			<if test="dimensionId !='' and dimensionId !=null">
+				A.DIMENSION_ID = #{dimensionId}
+			</if>
+		</where>
+	</select>
+</mapper>

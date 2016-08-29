@@ -16,19 +16,19 @@ public class MybatisKpiBasicDataRepository extends SpringMybatisRepositorySuppor
 
 	@Override
 	public int add(KpiBasicData data) {
-		int result = this.repository().insert("opt_kpiBasicDataDao.add", data);
+		int result = this.repository().insert("Opt_KpiBasicDataDao.add", data);
 		return result;
 	}
 
 	@Override
 	public int update(KpiBasicData data) {
-		int result = this.repository().update("opt_kpiBasicDataDao.update", data);		
+		int result = this.repository().update("Opt_KpiBasicDataDao.update", data);		
 		return result;
 	}
 
 	@Override
 	public int delete(KpiBasicData data) {
-		int result  = this.repository().delete("opt_kpiBasicDataDao.delete", data);
+		int result  = this.repository().delete("Opt_KpiBasicDataDao.delete", data);
 		return result;
 	}
 
@@ -41,7 +41,7 @@ public class MybatisKpiBasicDataRepository extends SpringMybatisRepositorySuppor
 
 	@Override
 	public List<KpiBasicData> findByParams(Map<String,Object> condition) {
-		List<KpiBasicData> result = this.repository().query("opt_kpiBasicDataDao.findByParams", condition);
+		List<KpiBasicData> result = this.repository().query("Opt_KpiBasicDataDao.findByParams", condition);
 		return result;
 	}
 

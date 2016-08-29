@@ -6,11 +6,11 @@ import com.ane56.db.mybatis.core.Pagination;
 
 public interface KpiBasicDataRepository {
 
-	int add(KpiBasicData user);
+	int add(KpiBasicData entity);
 
-	int update(KpiBasicData user);
+	int update(KpiBasicData entity);
 
-	int delete(KpiBasicData user);
+	int delete(KpiBasicData entity);
 
 	Pagination<KpiBasicData> queryAllData(int start, int limit);
 

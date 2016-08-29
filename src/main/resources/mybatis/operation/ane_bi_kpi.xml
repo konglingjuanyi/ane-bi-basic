@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="opt_kpiBasicDataDao">
+<mapper namespace="Opt_KpiBasicDataDao">
 	<resultMap id="kpiResult" type="com.ane56.bi.domain.operation.KpiBasicData">
 		<result property="kpiId" column="KPI_ID" />
 		<result property="kpiName" column="KPI_NAME" />

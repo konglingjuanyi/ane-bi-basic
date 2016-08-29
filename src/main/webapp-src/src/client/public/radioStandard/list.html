@@ -1,0 +1,39 @@
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="true">
+            <header>
+                <span class=""> 
+                <h2>班车承接网点比例标准</h2>
+            </header>
+            <div>
+                <div class="widget-body no-padding">
+                    <form name="radioStandardForm" novalidate>
+                          	<div class="row" style="margin-top:15px;">
+	                            <div class="form-group col-sm-offset-1 col-sm-3 hidden-xs text-left">
+	                                <div class="btn-group">
+	                                	<button type="button" class="btn btn-default" ng-click="vm.edit()"> 编辑 </button>
+	                                    <button type="button" class="btn btn-default" ng-click="vm.save()"> 保存 </button>
+	                                </div>
+	                            </div>
+                            </div>
+	                    <fieldset>
+                        	<div class="row">
+	                            <div class="form-group col-xs-12 col-sm-9" ng-class="vm.formValidator.getValidationClass(radioStandardForm.radio)">
+	                                <div class="col-sm-3 text-right"><label style="margin-top:6px">承接网点比例标准：</label></div>
+	                                <div class="col-sm-3">
+			                        	<input class="form-control" id="radio" name="radio" type="text" disabled="disabled"
+			                        	ng-model="vm.radioStandard.radio" pattern="^(\d{1,2}(\.\d{1,2})?|100|100.0|100.00)$" required>
+			                        </div>
+			                        <div class="col-sm-1 text-left" style="padding-left:0px;"><label style="margin-top:6px">%</label></div>
+			                        <p class="help-block" ng-show="vm.formValidator.isValidatedOf(radioStandardForm.radio , 'required')">必填</p>
+			                        <p class="help-block" ng-show="vm.formValidator.isValidatedOf(radioStandardForm.radio , 'pattern')">格式有误</p>
+	                            </div>
+                          	</div>
+                        <fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</div>

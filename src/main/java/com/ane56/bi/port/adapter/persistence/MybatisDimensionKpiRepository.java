@@ -24,8 +24,8 @@ public class MybatisDimensionKpiRepository extends SpringMybatisRepositorySuppor
 	}
 
 	@Override
-	public int delete(DimensionKpi data) {
-		int result  = this.repository().delete("Opt_DimensionKpiDao.delete", data);
+	public int delete(Map<String,Object> condition) {
+		int result  = this.repository().delete("Opt_DimensionKpiDao.delete", condition);
 		return result;
 	}
 

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Opt_DailyModuleDao">
+	<resultMap id="dailyModuleResult" type="com.ane56.bi.domain.operation.DailyModule">
+		<result property="moduleId" column="MODULE_ID" />
+		<result property="moduleName" column="MODULE_NAME" />
+		<result property="order" column="ORDER" />
+		<result property="createdId" column="CREATED_ID" />
+		<result property="createdName" column="CREATED_NAME" />
+		<result property="updatedId" column="UPDATED_ID" />
+		<result property="updatedName" column="UPDATED_NAME" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+	<sql id="dymnaic_sql">
+		A.MODULE_ID,
+		A.MODULE_NAME,
+		A.MODULE_ORDER,
+		A.CREATED_ID,
+		A.CREATED_NAME,
+		A.UPDATED_ID,
+		A.UPDATED_NAME,
+		A.CREATE_TIME,
+		A.UPDATE_TIME,
+		A.STATUS
+	</sql>
+	<insert id="add" parameterType="com.ane56.bi.domain.operation.DailyModule"
+		useGeneratedKeys="true" keyProperty="moduleId">
+		INSERT INTO ANE_BI_DAILY_MODULE
+		(
+		MODULE_NAME,
+		MODULE_ORDER,
+	    CREATED_ID,
+		CREATED_NAME,
+		UPDATED_ID,
+		UPDATED_NAME,
+		CREATE_TIME,
+		UPDATE_TIME,
+		STATUS
+		)
+		VALUES
+		(
+		#{moduleName},
+		#{moduleOrder},
+		#{createdId},
+		#{createdName},
+		#{updatedId},
+		#{updatedName},
+		#{createTime},
+		#{updateTime},
+		#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.ane56.bi.domain.operation.DailyModule">
+		UPDATE ANE_BI_DAILY_MODULE A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="moduleName !='' and moduleName !=null">
+				A.MODULE_NAME = #{moduleName},
+			</if>
+			<if test="moduleOrder !='' and moduleOrder !=null">
+				A.MODULE_ORDER = #{moduleOrder},
+			</if>
+			<if test="createdName !='' and createdName !=null">
+				A.CREATED_NAME = #{createdName},
+			</if>
+			<if test="createdId !='' and createdId !=null">
+				A.CREATED_ID = #{createdId},
+			</if>
+			<if test="updatedId !='' and updatedId !=null">
+				A.UPDATED_ID = #{updatedId},
+			</if>
+			<if test="updatedName !='' and updatedName !=null">
+				A.UPDATED_NAME = #{updatedName},
+			</if>
+			<if test="createTime !='' and createTime !=null">
+				A.CREATE_TIME = #{createTime},
+			</if>
+			<if test="updateTime !='' and updateTime !=null">
+				A.UPDATE_TIME = #{updateTime},
+			</if>
+			<if test="status !='' and status !=null">
+				A.STATUS = #{status}
+			</if>
+		</trim>
+		WHERE A.MODULE_ID = #{moduleId}
+	</update>
+	<select id="findByParams" resultMap="dailyModuleResult"
+		parameterType="java.util.Map">
+		SELECT
+		<include refid="dymnaic_sql" />
+		FROM ANE_BI_DAILY_MODULE A
+		<where>
+			<if test="moduleId !='' and moduleId !=null">
+				A.MODULE_ID = #{moduleId}
+			</if>
+		</where>
+	</select>
+	<delete id="delete" parameterType="java.util.Map">
+		DELETE FROM ANE_BI_DAILY_MODULE WHERE MODULE_ID = #{moduleId}#
+	</delete>
+</mapper>

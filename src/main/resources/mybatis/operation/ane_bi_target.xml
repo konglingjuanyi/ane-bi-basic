@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Opt_TargetCostDao">
+	<resultMap id="targetCostResult" type="com.ane56.bi.domain.operation.TargetCost">
+		<result property="targetId" column="TARGET_ID" />
+		<result property="targetName" column="TARGET_NAME" />
+		<result property="incomeMark" column="INCOME_MARK" />
+		<result property="priceMark" column="PRICE_MARK" />
+		<result property="createdId" column="CREATED_ID" />
+		<result property="createdName" column="CREATED_NAME" />
+		<result property="updatedId" column="UPDATED_ID" />
+		<result property="updatedName" column="UPDATED_NAME" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />		
+		<result property="status" column="STATUS" />
+	</resultMap>
+	<sql id="dymnaic_sql">
+		TARGET_ID, 
+		TARGET_NAME, 
+		INCOME_MARK, 
+		PRICE_MARK,
+		CREATED_ID, 
+		CREATED_NAME, 
+		UPDATED_ID, 
+		UPDATED_NAME, 
+		CREATE_TIME,
+		UPDATE_TIME, 
+		STATUS
+	</sql>
+	<insert id="add" parameterType="com.ane56.bi.domain.operation.TargetCost"
+		useGeneratedKeys="true" keyProperty="targetId">
+		INSERT INTO ANE_BI_TARGET
+		(
+		TARGET_NAME, 
+		INCOME_MARK, 
+		PRICE_MARK,
+		CREATED_ID, 
+		CREATED_NAME, 
+		UPDATED_ID, 
+		UPDATED_NAME, 
+		CREATE_TIME,
+		UPDATE_TIME, 
+		STATUS
+		)
+		VALUES
+		(
+		#{targetName},
+		#{incomeMark},
+		#{priceMark},
+		#{createdId},
+		#{createdName},
+		#{updatedId},
+		#{updatedName},
+		#{createTime},
+		#{updateTime},
+		#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.ane56.bi.domain.operation.TargetCost">
+		UPDATE ANE_BI_TARGET A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="targetName !='' and targetName !=null">
+				A.TARGET_NAME = #{targetName},
+			</if>
+			<if test="incomeMark !='' and incomeMark !=null">
+				A.INCOME_MARK = #{incomeMark},
+			</if>
+			<if test="priceMark !='' and priceMark !=null">
+				A.PRICE_MARK = #{priceMark},
+			</if>
+			<if test="createdId !='' and createdId !=null">
+				A.CREATED_ID = #{createdId},
+			</if>
+			<if test="createdName !='' and createdName !=null">
+				A.CREATED_NAME = #{createdName},
+			</if>
+			<if test="updatedId !='' and updatedId !=null">
+				A.UPDATED_ID = #{updatedId},
+			</if>
+			<if test="updatedName !='' and updatedName !=null">
+				A.UPDATED_NAME = #{updatedName},
+			</if>
+			<if test="createTime !='' and createTime !=null">
+				A.CREATE_TIME = #{createTime},
+			</if>
+			<if test="updateTime !='' and updateTime !=null">
+				A.UPDATE_TIME = #{updateTime},
+			</if>
+			<if test="status !='' and status !=null">
+				A.STATUS = #{status}
+			</if>
+		</trim>
+		WHERE A.TARGET_ID = #{targetId}
+	</update>
+	<select id="findByParams" resultMap="targetCostResult"
+		parameterType="java.util.Map">
+		SELECT
+		<include refid="dymnaic_sql" />
+		FROM ANE_BI_TARGET A
+		<where>
+			<if test="targetId !='' and targetId !=null">
+				A.TARGET_ID = #{targetId}
+			</if>
+		</where>
+	</select>
+	<delete id="delete" parameterType="java.util.Map">
+		DELETE FROM ANE_BI_TARGET WHERE TARGET_ID = #{targetId}#
+	</delete>
+</mapper>

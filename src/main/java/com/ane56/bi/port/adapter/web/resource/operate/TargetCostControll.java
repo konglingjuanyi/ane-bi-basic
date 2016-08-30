@@ -7,61 +7,57 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.ane56.bi.application.DimensionKpiService;
-import com.ane56.bi.domain.operation.DimensionKpi;
+import com.ane56.bi.application.TargetCostService;
+import com.ane56.bi.domain.operation.TargetCost;
 import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;
 import com.ane56.bi.port.adapter.rest.RestResultResponse;
 
 @RestController
-@RequestMapping(value="dimsion")
-public class DimensionKpiControll extends ResourceResponseSupport {
+@RequestMapping(value="target")
+public class TargetCostControll extends ResourceResponseSupport {
 
 	@Autowired
-	private DimensionKpiService DimensionKpiService;
+	private TargetCostService targetCostService;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public RestResultResponse addKpiData() {
-		DimensionKpi data = new DimensionKpi();
-		data.setDimensionName("杭州大区");
-		data.setKpiId(1);
-		data.setDepartmentType("运维");
+	public RestResultResponse addTargetCostData() {
+		TargetCost data = new TargetCost();
+		data.setTargetName("网络增值业务");
+		data.setIncomeMark(1);
+		data.setPriceMark(1);
 		data.setCreateTime(new Date());
 		data.setCreatedName("杨得朝");
 		data.setCreatedId(12121);
 		data.setStatus(1);
-		int result = DimensionKpiService.addDimensionKpiData(data);
+		int result = targetCostService.addTargetCostData(data);
 		return this.buildSuccessRestResultResponse(result);
 	}
 	@RequestMapping(value = "/query", method = RequestMethod.GET)
-	public RestResultResponse queryKpiData() {
+	public RestResultResponse queryTargetCostData() {
 		Map<String,Object> condition = new HashMap<String,Object>();
-		condition.put("dimensionId", 1);
-		List<DimensionKpi> result = DimensionKpiService.findByParams(condition);
+		condition.put("targetId", 1);
+		List<TargetCost> result = targetCostService.findByParams(condition);
 		return this.buildSuccessRestResultResponse(result);
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public RestResultResponse updateKpiData() {
+	public RestResultResponse updateTargetCostData() {
 	
-		DimensionKpi data = new DimensionKpi();
-		data.setDimensionId(1);
-		data.setDepartmentId(1);
-		data.setDimensionName("杭州大区");
-		data.setKpiId(1);
-		data.setDepartmentType("运维");
+		TargetCost data = new TargetCost();
+		data.setTargetId(1);
+		data.setTargetName("网络增值业务update");
 		data.setCreateTime(new Date());
 		data.setCreatedName("杨得朝");
 		data.setCreatedId(12121);
-		data.setUpdateTime(new Date());
 		data.setStatus(1);
-		int result = DimensionKpiService.updateDimensionKpiData(data);
+		int result = targetCostService.updateTargetCostData(data);
 		return this.buildSuccessRestResultResponse(result);
 	}
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public RestResultResponse deleteKpiData() {
+	public RestResultResponse deleteTargetCostData() {
 		Map<String,Object> condition = new HashMap<String,Object>();
-		condition.put("dimensionId", 1);
-		int result = DimensionKpiService.deleteDimensionKpiData(condition);
+		condition.put("targetId", 1);
+		int result = targetCostService.deleteTargetCostData(condition);
 		return this.buildSuccessRestResultResponse(result);
 	}
 }

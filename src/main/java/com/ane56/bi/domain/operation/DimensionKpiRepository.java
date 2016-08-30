@@ -9,7 +9,7 @@ public interface DimensionKpiRepository {
 
 	int update(DimensionKpi entity);
 
-	int delete(DimensionKpi entity);
+	int delete(Map<String,Object> condition);
 
 	Pagination<DimensionKpi> queryAllData(int start, int limit);
 

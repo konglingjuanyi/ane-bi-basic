@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Opt_CostDao">
+	<resultMap id="costResult" type="com.ane56.bi.domain.operation.Cost">
+		<result property="costId" column="COST_ID" />
+		<result property="costName" column="COST_NAME" />
+		<result property="costType" column="COST_TYPE" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="sourceCode" column="SOURCE_CODE" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+	<sql id="dymnaic_sql">
+		COST_ID, 
+		COST_NAME, 
+		COST_TYPE, 
+		CREATE_TIME, 
+		SOURCE_CODE,
+		STATUS
+	</sql>
+	<insert id="add" parameterType="com.ane56.bi.domain.operation.Cost"
+		useGeneratedKeys="true" keyProperty="costId">
+		INSERT INTO ANE_BI_COST
+		(
+		COST_NAME, 
+		COST_TYPE, 
+		CREATE_TIME, 
+		SOURCE_CODE,
+		STATUS
+		)
+		VALUES
+		(
+		#{costName},
+		#{costType},
+		#{createTime},
+		#{sourceCode},
+		#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.ane56.bi.domain.operation.Cost">
+		UPDATE ANE_BI_COST A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="costName !='' and costName !=null">
+				A.COST_NAME = #{costName},
+			</if>
+			<if test="costType !='' and costType !=null">
+				A.COST_TYPE = #{costType},
+			</if>
+			<if test="createTime !='' and createTime !=null">
+				A.CREATE_TIME = #{createTime},
+			</if>
+			<if test="sourceCode !='' and sourceCode !=null">
+				A.SOURCE_CODE = #{sourceCode},
+			</if>
+			<if test="status !='' and status !=null">
+				A.STATUS = #{status}
+			</if>
+		</trim>
+		WHERE A.COST_ID = #{costId}
+	</update>
+	<select id="findByParams" resultMap="costResult"
+		parameterType="java.util.Map">
+		SELECT
+		<include refid="dymnaic_sql" />
+		FROM ANE_BI_COST A
+		<where>
+			<if test="costId !='' and costId !=null">
+				A.COST_ID = #{costId}
+			</if>
+		</where>
+	</select>
+	<delete id="delete" parameterType="java.util.Map">
+		DELETE FROM ANE_BI_COST
+		WHERE COST_ID = #{costId}#
+	</delete>
+</mapper>

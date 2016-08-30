@@ -53,7 +53,7 @@
 		(
 		#{dimensionName},
 		#{kpiId},
-		#{dimensionType} ,
+		#{dimensionType},
 		#{objDate},
 		#{targetValue},
 		#{departmentId},
@@ -118,4 +118,7 @@
 			</if>
 		</where>
 	</select>
+	<delete id="delete" parameterType="java.util.Map">
+	     DELETE FROM ANE_BI_DIMENSION WHERE DIMENSION_ID = #{dimensionId}#
+	</delete>
 </mapper>

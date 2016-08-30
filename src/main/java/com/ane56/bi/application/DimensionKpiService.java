@@ -32,4 +32,8 @@ public class DimensionKpiService extends AssertionConcern {
 	   return result;
    }
 
+   public int deleteDimensionKpiData(Map<String,Object> condition){
+	   int result = DimensionKpiRepository.delete(condition);
+	   return result;
+   }
 }

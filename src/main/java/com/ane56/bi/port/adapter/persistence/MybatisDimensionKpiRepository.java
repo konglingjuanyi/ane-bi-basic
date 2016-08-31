@@ -1,7 +1,12 @@
 package com.ane56.bi.port.adapter.persistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+
+import com.ane56.bi.common.util.ObjectMapUtils;
 import com.ane56.bi.domain.operation.DimensionKpi;
 import com.ane56.bi.domain.operation.DimensionKpiRepository;
 import com.ane56.db.mybatis.core.Pagination;
@@ -41,5 +46,18 @@ public class MybatisDimensionKpiRepository extends SpringMybatisRepositorySuppor
 		List<DimensionKpi> result = this.repository().query("Opt_DimensionKpiDao.findByParams", condition);
 		return result;
 	}
-
+	@Override
+	public List<Map<String, Object>> exportEntities(Map<String,Object> condition){
+		List<DimensionKpi> result = null;
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		result = this.repository().query("Opt_DimensionKpiDao.findByParams", condition);
+		if(!CollectionUtils.isEmpty(result)){
+			for(int i=0;i<result.size();i++){
+				DimensionKpi obj = result.get(i);
+				Map<String, Object> map = ObjectMapUtils.transBean2Map(obj);
+				list.add(map);
+			}
+		}
+		return list;
+	}
 }

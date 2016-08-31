@@ -1,6 +1,7 @@
 package com.ane56.bi.domain.operation;
 import java.util.List;
 import java.util.Map;
+
 import com.ane56.db.mybatis.core.Pagination;
 
 public interface DimensionKpiRepository {
@@ -14,5 +15,6 @@ public interface DimensionKpiRepository {
 	Pagination<DimensionKpi> queryAllData(int start, int limit);
 
 	List<DimensionKpi> findByParams(Map<String,Object> condition);
-
+	
+	public List<Map<String, Object>> exportEntities(Map<String,Object> condition);
 }

@@ -1,7 +1,6 @@
 package com.ane56.bi.application;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,4 +35,10 @@ public class DimensionKpiService extends AssertionConcern {
 	   int result = DimensionKpiRepository.delete(condition);
 	   return result;
    }
+	/** 
+	 * 导出权限对象属性信息
+	 */
+	public List<Map<String, Object>> exportEntities(Map<String,Object> condition){
+		return DimensionKpiRepository.exportEntities(condition);
+	}
 }

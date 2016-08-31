@@ -33,7 +33,7 @@ public class ClasslineControll  extends ResourceResponseSupport{
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
 		ObjectMapper mapper = new ObjectMapper();
 		g7Vo.setPageNo("1");
-		g7Vo.setPageSize("100");
+		g7Vo.setPageSize("1000");
 		g7Vo.setIs_passall("1");
 		g7Vo.setIs_share("0");
 		try {

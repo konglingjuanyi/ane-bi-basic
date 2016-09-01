@@ -1,16 +1,13 @@
 package com.ane56.bi.port.adapter.web.resource.operate;
 
 import java.io.BufferedOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -18,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.ane56.bi.application.DimensionKpiService;
 import com.ane56.bi.common.util.CreateExcelUtils;
 import com.ane56.bi.common.util.DateUtils;
@@ -86,6 +82,8 @@ public class DimensionKpiControll extends ResourceResponseSupport {
 	public void exportExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, Object> condition = new HashMap<String, Object>();
 		Map<String, String> titleMap = null;
+		//创建一个Excel文件  
+		HSSFWorkbook wb = null;
 		//导出excel
 		String fileName = "维度目标值_"+DateUtils.getDate(new Date());
 		fileName = new String(fileName.getBytes("UTF-8"), "UTF-8");
@@ -97,22 +95,22 @@ public class DimensionKpiControll extends ResourceResponseSupport {
 		response.setDateHeader("Expires", 0);
 		OutputStream output = response.getOutputStream();
 		BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
-		// 定义单元格报头
-		String worksheetTitle = "维度目标值信息";
-		titleMap = DimensionKpiMapper.getExcelTitle();
-		//创建一个Excel文件  
-		HSSFWorkbook wb = new HSSFWorkbook();
-		List<Map<String, Object>> value = dimensionKpiService.exportEntities(condition);
-		//创建一个Excel的Sheet    
-		HSSFSheet sheet = CreateExcelUtils.createExcelTitleAndStyle(worksheetTitle, wb,titleMap,12);
-		CreateExcelUtils.paraseDataToExcelSheet(value, sheet, titleMap);
 		try {
+			// 定义单元格报头
+			String worksheetTitle = "维度目标值信息";
+			titleMap = DimensionKpiMapper.getExcelTitle();
+			//创建一个Excel文件  
+			wb = new HSSFWorkbook();
+			List<Map<String, Object>> value = dimensionKpiService.exportEntities(condition);
+			//创建一个Excel的Sheet    
+			HSSFSheet sheet = CreateExcelUtils.createExcelTitleAndStyle(worksheetTitle, wb,titleMap,12);
+			CreateExcelUtils.paraseDataToExcelSheet(value, sheet, titleMap);
+		} catch (Exception e) {
+			log.error("导出维度目标值信息Excel异常"+e);
+		} finally {
 			bufferedOutPut.flush();
 			wb.write(bufferedOutPut);
 			bufferedOutPut.close();
-		} catch (IOException e) {
-			log.error("导出维度目标值信息Excel异常"+e);
-		} finally {
 		}
 	};
 }

@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import com.ane56.bi.common.pager.PageBean;
+import com.ane56.bi.common.pager.PageConstants;
 import com.ane56.bi.domain.operation.KpiBasicData;
 import com.ane56.bi.domain.operation.KpiBasicDataRepository;
 import com.ane56.db.mybatis.core.Pagination;
@@ -32,13 +34,33 @@ public class MybatisKpiBasicDataRepository extends SpringMybatisRepositorySuppor
 		return result;
 	}
 
+	/*@Override
+	public PageBean<KpiBasicData> queryDataByPage(Map<String,Object> paramObject,int offset, int limit) {
+		//每页记录数
+		Integer total =  (Integer) this.repository().queryBy("Opt_KpiBasicDataDao.queryPageCount", paramObject);
+		Pagination<KpiBasicData> pageResult= this.repository().queryPage("Opt_KpiBasicDataDao.queryDataByPage", paramObject, offset, limit);
+		List<KpiBasicData> dataList = pageResult.getResult();
+		
+		 * 5. 创建PageBean，设置参数
+		 
+		PageBean<KpiBasicData> pb = new PageBean<KpiBasicData>();
+		
+		 * 其中PageBean没有url，这个任务由Servlet完成
+		 
+		pb.setBeanList(dataList);
+		pb.setTotal(total);
+		return pb;
+	}*/
 	@Override
-	public Pagination<KpiBasicData> queryAllData(int start, int limit) {
-		SqlQuery sqlQuery = new QueryBuilder(KpiBasicData.class).build();
-		Pagination<KpiBasicData> pageResult = this.repository().query(sqlQuery, start, limit);
-		return pageResult;
+	public PageBean<KpiBasicData> queryDataByPage(Map<String,Object> searchMap,int offset, int limit) {
+		 PageBean<KpiBasicData> pageList = null;
+		try {
+			pageList = this.queryPagedList("Opt_KpiBasicDataDao", KpiBasicData.class, searchMap, offset, limit);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pageList;
 	}
-
 	@Override
 	public List<KpiBasicData> findByParams(Map<String,Object> condition) {
 		List<KpiBasicData> result = this.repository().query("Opt_KpiBasicDataDao.findByParams", condition);

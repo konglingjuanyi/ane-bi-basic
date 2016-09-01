@@ -117,4 +117,23 @@
 		  </if>
 		</where>
 	</select>
+	<select id="queryPagedCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(1) FROM ANE_BI_KPI A
+		<where>
+		  <if test="kpiId!='' and kpiId !=null">
+		   A.KPI_ID = #{kpiId}
+		  </if>
+		</where>
+	</select>
+	<select id="queryPagedList" resultMap="kpiResult" parameterType="java.util.Map">
+		SELECT 
+		<include refid="dymnaic_sql"/> 
+		FROM ANE_BI_KPI A
+		<where>
+		  <if test="kpiId!='' and kpiId !=null">
+		   A.KPI_ID = #{kpiId}
+		  </if>
+		</where>
+	</select>
+	
 </mapper>

@@ -8,12 +8,16 @@
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t][%c] %m%n " />
 		</layout>
+		  <!--过滤器设置输出的级别-->       
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">       
+            <param name="levelMin" value="debug" />       
+            <param name="levelMax" value="warn" />       
+            <param name="AcceptOnMatch" value="true" />       
+        </filter>
 	</appender>
-
-
 	<!-- Root Logger -->
 	<root>
-		<priority value="ERROR" />
+		<priority value="debug" />
 		<appender-ref ref="console" />
 	</root>
 

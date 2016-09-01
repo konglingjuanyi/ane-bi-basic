@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ane56.bi.application.KpiBasicDataService;
+import com.ane56.bi.common.pager.PageBean;
+import com.ane56.bi.common.pager.PageConstants;
 import com.ane56.bi.domain.operation.KpiBasicData;
 import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;
 import com.ane56.bi.port.adapter.rest.RestResultResponse;
+import com.ane56.db.mybatis.core.Pagination;
 
 @RestController
 @RequestMapping(value="kpi")
@@ -56,6 +59,21 @@ public class KpiBasicDataControll extends ResourceResponseSupport {
 		data.setUpdatedName("更新");
 		data.setStatus(1);
 		int result = kpiBasicDataService.updateKpiData(data);
+		return this.buildSuccessRestResultResponse(result);
+	}
+	@RequestMapping(value = "/queryDataByPage", method = RequestMethod.GET)
+	public RestResultResponse queryDataByPage() {
+		Map<String,Object> condition = new HashMap<String,Object>();
+		//condition.put("kpiId", 1);
+		//每页记录数
+		int pageSize = PageConstants.PAGE_SIZE;
+		//页码
+		int currentPage = 2;
+		int offset = (currentPage-1)*pageSize;
+		int limit = pageSize;
+		PageBean<KpiBasicData> result = kpiBasicDataService.queryDataByPage(condition,offset,limit);
+		result.setCurrentPage(currentPage);
+		result.setPageSize(pageSize);
 		return this.buildSuccessRestResultResponse(result);
 	}
 }

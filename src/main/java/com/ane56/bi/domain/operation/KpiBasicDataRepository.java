@@ -2,7 +2,7 @@ package com.ane56.bi.domain.operation;
 import java.util.List;
 import java.util.Map;
 
-import com.ane56.db.mybatis.core.Pagination;
+import com.ane56.bi.common.pager.PageBean;
 
 public interface KpiBasicDataRepository {
 
@@ -12,7 +12,7 @@ public interface KpiBasicDataRepository {
 
 	int delete(KpiBasicData entity);
 
-	Pagination<KpiBasicData> queryAllData(int start, int limit);
+	PageBean<KpiBasicData> queryDataByPage(Map<String,Object> paramObject,int offset, int limit);
 
 	List<KpiBasicData> findByParams(Map<String,Object> condition);
 

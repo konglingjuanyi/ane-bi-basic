@@ -5,9 +5,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.ane56.bi.common.pager.PageBean;
 import com.ane56.bi.domain.AssertionConcern;
 import com.ane56.bi.domain.operation.KpiBasicData;
 import com.ane56.bi.domain.operation.KpiBasicDataRepository;
+import com.ane56.db.mybatis.core.Pagination;
 
 @Service
 public class KpiBasicDataService extends AssertionConcern {
@@ -32,4 +35,10 @@ public class KpiBasicDataService extends AssertionConcern {
 	   return result;
    }
 
+   public PageBean<KpiBasicData> queryDataByPage(Map<String,Object> paramObject,int offset, int limit){
+	   PageBean<KpiBasicData> result = null;
+	   result = kpiBasicDataRepository.queryDataByPage(paramObject,offset,limit);
+	   return result;
+   }
+   
 }

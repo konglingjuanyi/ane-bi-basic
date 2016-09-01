@@ -16,7 +16,7 @@ public class SpringMybatisRepositorySupport {
 
 	@Autowired
 	private SqlSessionFactory sqlSessionFactory;
-	
+	@Autowired
 	private MybatisRepository mybatisRepository;
 
 	protected MybatisRepository repository() {
@@ -36,7 +36,6 @@ public class SpringMybatisRepositorySupport {
 		 * 5. 创建PageBean，设置参数
 		 */
 	    PageBean<T> pb = new PageBean<T>();
-	  //每页记录数
 		Integer total =  (Integer) this.repository().queryBy(nameSpace+".queryPagedCount", searchMap);
 		Pagination<Object> result= this.repository().queryPage(nameSpace+".queryPagedList", searchMap, offset, limit);	
 		@SuppressWarnings("unchecked")

@@ -2,9 +2,6 @@ package com.ane56.bi.port.adapter.service;
 
 import java.security.MessageDigest;
 
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.codec.digest.DigestUtils;
-
 import com.ane56.bi.domain.AssertionConcern;
 import com.ane56.bi.domain.user.EncryptionService;
 

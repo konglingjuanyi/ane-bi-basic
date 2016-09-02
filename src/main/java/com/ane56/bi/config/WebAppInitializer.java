@@ -1,11 +1,5 @@
 package com.ane56.bi.config;
 
-import javax.servlet.Filter;
-
-import org.springframework.core.annotation.Order;
-import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
 @Order(1)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

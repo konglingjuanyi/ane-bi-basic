@@ -3,15 +3,6 @@ package com.ane56.bi.port.adapter.security;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
 import com.ane56.bi.application.UserApplicationService;
 import com.ane56.bi.application.command.user.AuthenticationCommand;
 import com.ane56.bi.domain.user.AuthticationType;

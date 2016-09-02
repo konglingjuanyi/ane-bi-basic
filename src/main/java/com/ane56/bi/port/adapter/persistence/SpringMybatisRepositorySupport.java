@@ -2,13 +2,7 @@ package com.ane56.bi.port.adapter.persistence;
 
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.ane56.bi.common.pager.PageBean;
-import com.ane56.db.mybatis.MybatisRepository;
-import com.ane56.db.mybatis.MybatisRepositorySupport;
-import com.ane56.db.mybatis.core.Pagination;
-import com.ane56.db.mybatis.query.QueryBuilder;
 
 public class SpringMybatisRepositorySupport {
 	@Autowired

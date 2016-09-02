@@ -3,9 +3,6 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Map;
 
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.MapHandler;
-
 import com.ane56.bi.common.util.CommonUtils;
 import com.ane56.bi.common.util.DateUtils;
 import com.ane56.bi.common.util.TxQueryRunner;

@@ -2,14 +2,8 @@ package com.ane56.bi.port.adapter.persistence;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.ane56.bi.domain.resource.RoleRource;
 import com.ane56.bi.domain.resource.RoleRourceRepository;
-import com.ane56.db.mybatis.MybatisRepositorySupport;
-import com.ane56.db.mybatis.query.QueryBuilder;
 
 /**
  * 类描述:用户角色关联实现类
@@ -37,6 +31,7 @@ public class MybatisRoleSourceRepository extends MybatisRepositorySupport implem
 	 * @param useRrole:角色权限关联类
 	 * @author hanyong
 	 */
+	@Override
 	public void add(RoleRource roleSource) {
 		insert(roleSource);
 	}
@@ -46,6 +41,7 @@ public class MybatisRoleSourceRepository extends MybatisRepositorySupport implem
 	 * @param useRrole:角色权限关联类
 	 * @author hanyong
 	 */
+	@Override
 	public void remove(RoleRource roleSource) {
 		delete(roleSource);
 	}

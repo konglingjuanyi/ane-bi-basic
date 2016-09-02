@@ -3,8 +3,6 @@ package com.ane56.bi.domain.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.ane56.bi.domain.AssertionConcern;
 
 public class UserService extends AssertionConcern {

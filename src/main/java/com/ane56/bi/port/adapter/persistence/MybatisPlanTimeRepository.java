@@ -3,15 +3,10 @@ package com.ane56.bi.port.adapter.persistence;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Component;
-
 import com.ane56.bi.common.pager.PageBean;
 import com.ane56.bi.common.pager.PageConstants;
 import com.ane56.bi.domain.operation.PlanTime;
 import com.ane56.bi.domain.operation.PlanTimeRepository;
-import com.ane56.db.mybatis.core.Pagination;
-import com.ane56.db.mybatis.query.QueryBuilder;
-import com.ane56.db.mybatis.query.SqlQuery;
 
 @Component
 public class MybatisPlanTimeRepository extends SpringMybatisRepositorySupport implements PlanTimeRepository {

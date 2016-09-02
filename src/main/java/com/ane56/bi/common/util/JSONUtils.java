@@ -4,12 +4,6 @@ package com.ane56.bi.common.util;
 import java.io.IOException;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
-
-import com.alibaba.fastjson.JSON;
-
 /**
  * json工具类
  * @author Rong.zhu

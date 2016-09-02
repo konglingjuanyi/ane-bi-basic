@@ -1,7 +1,5 @@
 package com.ane56.bi.common.util;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 /**
  * 使用apache的commons-codec-1.10来采用MD5加密解密
  */

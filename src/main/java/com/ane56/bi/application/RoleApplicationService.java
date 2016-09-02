@@ -3,9 +3,6 @@ package com.ane56.bi.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ane56.bi.application.command.role.CreateRoleCommand;
 import com.ane56.bi.application.command.role.UpdateRoleCommand;
 import com.ane56.bi.domain.AssertionConcern;
@@ -14,7 +11,6 @@ import com.ane56.bi.domain.user.Role;
 import com.ane56.bi.domain.user.RoleRepository;
 import com.ane56.bi.domain.user.RoleService;
 import com.ane56.bi.domain.user.UserRoleRepository;
-import com.ane56.db.mybatis.core.Pagination;
 
 @Service
 public class RoleApplicationService extends AssertionConcern {

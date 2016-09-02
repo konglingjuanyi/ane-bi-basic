@@ -3,9 +3,6 @@ package com.ane56.bi.g7.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
-
 import com.ane56.bi.g7.dao.ClasslineDao;
 import com.ane56.bi.g7.domain.Classline;
 import com.ane56.bi.g7.domain.PageResult;

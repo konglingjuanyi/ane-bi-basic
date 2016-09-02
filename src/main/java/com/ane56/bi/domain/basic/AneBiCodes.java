@@ -2,8 +2,6 @@ package com.ane56.bi.domain.basic;
 
 import java.util.Date;
 
-import org.apache.ibatis.annotations.Update;
-
 import com.ane56.bi.domain.Entity;
 
 public class AneBiCodes extends Entity{

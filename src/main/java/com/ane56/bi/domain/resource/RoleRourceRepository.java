@@ -2,8 +2,6 @@ package com.ane56.bi.domain.resource;
 
 import java.util.List;
 
-import com.ane56.db.mybatis.query.QueryBuilder;
-
 /**
  * 类描述:角色权限关联接口类
  * @author hanyong

@@ -1,8 +1,6 @@
 package com.ane56.bi.domain.basic;
 
 import java.util.List;
-
-import com.ane56.db.mybatis.core.Pagination;
 /**
  * 类描述：数据字典接口类
  * @author zhangyibo

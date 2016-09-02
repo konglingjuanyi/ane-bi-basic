@@ -3,9 +3,6 @@ package com.ane56.bi.common.util;
 import java.io.OutputStream;
 import java.util.Map;
 
-import jxl.write.NumberFormat;
-import jxl.write.WritableSheet;
-
 public class VerifyUtil {
 
     public static boolean isNullObject(String[][] content, OutputStream os) {

@@ -6,3 +6,5 @@ sdfsafsadfsadsdfsadfsadfsadfsadfsadf
 提交到暂存区文件
 
 修改工作区文件。
+
+git网站里面修改该文件。

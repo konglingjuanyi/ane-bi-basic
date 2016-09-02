@@ -1,6 +1,6 @@
 # BI基础数据
 
-
+该项目前端使用node.js+angular.js技术，后台使用spring+ibatis。
 
 ##	如何开始
 	

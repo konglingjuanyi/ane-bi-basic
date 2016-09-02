@@ -8,7 +8,7 @@ public class PlanTime extends Entity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2322822594818344660L;
+	private static final long serialVersionUID = -6034913536407140700L;
 	private int operationId;
 	private int siteId;
 	private String siteName;

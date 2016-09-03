@@ -4,6 +4,8 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 /**
  * 浣跨敤鏈被鐨勬柟娉曪紝蹇呴』鎻愪緵c3p0-copnfig.xml鏂囦欢
  * @author qdmmy6

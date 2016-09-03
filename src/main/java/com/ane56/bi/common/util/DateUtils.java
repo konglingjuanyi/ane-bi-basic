@@ -27,7 +27,7 @@ public class DateUtils {
 				dt += format.substring(dt.length()).replaceAll("[YyMmDdHhSs]",
 						"0");
 			}
-			date = dateFormat.parse(dt);
+			date = (Date) dateFormat.parse(dt);
 		} catch (Exception e) {
 		}
 		return date;

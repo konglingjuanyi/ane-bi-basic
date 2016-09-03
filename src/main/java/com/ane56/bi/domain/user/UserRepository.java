@@ -2,6 +2,8 @@ package com.ane56.bi.domain.user;
 
 import java.util.List;
 
+import com.ane56.db.mybatis.core.Pagination;
+
 public interface UserRepository {
 
 	void add(User user);

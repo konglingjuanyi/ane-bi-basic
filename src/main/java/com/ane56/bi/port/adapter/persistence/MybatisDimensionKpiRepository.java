@@ -2,10 +2,14 @@ package com.ane56.bi.port.adapter.persistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import com.ane56.bi.common.util.ObjectMapUtils;
 import com.ane56.bi.domain.operation.DimensionKpi;
 import com.ane56.bi.domain.operation.DimensionKpiRepository;
+import com.ane56.db.mybatis.core.Pagination;
+import com.ane56.db.mybatis.query.QueryBuilder;
+import com.ane56.db.mybatis.query.SqlQuery;
 
 @Component
 public class MybatisDimensionKpiRepository extends SpringMybatisRepositorySupport implements DimensionKpiRepository {

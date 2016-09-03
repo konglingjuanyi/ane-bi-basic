@@ -2,8 +2,12 @@ package com.ane56.bi.port.adapter.persistence;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.ane56.bi.domain.user.Role;
 import com.ane56.bi.domain.user.RoleRepository;
+import com.ane56.db.mybatis.core.Pagination;
+import com.ane56.db.mybatis.query.QueryBuilder;
 @Component
 public class MybatisRoleRepository extends SpringMybatisRepositorySupport implements RoleRepository{
 	

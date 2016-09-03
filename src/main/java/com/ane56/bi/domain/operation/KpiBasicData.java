@@ -1,9 +1,6 @@
 package com.ane56.bi.domain.operation;
-
 import java.util.Date;
-
 import com.ane56.bi.domain.Entity;
-
 public class KpiBasicData extends Entity {
 
 	/**

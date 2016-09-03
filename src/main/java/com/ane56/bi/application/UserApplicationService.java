@@ -2,6 +2,10 @@ package com.ane56.bi.application;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ane56.bi.application.command.user.AuthenticationCommand;
 import com.ane56.bi.application.command.user.CreateUserCommand;
 import com.ane56.bi.application.command.user.UpdateUserCommand;
@@ -10,6 +14,7 @@ import com.ane56.bi.domain.user.User;
 import com.ane56.bi.domain.user.UserDescripter;
 import com.ane56.bi.domain.user.UserRepository;
 import com.ane56.bi.domain.user.UserService;
+import com.ane56.db.mybatis.core.Pagination;
 
 @Service
 public class UserApplicationService extends AssertionConcern {

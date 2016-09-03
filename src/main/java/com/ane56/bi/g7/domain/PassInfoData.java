@@ -15,6 +15,10 @@ public class PassInfoData implements Serializable{
 	 */
 	private String id;	
 	/**
+	 * 外键，班线id唯一标示
+	 */
+	private String classlineId;	
+	/**
 	 * 顶级机构编号
 	 */
 	private String orgroot;
@@ -139,6 +143,12 @@ public class PassInfoData implements Serializable{
 	}
 	public void setPassSiteLngLat(String passSiteLngLat) {
 		this.passSiteLngLat = passSiteLngLat;
+	}
+	public String getClasslineId() {
+		return classlineId;
+	}
+	public void setClasslineId(String classlineId) {
+		this.classlineId = classlineId;
 	}
 
 }

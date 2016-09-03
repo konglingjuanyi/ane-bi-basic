@@ -2,6 +2,9 @@ package com.ane56.dispatch.application;
 
 import java.util.List;
 
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.ane56.bi.application.AneBiCodesService;
 import com.ane56.bi.domain.basic.AneBiCodes;
 import com.ane56.dispatch.AbstractTest;

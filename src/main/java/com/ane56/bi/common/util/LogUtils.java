@@ -1,5 +1,8 @@
 package com.ane56.bi.common.util;
 
+
+import org.apache.log4j.Logger;
+
 /**
  * 日志输出工具类
  * @author Rong.zhu

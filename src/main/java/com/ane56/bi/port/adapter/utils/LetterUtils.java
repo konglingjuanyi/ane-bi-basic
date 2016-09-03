@@ -81,8 +81,8 @@ public class LetterUtils {
         chinese = conversionStr(chinese, "GB2312", "ISO8859-1");  
         if (chinese.length() > 1) {  
             // 判断是不是汉字  
-            int li_SectorCode = chinese.charAt(0); // 汉字区码  
-            int li_PositionCode = chinese.charAt(1); // 汉字位码  
+            int li_SectorCode = (int) chinese.charAt(0); // 汉字区码  
+            int li_PositionCode = (int) chinese.charAt(1); // 汉字位码  
             li_SectorCode = li_SectorCode - 160;  
             li_PositionCode = li_PositionCode - 160;  
             int li_SecPosCode = li_SectorCode * 100 + li_PositionCode; // 汉字区位码  

@@ -2,6 +2,10 @@ package com.ane56.bi.domain.user;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.ane56.db.mybatis.spring.Mapper;
+
 /**
  * 类描述:用户角色关联接口类
  * 

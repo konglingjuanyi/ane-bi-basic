@@ -2,6 +2,12 @@ package com.ane56.bi.port.adapter.web.resource;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.ane56.bi.application.AneBiSiteRadioStandardService;
 import com.ane56.bi.domain.radio.AneBiSiteRadioStandard;
 import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;

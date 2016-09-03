@@ -3,6 +3,9 @@ package com.ane56.bi.g7.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
 import com.ane56.bi.g7.dao.ClasslineDao;
 import com.ane56.bi.g7.domain.Classline;
 import com.ane56.bi.g7.domain.PageResult;
@@ -43,6 +46,7 @@ public class ClasslineService {
 						for (int j = 0; j < passInfoList.size(); j++) {
 							PassInfoData passInfoBean = null;
 							PassInfoData passInfo = passInfoList.get(j);
+							passInfo.setClasslineId(g7bean.getId());
 							String pid = passInfo.getId();
 							if (!StringUtils.isEmpty(pid)) {
 								passInfoBean = classlineDao.findPassInfoByBid(pid);

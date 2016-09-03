@@ -4,6 +4,9 @@ package com.ane56.bi.common.util;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+
 public class TxQueryRunner extends QueryRunner {
 
 	@Override

@@ -3,6 +3,9 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Map;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.MapHandler;
+
 import com.ane56.bi.common.util.CommonUtils;
 import com.ane56.bi.common.util.DateUtils;
 import com.ane56.bi.common.util.TxQueryRunner;
@@ -41,11 +44,11 @@ public class ClasslineDao {
 	public boolean addPassInfoData(PassInfoData passInfo) throws SQLException {
 		String sql = "INSERT INTO ODS_BDP.ANE_BI_BASIC_PASSINFO a (a.\"id\","+
 		"a.\"orgroot\", a.\"lineid\", a.\"siteid\", a.\"order\", a.\"runtime\","+
-		"a.\"staytime\", a.\"szflag\", a.\"tomiles\", a.\"name\", a.\"lat\", a.\"lng\", a.\"passSiteLngLat\")"+
-				" values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		"a.\"staytime\", a.\"szflag\", a.\"tomiles\", a.\"name\", a.\"lat\", a.\"lng\", a.\"passSiteLngLat\",a.\"classLineId\")"+
+				" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] params = {passInfo.getId(),passInfo.getOrgroot(),passInfo.getLineid(),passInfo.getSiteid(),
 				passInfo.getOrder(),passInfo.getRuntime(),passInfo.getStaytime(),passInfo.getSzflag(),passInfo.getTomiles(),
-				passInfo.getName(),passInfo.getLat(),passInfo.getLng(),passInfo.getPassSiteLngLat()};
+				passInfo.getName(),passInfo.getLat(),passInfo.getLng(),passInfo.getPassSiteLngLat(),passInfo.getClasslineId()};
 		int result = qr.update(sql, params);
 		if(result==1){
 			return true;

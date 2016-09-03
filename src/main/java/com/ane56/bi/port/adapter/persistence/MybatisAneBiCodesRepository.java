@@ -2,8 +2,13 @@ package com.ane56.bi.port.adapter.persistence;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
+
 import com.ane56.bi.domain.basic.AneBiCodes;
 import com.ane56.bi.domain.basic.AneBiCodesRepository;
+import com.ane56.db.mybatis.core.Pagination;
+import com.ane56.db.mybatis.query.QueryBuilder;
 /**
  * 类描述：数据字典实现类
  * @author zhangyibo
@@ -17,7 +22,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param codeType
 	 * @return
 	 */
-	@Override
 	public List<AneBiCodes> getCodesByType(String codeType) {
 		QueryBuilder sqlQuery = new QueryBuilder(AneBiCodes.class);
 		return this.repository().query(sqlQuery.eq("code_type", codeType).build());
@@ -29,7 +33,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param codeName
 	 * @return
 	 */
-	@Override
 	public AneBiCodes findCodeByTypeAndValue(String codeType, String codeName) {
 		QueryBuilder sqlQuery = new QueryBuilder(AneBiCodes.class);
 		sqlQuery = sqlQuery.eq("code_type", codeType).eq("code_name", codeName);
@@ -40,7 +43,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * 新增字典项
 	 * @param aneBiCodes
 	 */
-	@Override
 	public void addCode(AneBiCodes aneBiCodes) {
 		this.repository().insert(aneBiCodes);
 	}
@@ -49,7 +51,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * 删除字典项
 	 * @param aneBiCodes
 	 */
-	@Override
 	public void deleteCode(AneBiCodes aneBiCodes) {
 		this.repository().delete(aneBiCodes);
 	}
@@ -58,7 +59,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * 更新字典项
 	 * @param aneBiCodes
 	 */
-	@Override
 	public void updateCode(AneBiCodes aneBiCodes) {
 		this.repository().update(aneBiCodes);
 	}
@@ -69,7 +69,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param limit
 	 * @return
 	 */
-	@Override
 	public Pagination<AneBiCodes> getCodesWithPage(int start, int limit,String codeType,String description,String codeName) {
 		QueryBuilder sqlBuilder = new QueryBuilder(AneBiCodes.class);
 		if(StringUtils.isNotBlank(codeType)){
@@ -89,7 +88,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param id
 	 * @return
 	 */
-	@Override
 	public AneBiCodes findById(long id) {
 		return findByProp(AneBiCodes.class, "id", id+"");
 	}

@@ -2,6 +2,9 @@ package com.ane56.bi.common.util;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.ConvertUtils;
+
 public class CommonUtils {
 	/**
 	 * 杩斿洖涓�釜涓嶉噸澶嶇殑瀛楃涓�

@@ -1,11 +1,21 @@
 package com.ane56.bi.port.adapter.web.resource.g7;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ane56.bi.common.ApiResult;
 import com.ane56.bi.common.ApiUtil;
+import com.ane56.bi.common.util.DateUtils;
 import com.ane56.bi.g7.domain.Classline;
 import com.ane56.bi.g7.domain.G7QueryVO;
 import com.ane56.bi.g7.domain.PageResult;
@@ -19,18 +29,24 @@ public class ClasslineControll  extends ResourceResponseSupport{
 	private ClasslineService classlineService = new ClasslineService();
 	
 	@RequestMapping(value = "/sync", method = RequestMethod.GET)
-	public PageResult insertG7DataToDB() {
+	public ApiResult insertG7DataToDB() {
 		PageResult pageResult=null;
+		ApiResult result  = null;
 		G7QueryVO g7Vo = new G7QueryVO();
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
 		ObjectMapper mapper = new ObjectMapper();
-		g7Vo.setPageNo("1");
-		g7Vo.setPageSize("1000");
+		String data1 = DateUtils.format(new Date(), "yyyy-MM-dd hh:mm:ss");
+		g7Vo.setPageNo("13");
+		g7Vo.setPageSize("300");
+		//g7Vo.setOrgnum("20009E");
+		//g7Vo.setUpdatetimeLe("2016-07-02 10:48:18");
+		//g7Vo.setUpdatetimeGe("2016-06-01 10:48:18");
+		g7Vo.setDeleted(2);
 		g7Vo.setIs_passall("1");
 		g7Vo.setIs_share("0");
 		try {
 			paramsMap.put("data", mapper.writeValueAsString(g7Vo));
-			ApiResult result = ApiUtil.getResult("classline.postline.getPostLineInfo", paramsMap);
+			result = ApiUtil.getResult("classline.postline.getPostLineInfo", paramsMap);
 			Object objData = result.getData();
 			System.out.println(objData);
 			pageResult = convertResultToList(objData);
@@ -38,7 +54,7 @@ public class ClasslineControll  extends ResourceResponseSupport{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return pageResult;
+		return result;
 	};
 	public static PageResult convertResultToList(Object obj){
 		PageResult pageResult = new PageResult();

@@ -3,7 +3,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import com.ane56.bi.application.PlanTimeService;
 import com.ane56.bi.common.pager.PageBean;
 import com.ane56.bi.common.pager.PageConstants;
@@ -44,11 +47,11 @@ public class PlanTimeControll extends ResourceResponseSupport {
 		PlanTime data = new PlanTime();
 		data.setOperationId(1);
 		data.setSiteId(12121);
-		data.setSiteName("上海分拨中心");
+		data.setSiteName("上海分拨中心更新");
 		data.setCreateTime(new Date());
 		data.setStatus(1);
 		data.setCreateTime(new Date());
-		data.setCreatedName("杨得朝");
+		data.setCreatedName("杨得朝更新");
 		data.setUpdateTime(new Date());
 		data.setStatus(1);
 		int result = planTimeService.updatePlanTime(data);

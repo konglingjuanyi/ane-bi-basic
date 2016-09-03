@@ -1,5 +1,8 @@
 package com.ane56.dispatch.application;
 
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.ane56.bi.application.RoleApplicationService;
 import com.ane56.bi.application.command.role.CreateRoleCommand;
 import com.ane56.dispatch.AbstractTest;

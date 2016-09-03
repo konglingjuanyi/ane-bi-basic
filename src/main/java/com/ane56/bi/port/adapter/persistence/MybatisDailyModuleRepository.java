@@ -2,8 +2,12 @@ package com.ane56.bi.port.adapter.persistence;
 
 import java.util.List;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 import com.ane56.bi.domain.operation.DailyModule;
 import com.ane56.bi.domain.operation.DailyModuleRepository;
+import com.ane56.db.mybatis.core.Pagination;
+import com.ane56.db.mybatis.query.QueryBuilder;
+import com.ane56.db.mybatis.query.SqlQuery;
 
 @Component
 public class MybatisDailyModuleRepository extends SpringMybatisRepositorySupport implements DailyModuleRepository {

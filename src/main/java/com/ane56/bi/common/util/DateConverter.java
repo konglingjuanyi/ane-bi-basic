@@ -2,6 +2,8 @@ package com.ane56.bi.common.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.apache.commons.beanutils.Converter;
+
 public class DateConverter implements Converter {
 
 	@SuppressWarnings("rawtypes")

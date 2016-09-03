@@ -7,6 +7,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 public class ObjectMapUtils {
 	private static Logger log = Logger.getLogger(ObjectMapUtils.class);
 	// Bean --> Map 1: 利用Introspector和PropertyDescriptor 将Bean --> Map  

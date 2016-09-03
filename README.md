@@ -3,19 +3,19 @@
 该项目前端使用node.js+angular.js技术，后台使用spring+ibatis。
 ##  git命令总结
 查看当前分支跟踪的远程分支命令是：git branch -vv
-git pull                         # 抓取远程仓库所有分支更新并合并到本地
-git pull --no-ff                 # 抓取远程仓库所有分支更新并合并到本地，不要快进合并
-git fetch origin                 # 抓取远程仓库更新
-git merge origin/master          # 将远程主分支合并到本地当前分支
-git co --track origin/branch     # 跟踪某个远程分支创建相应的本地分支
-git co -b <local_branch> origin/<remote_branch>  # 基于远程分支创建本地分支，功能同上
+git pull                         // 抓取远程仓库所有分支更新并合并到本地
+git pull --no-ff                 // 抓取远程仓库所有分支更新并合并到本地，不要快进合并
+git fetch origin                 // 抓取远程仓库更新
+git merge origin/master          // 将远程主分支合并到本地当前分支
+git co --track origin/branch     // 跟踪某个远程分支创建相应的本地分支
+git co -b <local_branch> origin/<remote_branch>  // 基于远程分支创建本地分支，功能同上
 
-git push                         # push所有分支
-git push origin master           # 将本地主分支推到远程主分支
-git push -u origin master        # 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)
-git push origin <local_branch>   # 创建远程分支， origin是远程仓库名
-git push origin <local_branch>:<remote_branch>  # 创建远程分支
-git push origin :<remote_branch>  #先删除本地分支(git br -d <branch>)，然后再push删除远程分支
+git push                         // push所有分支
+git push origin master           // 将本地主分支推到远程主分支
+git push -u origin master        // 将本地主分支推到远程(如无远程主分支则创建，用于初始化远程仓库)
+git push origin <local_branch>   // 创建远程分支， origin是远程仓库名
+git push origin <local_branch>:<remote_branch>  // 创建远程分支
+git push origin :<remote_branch>  //先删除本地分支(git br -d <branch>)，然后再push删除远程分支
 
 
 ##	如何开始

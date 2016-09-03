@@ -3,6 +3,7 @@
 该项目前端使用node.js+angular.js技术，后台使用spring+ibatis。
 ##  git命令总结
 查看当前分支跟踪的远程分支命令是：git branch -vv
+
 git pull                         // 抓取远程仓库所有分支更新并合并到本地
 
 git pull --no-ff                 // 抓取远程仓库所有分支更新并合并到本地，不要快进合并

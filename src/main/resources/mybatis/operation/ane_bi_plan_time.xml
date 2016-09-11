@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Opt_PlanTimeDao">
+	<resultMap id="planTimeResult" type="com.ane56.bi.domain.operation.PlanTime">
+		<result property="operationId" column="OPERATION_ID" />
+		<result property="siteId" column="SITE_ID" />
+		<result property="siteName" column="SITE_NAME" />
+		<result property="carTypeName" column="CAR_TYPE_NAME" />
+		<result property="carType" column="CAR_TYPE" />
+		<result property="unloadCarTime" column="UNLOAD_CAR_TIME" />
+		<result property="loadCarTime" column="LOAD_CAR_TIME" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+		<result property="createdId" column="CREATED_ID" />
+		<result property="createdName" column="CREATED_NAME" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+	<sql id="dymnaic_sql">
+		A.OPERATION_ID,
+		A.SITE_ID,
+		A.SITE_NAME,
+		A.CAR_TYPE_NAME,
+		A.CAR_TYPE,
+		A.UNLOAD_CAR_TIME,
+		A.LOAD_CAR_TIME,
+		A.CREATE_TIME,
+		A.UPDATE_TIME,
+		A.CREATED_ID,
+		A.CREATED_NAME,
+		A.STATUS
+	</sql>
+	<insert id="add" parameterType="com.ane56.bi.domain.operation.PlanTime"
+		useGeneratedKeys="true" keyProperty="operationId">
+		INSERT INTO ANE_BI_PLAN_TIME
+		(
+			SITE_ID,
+			SITE_NAME,
+			CAR_TYPE_NAME,
+			CAR_TYPE,
+			UNLOAD_CAR_TIME,
+			LOAD_CAR_TIME,
+			CREATE_TIME,
+			UPDATE_TIME,
+			CREATED_ID,
+			CREATED_NAME,
+			STATUS
+			)
+			VALUES
+			(
+			#{siteId},
+			#{siteName},
+			#{carTypeName},
+			#{carType},
+			#{unloadCarTime},
+			#{loadCarTime},
+			#{createTime},
+			#{updateTime},
+			#{createdId},
+			#{createdName},
+			#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.ane56.bi.domain.operation.PlanTime">
+		UPDATE ANE_BI_PLAN_TIME A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="siteId !='' and siteId !=null">
+				A.SITE_ID = #{siteId},
+			</if>
+			<if test="siteName !='' and siteName !=null">
+				A.SITE_NAME = #{siteName},
+			</if>
+			<if test="carTypeName !='' and carTypeName !=null">
+				A.CAR_TYPE_NAME = #{carTypeName},
+			</if>
+			<if test="carType !='' and carType !=null">
+				A.CAR_TYPE = #{carType},
+			</if>
+			<if test="unloadCarTime !='' and unloadCarTime !=null">
+				A.UNLOAD_CAR_TIME = #{unloadCarTime},
+			</if>
+			<if test="loadCarTime !='' and loadCarTime !=null">
+				A.LOAD_CAR_TIME = #{loadCarTime},
+			</if>
+			<if test="createTime !='' and createTime !=null">
+				A.CREATE_TIME = #{createTime},
+			</if>
+			<if test="updateTime !='' and updateTime !=null">
+				A.UPDATE_TIME = #{updateTime},
+			</if>
+			<if test="createdId !='' and createdId !=null">
+				A.CREATED_ID = #{createdId},
+			</if>
+			<if test="createdName !='' and createdName !=null">
+				A.CREATED_NAME = #{createdName},
+			</if>
+			<if test="status !='' and status !=null">
+				A.STATUS = #{status}
+			</if>
+		</trim>
+		WHERE A.OPERATION_ID = #{operationId}
+	</update>
+	<select id="findByParams" resultMap="planTimeResult"
+		parameterType="java.util.Map">
+		SELECT
+		<include refid="dymnaic_sql" />
+		FROM ANE_BI_PLAN_TIME A
+		<where>
+			<if test="operationId !='' and operationId !=null">
+				A.OPERATION_ID = #{operationId}
+			</if>
+		</where>
+	</select>
+	<select id="queryPagedCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT count(1) FROM ANE_BI_PLAN_TIME A
+		<where>
+		  <if test="operationId !='' and operationId !=null">
+		     A.OPERATION_ID = #{operationId}
+		  </if>
+		</where>
+	</select>
+	<select id="queryPagedList" resultMap="planTimeResult" parameterType="java.util.Map">
+		SELECT 
+		<include refid="dymnaic_sql"/> 
+		FROM ANE_BI_PLAN_TIME A
+		<where>
+		  <if test="operationId !='' and operationId !=null">
+		  A.OPERATION_ID = #{operationId}
+		  </if>
+		</where>
+	</select>
+	<delete id="delete" parameterType="java.util.Map">
+		DELETE FROM
+		ANE_BI_PLAN_TIME WHERE OPERATION_ID = #{operationId}#
+	</delete>
+</mapper>

@@ -23,7 +23,7 @@
         	refresh();
         }
         
-        function refresh( p,s,codeType,description,codeName){
+        function refresh( p,s){
     		var codeType = vm.codeQuery.codeType;
     		var description = vm.codeQuery.description;
     		var codeName = vm.codeQuery.codeName;
@@ -36,7 +36,7 @@
         vm.paginationHandler = function(){
             if( vm.codes) {
                 return Pagination.create( vm.codes  , function(index){
-                    refresh(index);
+                    refresh(index,vm.s);
                 });
             }
         }
@@ -45,6 +45,7 @@
         }
         
         vm.queryCode = function(){
+        	$(".is-edit").attr("disabled",true);
         	vm.code = {};//清空表单数据
         	refresh();
         }
@@ -55,7 +56,7 @@
         }
         
         vm.deleteModal = function() {
-        	if(vm.code.id=="" || !vm.code.id){
+        	if(vm.code.id!=0 && (vm.code.id=="" || !vm.code.id)){
         		$.smallBox({
         			title : "提示" ,
         			content : "请选择一条数据"  ,
@@ -86,7 +87,7 @@
         }
         
         vm.editCode = function(){
-        	if(vm.code.id=="" || !vm.code.id){
+        	if(vm.code.id!=0 && (vm.code.id=="" || !vm.code.id)){
         		$.smallBox({
         			title : "提示" ,
         			content : "请选择一条数据"  ,
@@ -111,7 +112,7 @@
         		return;
         	}
         	var successTip = "";
-        	if(vm.code.id=="" || !vm.code.id){
+        	if(vm.code.id!=0 && (vm.code.id=="" || !vm.code.id)){
         		var promise = DictionaryService.addCodes(vm.code);//新增
         		successTip = "新增成功";
         	}else{

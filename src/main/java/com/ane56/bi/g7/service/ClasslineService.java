@@ -35,6 +35,7 @@ public class ClasslineService {
 					Classline classLineBean = null;
 					Classline g7bean = classLine.get(i);
 					List<PassInfoData> passInfoList = g7bean.getPassinfoList();
+					//classlineDao.addClassLine(g7bean);
 					String cid = g7bean.getId();
 					if (!StringUtils.isEmpty(cid)) {
 						classLineBean = classlineDao.findClassLineByBid(cid);
@@ -48,9 +49,10 @@ public class ClasslineService {
 							PassInfoData passInfo = passInfoList.get(j);
 							passInfo.setClasslineId(g7bean.getId());
 							String pid = passInfo.getId();
+							//classlineDao.addPassInfoData(passInfo);
 							if (!StringUtils.isEmpty(pid)) {
-								passInfoBean = classlineDao.findPassInfoByBid(pid);
-								if (passInfoBean == null) {
+								boolean result  = classlineDao.findPassInfoByBid(pid,g7bean.getId());
+								if (!result) {
 									classlineDao.addPassInfoData(passInfo);
 								}
 							}

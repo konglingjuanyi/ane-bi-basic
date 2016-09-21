@@ -51,7 +51,7 @@ public class AneBiCodesResources extends ResourceResponseSupport{
 	 */
 	@RequestMapping(value = "/api/addCodes", method = RequestMethod.POST)
 	public RestResultResponse addCodes(@RequestBody AneBiCodes aneBiCodes){
-		AneBiCodes entity = aneBiCodesService.findCodeByTypeAndValue(aneBiCodes.getCodeType(), aneBiCodes.getCodeName());
+		AneBiCodes entity = aneBiCodesService.findCodeByTypeAndValue(aneBiCodes.getCodeType(), aneBiCodes.getCodeValue());
 		if(entity!=null){//已存在
 			return this.buildSuccessRestResultResponse("新增失败,数据已存在");
 		}
@@ -65,8 +65,8 @@ public class AneBiCodesResources extends ResourceResponseSupport{
 	 * @return
 	 */
 	@RequestMapping(value = "/api/updateCodes/{id}", method = RequestMethod.PUT)
-	public RestResultResponse updateCodes(@PathVariable long id,@RequestBody AneBiCodes aneBiCodes){
-		AneBiCodes entity = aneBiCodesService.findCodeByTypeAndValue(aneBiCodes.getCodeType(), aneBiCodes.getCodeName());
+	public RestResultResponse updateCodes(@PathVariable int id,@RequestBody AneBiCodes aneBiCodes){
+		AneBiCodes entity = aneBiCodesService.findCodeByTypeAndValue(aneBiCodes.getCodeType(), aneBiCodes.getCodeValue());
 		if(entity!=null&&entity.getId()!=id){//数据已存在，且与要更新的数据不是同一条
 			return this.buildSuccessRestResultResponse("更新失败,数据重复");
 		}

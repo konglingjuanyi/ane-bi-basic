@@ -1,11 +1,13 @@
 package com.ane56.bi.g7.dao;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
-
+import org.springframework.util.CollectionUtils;
 import com.ane56.bi.common.util.CommonUtils;
 import com.ane56.bi.common.util.DateUtils;
 import com.ane56.bi.common.util.TxQueryRunner;
@@ -25,7 +27,7 @@ public class ClasslineDao {
 	 */
 	public Classline findClassLineByBid(String id) throws SQLException {
 		Classline classline = null;
-		String sql = "SELECT * FROM ODS_BDP.ANE_BI_BASIC_CLASSLINE b WHERE b.\"id\"=?";
+		String sql = "SELECT * FROM ODS_BDP.ANE_BI_BASIC_CLASSLINE B WHERE B.CLASSLINE_ID = ?";
 		// 一行记录中，包含了很多的Classline的属性，还有一个id属性
 		Map<String,Object> map = qr.query(sql, new MapHandler(), id);
 		if(map == null){
@@ -42,10 +44,10 @@ public class ClasslineDao {
 	 * @throws SQLException 
 	 */
 	public boolean addPassInfoData(PassInfoData passInfo) throws SQLException {
-		String sql = "INSERT INTO ODS_BDP.ANE_BI_BASIC_PASSINFO a (a.\"id\","+
-		"a.\"orgroot\", a.\"lineid\", a.\"siteid\", a.\"order\", a.\"runtime\","+
-		"a.\"staytime\", a.\"szflag\", a.\"tomiles\", a.\"name\", a.\"lat\", a.\"lng\", a.\"passSiteLngLat\",a.\"classLineId\")"+
-				" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO ODS_BDP.ANE_BI_BASIC_PASSINFO A (A.OPERATION_ID,"+
+		"A.ORGROOT, A.LINEID, A.SITEID, A.PASS_ORDER, A.RUNTIME,"+
+		"A.STAYTIME, A.SZFLAG, A.TOMILES, A.CLASSlINE_NAME, A.LAT, A.LNG, A.PASSSITELNGLAT,A.CLASSLINE_ID)"+
+				" VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		Object[] params = {passInfo.getId(),passInfo.getOrgroot(),passInfo.getLineid(),passInfo.getSiteid(),
 				passInfo.getOrder(),passInfo.getRuntime(),passInfo.getStaytime(),passInfo.getSzflag(),passInfo.getTomiles(),
 				passInfo.getName(),passInfo.getLat(),passInfo.getLng(),passInfo.getPassSiteLngLat(),passInfo.getClasslineId()};
@@ -63,17 +65,19 @@ public class ClasslineDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public PassInfoData findPassInfoByBid(String id) throws SQLException {
-		PassInfoData passInfo = null;
-		String sql = "SELECT * FROM ODS_BDP.ANE_BI_BASIC_PASSINFO b WHERE b.\"id\"=?";
+	public boolean findPassInfoByBid(String operationId,String classlineId) throws SQLException {
+		List<PassInfoData> beanList = null;
+		List<Object> params = new ArrayList<Object>();//SQL中有问号，它是对应问号的值
+		params.add(operationId);
+		params.add(classlineId);
+		String sql = "SELECT * FROM ODS_BDP.ANE_BI_BASIC_PASSINFO B WHERE B.OPERATION_ID=? and B.CLASSLINE_ID = ?";
 		// 一行记录中，包含了很多的Classline的属性，还有一个id属性
-		Map<String,Object> map = qr.query(sql, new MapHandler(), id);
-		if(map==null){
-			return passInfo;
+		//Map<String,Object> map = qr.query(sql, new MapHandler(), id);
+		beanList = qr.query(sql, new BeanListHandler<PassInfoData>(PassInfoData.class),params.toArray());
+		if(!CollectionUtils.isEmpty(beanList)){
+			return true;
 		}else{
-			// 把Map中除了cid以外的其他属性映射到Classline对象中
-			passInfo = CommonUtils.toBean(map, PassInfoData.class);
-			return passInfo;
+			return false;
 		}
 	}
 	
@@ -83,10 +87,10 @@ public class ClasslineDao {
 	 * @throws SQLException 
 	 */
 	public boolean addClassLine(Classline line) throws SQLException {
-		String sql = "INSERT INTO ODS_BDP.ANE_BI_BASIC_CLASSLINE a (a.\"id\","+
-	    "a.\"orgroot\", a.\"orgcode\", a.\"orgroot_name\", a.\"orgcode_name\", a.\"deleted\", a.\"code\", a.\"name\","+
-		"a.\"startsite\", a.\"endsite\", a.\"startsiteid\", a.\"endsiteid\", a.\"runtime\", a.\"totalmileage\", a.\"startsitecode\"," +
-		"a.\"endsitecode\", a.\"is_share\", a.\"startSiteLngLat\", a.\"endSiteLngLat\", a.\"createtime\",a.\"updatetime\")" +
+		String sql = "INSERT INTO ODS_BDP.ANE_BI_BASIC_CLASSLINE A (A.CLASSLINE_ID,"+
+	    "A.ORGROOT, A.ORGCODE, A.ORGROOT_NAME, A.ORGCODE_NAME, A.DELETED, A.CODE, A.NAME,"+
+		"A.STARTSITE, A.ENDSITE, A.STARTSITEID, A.ENDSITEID, A.RUNTIME, A.TOTALMILEAGE, A.STARTSITECODE," +
+		"A.ENDSITECODE, A.IS_SHARE, A.STARTSITELNGLAT, A.ENDSITELNGLAT, A.CREATETIME,A.UPDATETIME)" +
 				" values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate,sysdate)";
 		Object[] params = {line.getId(),line.getOrgroot(),line.getOrgcode(),line.getOrgroot_name(),line.getOrgcode_name(),line.getDeleted(),
 				line.getCode(),line.getName(),line.getStartsite(),line.getEndsite(),line.getStartsiteid(),line.getEndsiteid(),line.getRuntime(),
@@ -115,3 +119,5 @@ public class ClasslineDao {
 		
 	}
 }
+
+

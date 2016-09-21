@@ -12,33 +12,30 @@ import com.ane56.bi.domain.operation.DimensionKpiRepository;
 public class DimensionKpiService extends AssertionConcern {
 
 	@Autowired
-	private DimensionKpiRepository DimensionKpiRepository;
+	private DimensionKpiRepository dimensionKpiRepository;
 	
 
 	@Transactional
 	public int addDimensionKpiData(DimensionKpi data) {
-		return DimensionKpiRepository.add(data);
+		return dimensionKpiRepository.add(data);
 	}
 
    public List<DimensionKpi> findByParams(Map<String,Object> condition){
 	   List<DimensionKpi> result = null;
-	   result = DimensionKpiRepository.findByParams(condition);
+	   result = dimensionKpiRepository.findByParams(condition);
 	   return result;
    }
    @Transactional
    public int updateDimensionKpiData(DimensionKpi data){
-	   int result = DimensionKpiRepository.update(data);
+	   int result = dimensionKpiRepository.update(data);
 	   return result;
    }
 
    public int deleteDimensionKpiData(Map<String,Object> condition){
-	   int result = DimensionKpiRepository.delete(condition);
+	   int result = dimensionKpiRepository.delete(condition);
 	   return result;
    }
-	/** 
-	 * 导出权限对象属性信息
-	 */
 	public List<Map<String, Object>> exportEntities(Map<String,Object> condition){
-		return DimensionKpiRepository.exportEntities(condition);
+		return dimensionKpiRepository.exportEntities(condition);
 	}
 }

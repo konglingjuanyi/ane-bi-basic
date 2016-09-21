@@ -74,19 +74,12 @@
                         <div class="col-sm-2">
                         	<input id="codeName" name="codeName" class="form-control is-edit" ng-model="vm.code.codeName" required>
                     	</div>
+                    	
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">值：</label></div>
+                        <div class="col-sm-2">
+                        	<input id="codeValue" name="codeValue" class="form-control is-edit" ng-model="vm.code.codeValue" required>
+                    	</div>
                     </div>
-                    
-                    <!-- <div class="row">
-                        <div class="col-sm-offset-1 col-sm-2">
-                        	<p style="color:red;" class="help-block" ng-show="vm.formValidator.isValidatedOf(codeEditForm.codeType , 'required')">必填</p>
-                    	</div>
-                    	<div class="col-sm-offset-1 col-sm-2">
-                        	<p style="color:red;" class="help-block" ng-show="vm.formValidator.isValidatedOf(codeEditForm.description , 'required')">必填</p>
-                    	</div>
-                    	<div class="col-sm-offset-1 col-sm-2">
-                        	<p style="color:red;" class="help-block" ng-show="vm.formValidator.isValidatedOf(codeEditForm.codeName , 'required')">必填</p>
-                    	</div>
-                    </div> -->
                 </form>
                 </div>
             </div>
@@ -105,6 +98,7 @@
                             <th>类型</th>
                             <th>描述</th>
                             <th>名称</th>
+                            <th>值</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,6 +106,7 @@
                             <td>{{code.codeType}}</td>
                             <td>{{code.description}}</td>
                             <td>{{code.codeName}}</td>
+                            <td>{{code.codeValue}}</td>
                         </tr>
                     </tbody>
                 </table>

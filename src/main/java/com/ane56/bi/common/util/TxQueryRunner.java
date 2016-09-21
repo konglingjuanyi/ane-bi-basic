@@ -1,11 +1,20 @@
 package com.ane56.bi.common.util;
 
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
+
+import com.ane56.bi.port.adapter.utils.PageUtils;
+import com.ane56.db.mybatis.core.Pagination;
 
 public class TxQueryRunner extends QueryRunner {
 
@@ -56,5 +65,20 @@ public class TxQueryRunner extends QueryRunner {
 		int result = super.update(con, sql, params);
 		JdbcUtils.releaseConnection(con);
 		return result;
+	}
+	
+	public <T> Pagination queryWithPage(String sql, ResultSetHandler<T> rsh,int offset,int limit, Object... params) throws SQLException{
+		String sqlPage = "SELECT RESULT.*,ROWNUM RN FROM ( " + sql +" ) RESULT WHERE ROWNUM<=" + PageUtils.getEnd(offset, limit);
+		sqlPage = "SELECT * FROM ( " + sqlPage + " ) WHERE RN >" + offset;
+		List list = (List) this.query(sqlPage, rsh, params);
+		String totalsql = "SELECT COUNT(1) FROM (" + sql + ")"; 
+		Map<String,Object> map = this.query(totalsql, new MapHandler(),params);
+		Set<String> keys = map.keySet();
+		int total = 0;
+		for(Entry<String, Object> vo : map.entrySet()){
+			BigDecimal big=(BigDecimal) vo.getValue();
+			total = big.intValue();
+		}
+		return new Pagination(list, total, offset, limit);
 	}
 }

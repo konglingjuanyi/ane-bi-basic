@@ -8,6 +8,9 @@ router.get("/api/getExtradays", function(req, res, next) {
 router.get("/api/getCodesWithPage", function(req, res, next) {
 	   buildResponse( res , data.getCodesWithPage() );
 	});
+router.get("/api/getCodesByType", function(req, res, next) {
+	   buildResponse( res , data.getCodesByType() );
+	});
 
 router.get("/api/users", function(req, res, next) {
    buildResponse( res , data.getUsers() );

@@ -5,14 +5,14 @@ import com.ane56.bi.common.pager.PageBean;
 
 public interface PlanTimeRepository {
 
-	int add(PlanTime entity);
+	int add(BdpDstrbPlanOpTime entity);
 
-	int update(PlanTime entity);
+	int update(BdpDstrbPlanOpTime entity);
 
-	int delete(PlanTime entity);
+	int delete(Map<String, Object> condition);
 
-	PageBean<PlanTime> queryDataByPage(Map<String,Object> paramObject,int offset, int limit);
+	PageBean<BdpDstrbPlanOpTime> queryDataByPage(Map<String,Object> paramObject,int offset, int limit);
 
-	List<PlanTime> findByParams(Map<String,Object> condition);
+	List<BdpDstrbPlanOpTime> findByParams(Map<String,Object> condition);
 
 }

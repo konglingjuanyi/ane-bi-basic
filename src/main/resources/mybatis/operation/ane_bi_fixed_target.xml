@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Opt_FixedTargetDao">
+	<resultMap id="kpiResult" type="com.ane56.bi.domain.operation.FixedTarget">
+		<result property="fixedTargetId" column="FIXED_TARGET_ID" />
+		<result property="fixedTargetName" column="FIXED_TARGET_NAME" />
+		<result property="showMark" column="SHOW_MARK" />
+		<result property="showName" column="SHOW_NAME" />
+		<result property="showType" column="SHOW_TYPE" />
+		<result property="targetOrder" column="TARGET_ORDER" />
+		<result property="moduleId" column="MODULE_ID" />
+		<result property="fixedMark" column="FIXED_MARK" />
+		<result property="createdId" column="CREATED_ID" />
+		<result property="createdName" column="CREATED_NAME" />
+		<result property="updatedId" column="UPDATED_ID" />
+		<result property="updatedName" column="UPDATED_NAME" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="updateTime" column="UPDATE_TIME" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+	<sql id="dymnaic_sql">
+		FIXED_TARGET_ID, 
+		FIXED_TARGET_NAME, 
+		SHOW_MARK, 
+		SHOW_NAME, 
+		SHOW_TYPE, 
+		TARGET_ORDER, 
+		MODULE_ID,
+		FIXED_MARK, 
+		CREATED_ID, 
+		CREATED_NAME, 
+		CREATE_TIME, 
+		UPDATED_ID,
+		UPDATED_NAME, 
+		UPDATE_TIME, 
+		STATUS
+	</sql>
+	<insert id="add" parameterType="com.ane56.bi.domain.operation.FixedTarget"
+		useGeneratedKeys="true" keyProperty="fixedTargetId">
+		INSERT INTO ANE_BI_FIXED_TARGET
+		(
+		FIXED_TARGET_NAME, 
+		SHOW_MARK, 
+		SHOW_NAME, 
+		SHOW_TYPE, 
+		TARGET_ORDER, 
+		MODULE_ID,
+		FIXED_MARK, 
+		CREATED_ID, 
+		CREATED_NAME, 
+		UPDATED_ID,
+		UPDATED_NAME, 
+		CREATE_TIME, 
+		UPDATE_TIME, 
+		STATUS
+		)
+		VALUES
+		(
+		#{fixedTargetName},
+		#{showMark},
+		#{showName} ,
+		#{showType},
+		#{targetOrder},
+		#{moduleId},
+		#{fixedMark},
+		#{createdId},
+		#{createdName},
+		#{updatedId},
+		#{updatedName},
+		#{createTime},		
+		#{updateTime},
+		#{status}
+		)
+	</insert>
+	<update id="update" parameterType="com.ane56.bi.domain.operation.FixedTarget">
+		UPDATE ANE_BI_FIXED_TARGET A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="fixedTargetName !='' and fixedTargetName !=null">
+				A.FIXED_TARGET_NAME = #{fixedTargetName},
+			</if>
+			<if test="showMark !='' and showMark !=null">
+				A.SHOW_MARK = #{showMark},
+			</if>
+			<if test="showName !='' and showName !=null">
+				A.SHOW_NAME = #{showName},
+			</if>
+			<if test="showType !='' and showType !=null">
+				A.SHOW_TYPE = #{showType},
+			</if>
+			<if test="targetOrder !='' and targetOrder !=null">
+				A.TARGET_ORDER = #{targetOrder},
+			</if>
+			<if test="moduleId !='' and moduleId !=null">
+				A.MODULE_ID = #{moduleId},
+			</if>
+			<if test="fixedMark !='' and fixedMark !=null">
+				A.FIXED_MARK = #{fixedMark},
+			</if>
+			<if test="createdId !='' and createdId !=null">
+				A.CREATED_ID = #{createdId},
+			</if>
+			<if test="createdName !='' and createdName !=null">
+				A.CREATED_NAME = #{createdName},
+			</if>
+			<if test="createTime !='' and createTime !=null">
+				A.CREATE_TIME = #{createTime},
+			</if>
+			<if test="updatedId !='' and updatedId !=null">
+				A.UPDATED_ID = #{updatedId},
+			</if>
+			<if test="updatedName !='' and updatedName !=null">
+				A.UPDATED_NAME = #{updatedName},
+			</if>
+			<if test="updateTime !='' and updateTime !=null">
+				A.UPDATE_TIME = #{updateTime},
+			</if>
+			<if test="status !='' and status !=null">
+				A.STATUS = #{status}
+			</if>
+		</trim>
+		WHERE A.FIXED_TARGET_ID = #{fixedTargetId}
+	</update>
+	<select id="findByParams" resultMap="kpiResult" parameterType="java.util.Map">
+		SELECT
+		<include refid="dymnaic_sql" />
+		FROM ANE_BI_FIXED_TARGET A
+		<where>
+			<if test="fixedTargetId!='' and fixedTargetId !=null">
+				A.FIXED_TARGET_ID = #{fixedTargetId}
+			</if>
+		</where>
+	</select>
+	<select id="queryPagedCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM ANE_BI_FIXED_TARGET A
+		<where>
+			<if test="fixedTargetId!='' and fixedTargetId !=null">
+				A.FIXED_TARGET_ID = #{fixedTargetId}
+			</if>
+		</where>
+	</select>
+	<select id="queryPagedList" resultMap="kpiResult" parameterType="java.util.Map">
+		SELECT
+		<include refid="dymnaic_sql" />
+		FROM ANE_BI_FIXED_TARGET A
+		<where>
+			<if test="fixedTargetId !='' and fixedTargetId !=null">
+				A.FIXED_TARGET_ID = #{fixedTargetId}
+			</if>
+		</where>
+	</select>
+
+</mapper>

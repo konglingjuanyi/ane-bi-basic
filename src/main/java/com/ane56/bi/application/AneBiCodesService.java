@@ -36,11 +36,11 @@ public class AneBiCodesService {
 	/**
 	 * 根据编码类型和编码名称查询对应字典项
 	 * @param codeType
-	 * @param codeName
+	 * @param codeValue
 	 * @return
 	 */
-	public AneBiCodes findCodeByTypeAndValue(String codeType,String codeName){
-		return aneBiCodesRepository.findCodeByTypeAndValue(codeType, codeName);
+	public AneBiCodes findCodeByTypeAndValue(String codeType,int codeValue){
+		return aneBiCodesRepository.findCodeByTypeAndValue(codeType, codeValue);
 	}
 	/**
 	 * 新增字典项
@@ -58,7 +58,7 @@ public class AneBiCodesService {
 	 */
 	public void updateCode(AneBiCodes aneBiCodes){
 		AneBiCodes entity = aneBiCodesRepository.findById(aneBiCodes.getId());
-		entity.update(aneBiCodes.getCodeType(), aneBiCodes.getDescription(), aneBiCodes.getCodeName());
+		entity.update(aneBiCodes.getCodeType(), aneBiCodes.getDescription(), aneBiCodes.getCodeName(),aneBiCodes.getCodeValue());
 		aneBiCodesRepository.updateCode(entity);
 	}
 	/**

@@ -2,18 +2,18 @@ package com.ane56.bi.domain.operation;
 import java.util.List;
 import java.util.Map;
 
-import com.ane56.bi.common.pager.PageBean;
+import com.ane56.bi.common.pager.Pagination;
 
 public interface KpiBasicDataRepository {
 
-	int add(KpiBasicData entity);
+	int add(BdpKpiBasisData entity);
 
-	int update(KpiBasicData entity);
+	int update(BdpKpiBasisData entity);
 
-	int delete(KpiBasicData entity);
+	int delete(Map<String,Object> condition);
 
-	PageBean<KpiBasicData> queryDataByPage(Map<String,Object> paramObject,int offset, int limit);
+	Pagination<BdpKpiBasisData> queryDataByPage(Map<String,Object> paramObject,int pageNum, int pageSize);
 
-	List<KpiBasicData> findByParams(Map<String,Object> condition);
+	List<BdpKpiBasisData> findByParams(Map<String,Object> condition);
 
 }

@@ -2,12 +2,13 @@ package com.ane56.bi.port.adapter.persistence;
 
 import java.util.List;
 import java.util.Map;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.ane56.bi.common.pager.PageBean;
 import com.ane56.db.mybatis.MybatisRepository;
 import com.ane56.db.mybatis.MybatisRepositorySupport;
-import com.ane56.db.mybatis.core.Pagination;
 import com.ane56.db.mybatis.query.QueryBuilder;
 
 public class SpringMybatisRepositorySupport {
@@ -30,13 +31,17 @@ public class SpringMybatisRepositorySupport {
 		 * 5. 创建PageBean，设置参数
 		 */
 	    PageBean<T> pb = new PageBean<T>();
+		//Pagination<Object> result = null;
 		Integer total =  (Integer) this.repository().queryBy(nameSpace+".queryPagedCount", searchMap);
-		Pagination<Object> result= this.repository().queryPage(nameSpace+".queryPagedList", searchMap, offset, limit);	
-		@SuppressWarnings("unchecked")
-		List<T> list = (List<T>) result.getResult();
-		pb.setBeanList(list);
 		pb.setTotal(total);
+		if(total==0){
+			return pb;
+		}else{
+			 searchMap.put("offset", offset);
+			 searchMap.put("limit", limit);
+			 List<T>  result = this.repository().query(nameSpace+".queryPagedList", searchMap);
+			  pb.setBeanList(result);
+		}
 		return pb;
-	    
 	  }
 }

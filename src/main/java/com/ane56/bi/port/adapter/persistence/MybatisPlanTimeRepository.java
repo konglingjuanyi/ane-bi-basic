@@ -3,35 +3,35 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
 import com.ane56.bi.common.pager.PageBean;
-import com.ane56.bi.domain.operation.PlanTime;
+import com.ane56.bi.domain.operation.BdpDstrbPlanOpTime;
 import com.ane56.bi.domain.operation.PlanTimeRepository;
 
 @Component
 public class MybatisPlanTimeRepository extends SpringMybatisRepositorySupport implements PlanTimeRepository {
 
 	@Override
-	public int add(PlanTime data) {
-		int result = this.repository().insert("Opt_PlanTimeDao.add", data);
+	public int add(BdpDstrbPlanOpTime data) {
+		int result = this.repository().insert("BdpDstrbPlanOpTimeMapper.insert", data);
 		return result;
 	}
 
 	@Override
-	public int update(PlanTime data) {
-		int result = this.repository().update("Opt_PlanTimeDao.update", data);		
+	public int update(BdpDstrbPlanOpTime data) {
+		int result = this.repository().update("BdpDstrbPlanOpTimeMapper.update", data);		
 		return result;
 	}
 
 	@Override
-	public int delete(PlanTime data) {
-		int result  = this.repository().delete("Opt_PlanTimeDao.delete", data);
+	public int delete(Map<String,Object> condition) {
+		int result  = this.repository().delete("BdpDstrbPlanOpTimeMapper.delete", condition);
 		return result;
 	}
 
 	/*@Override
 	public PageBean<PlanTime> queryDataByPage(Map<String,Object> paramObject,int offset, int limit) {
 		//每页记录数
-		Integer total =  (Integer) this.repository().queryBy("Opt_PlanTimeDao.queryPageCount", paramObject);
-		Pagination<PlanTime> pageResult= this.repository().queryPage("Opt_PlanTimeDao.queryDataByPage", paramObject, offset, limit);
+		Integer total =  (Integer) this.repository().queryBy("BdpDstrbPlanOpTimeMapper.queryPageCount", paramObject);
+		Pagination<PlanTime> pageResult= this.repository().queryPage("BdpDstrbPlanOpTimeMapper.queryDataByPage", paramObject, offset, limit);
 		List<PlanTime> dataList = pageResult.getResult();
 		
 		 * 5. 创建PageBean，设置参数
@@ -45,18 +45,18 @@ public class MybatisPlanTimeRepository extends SpringMybatisRepositorySupport im
 		return pb;
 	}*/
 	@Override
-	public PageBean<PlanTime> queryDataByPage(Map<String,Object> searchMap,int offset, int limit) {
-		 PageBean<PlanTime> pageList = null;
+	public PageBean<BdpDstrbPlanOpTime> queryDataByPage(Map<String,Object> searchMap,int offset, int limit) {
+		 PageBean<BdpDstrbPlanOpTime> pageList = null;
 		try {
-			pageList = this.queryPagedList("Opt_PlanTimeDao", PlanTime.class, searchMap, offset, limit);
+			pageList = this.queryPagedList("BdpDstrbPlanOpTimeMapper", BdpDstrbPlanOpTime.class, searchMap, offset, limit);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return pageList;
 	}
 	@Override
-	public List<PlanTime> findByParams(Map<String,Object> condition) {
-		List<PlanTime> result = this.repository().query("Opt_PlanTimeDao.findByParams", condition);
+	public List<BdpDstrbPlanOpTime> findByParams(Map<String,Object> condition) {
+		List<BdpDstrbPlanOpTime> result = this.repository().query("BdpDstrbPlanOpTimeMapper.findByParams", condition);
 		return result;
 	}
 

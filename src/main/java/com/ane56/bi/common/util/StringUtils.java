@@ -35,7 +35,7 @@ public class StringUtils {
 			str = str.substring(index + splitsign.length());
 		}
 		al.add(str);
-		return (String[]) al.toArray(new String[0]);
+		return al.toArray(new String[0]);
 	}
 
 	/**

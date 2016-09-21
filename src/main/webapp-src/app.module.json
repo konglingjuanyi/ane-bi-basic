@@ -61,6 +61,61 @@
                 "angular": "1.4.4" ,
                 "angular-ui-router": "0.2.17"
             }
+        },
+        "extradays": {
+            "modules": ["core", "blocks", "smartadmin" , "extradays"],
+            "dependencies": {
+                "font-awesome": "4.3.0",
+                "jquery": "~2.1.0",
+                "jquery-ui": "1.10.3"  ,
+                "bootstrap": "~3.3.4",
+                "angular": "1.4.4" ,
+                "angular-ui-router": "0.2.17"
+            }
+        },
+         "anekpi": {
+            "modules": ["core", "blocks", "smartadmin" , "anekpi"],
+            "dependencies": {
+                "font-awesome": "4.3.0",
+                "jquery": "~2.1.0",
+                "jquery-ui": "1.10.3"  ,
+                "bootstrap": "~3.3.4",
+                "angular": "1.4.4" ,
+                "angular-ui-router": "0.2.17"
+            }
+        },
+          "plantime": {
+            "modules": ["core", "blocks", "smartadmin" , "plantime"],
+            "dependencies": {
+                "font-awesome": "4.3.0",
+                "jquery": "~2.1.0",
+                "jquery-ui": "1.10.3"  ,
+                "bootstrap": "~3.3.4",
+                "angular": "1.4.4" ,
+                "angular-ui-router": "0.2.17"
+            }
+        },
+         "dailymodel": {
+            "modules": ["core", "blocks", "smartadmin" , "dailymodel"],
+            "dependencies": {
+                "font-awesome": "4.3.0",
+                "jquery": "~2.1.0",
+                "jquery-ui": "1.10.3"  ,
+                "bootstrap": "~3.3.4",
+                "angular": "1.4.4" ,
+                "angular-ui-router": "0.2.17"
+            }
+        },
+        "siteTypeManager": {
+            "modules": ["core", "blocks", "smartadmin" , "siteTypeManager"],
+            "dependencies": {
+                "font-awesome": "4.3.0",
+                "jquery": "~2.1.0",
+                "jquery-ui": "1.10.3"  ,
+                "bootstrap": "~3.3.4",
+                "angular": "1.4.4" ,
+                "angular-ui-router": "0.2.17"
+            }
         }
     }
 }

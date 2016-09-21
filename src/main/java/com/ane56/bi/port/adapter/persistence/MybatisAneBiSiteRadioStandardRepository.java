@@ -18,6 +18,7 @@ public class MybatisAneBiSiteRadioStandardRepository extends SpringMybatisReposi
 	/**
 	 * 获取比例标准
 	 */
+	@Override
 	public List<AneBiSiteRadioStandard> getRadio() {
 		return this.repository().query(new QueryBuilder(AneBiSiteRadioStandard.class).build());
 	}
@@ -25,6 +26,7 @@ public class MybatisAneBiSiteRadioStandardRepository extends SpringMybatisReposi
 	/**
 	 * 创建比例标准
 	 */
+	@Override
 	public void createRadio(AneBiSiteRadioStandard entity) {
 		this.repository().insert(entity);
 	}
@@ -32,6 +34,7 @@ public class MybatisAneBiSiteRadioStandardRepository extends SpringMybatisReposi
 	/**
 	 * 更新比例标准
 	 */
+	@Override
 	public void updateRadio(AneBiSiteRadioStandard entity) {
 		this.repository().update(entity);
 	}

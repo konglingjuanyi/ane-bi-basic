@@ -6,21 +6,9 @@ import javax.sql.DataSource;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
-/**
- * 浣跨敤鏈被鐨勬柟娉曪紝蹇呴』鎻愪緵c3p0-copnfig.xml鏂囦欢
- * @author qdmmy6
- */
 public class JdbcUtils {
 	// 楗挎眽寮�
 	private static DataSource ds = new ComboPooledDataSource();
-	
-	/**
-	 * 瀹冧负null琛ㄧず娌℃湁浜嬪姟
-	 * 瀹冧笉涓簄ull琛ㄧず鏈変簨鍔�
-	 * 褰撳紑鍚簨鍔℃椂锛岄渶瑕佺粰瀹冭祴鍊�
-	 * 褰撶粨鏉熶簨鍔℃椂锛岄渶瑕佺粰瀹冭祴鍊间负null
-	 * 骞朵笖鍦ㄥ紑鍚簨鍔℃椂锛岃dao鐨勫涓柟娉曞叡浜繖涓狢onnection
-	 */
 	private static ThreadLocal<Connection> tl = new ThreadLocal<Connection>();
 	
 	public static DataSource getDataSource() {

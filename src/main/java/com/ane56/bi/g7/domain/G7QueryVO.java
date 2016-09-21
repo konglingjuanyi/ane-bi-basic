@@ -9,7 +9,7 @@ public class G7QueryVO implements java.io.Serializable{
 	private String orgnum;
 	private String classcode;
 	private String likecode;
-	private String pathid;
+	private int pathid;
 	private String startsite;
 	private String endsite;
 	private String is_share;
@@ -17,8 +17,8 @@ public class G7QueryVO implements java.io.Serializable{
 	private int  deleted;
 	private String updatetimeGe;
 	private String  updatetimeLe;
-	private String pageNo;
-	private String pageSize;
+	private int pageNo;
+	private int pageSize;
 	public String getId() {
 		return id;
 	}
@@ -49,10 +49,10 @@ public class G7QueryVO implements java.io.Serializable{
 	public void setLikecode(String likecode) {
 		this.likecode = likecode;
 	}
-	public String getPathid() {
+	public int getPathid() {
 		return pathid;
 	}
-	public void setPathid(String pathid) {
+	public void setPathid(int pathid) {
 		this.pathid = pathid;
 	}
 	public String getStartsite() {
@@ -97,16 +97,16 @@ public class G7QueryVO implements java.io.Serializable{
 	public void setUpdatetimeLe(String updatetimeLe) {
 		this.updatetimeLe = updatetimeLe;
 	}
-	public String getPageNo() {
+	public int getPageNo() {
 		return pageNo;
 	}
-	public void setPageNo(String pageNo) {
+	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
 	}
-	public String getPageSize() {
+	public int getPageSize() {
 		return pageSize;
 	}
-	public void setPageSize(String pageSize) {
+	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
 

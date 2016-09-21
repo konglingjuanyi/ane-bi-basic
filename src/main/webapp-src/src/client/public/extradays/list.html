@@ -1,0 +1,250 @@
+<div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    
+        <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-0" data-widget-editbutton="true" style="margin:0px;">
+            <header>
+                <span class="widget-icon"><i class="fa fa-table"></i> </span>
+                <h2>功能按钮</h2>
+            </header>
+            <div class="form-actions text-left" style="padding:10px;">
+            	<button type="submit" class="btn btn-default" ng-click="vm.queryExtraDay()"> 查询 </button>
+                <button type="button" class="btn btn-default" ng-click="vm.addExtraDay()"> 新增 </button>
+                <button type="button" class="btn btn-default" ng-click="vm.editExtraDay()"> 编辑 </button>
+                <button type="button" class="btn btn-default" ng-click="vm.saveExtraDay()"> 保存 </button>
+                <button type="button" class="btn btn-default" ng-click="vm.deleteModal()"> 删除 </button>
+            </div>
+        </div>  
+        
+   		<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2" data-widget-colorbutton="false" 
+   			data-widget-editbutton="false" style="margin:0px;">
+        	<header>
+            	<span class="widget-icon"><i class="fa fa-table"></i> </span>
+            	<h2>查询条件</h2>
+        	</header>
+            <div style="padding:10px;">
+            	<form name="extradaysQueryForm" ng-submit="vm.queryExtraDay()">
+            	<div class="dataTables_wrapper form-inline">
+                   	<div class="row">
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">名称：</label></div>
+                        <div class="col-sm-2">
+                        	<input id="siteNameQuery" class="form-control" ng-model="vm.extradayQuery.siteName">
+                    	</div>
+	                    	
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">时效类型：</label></div>
+                        <div class="col-sm-2">
+                        	<select id="agingTypeQuery" class="form-control" ng-model="vm.extradayQuery.agingType" style="width:99%;"
+                        		ng-options="op.codeName as op.codeName for op in vm.typeAll">
+                        		<option value="">全部</option>
+                        	</select>
+                    	</div>
+                    	
+                    	<div class="col-sm-1 text-right">
+                    		<button type="submit" ng-show="false" ng-click="vm.queryExtraDay()"> 查询 </button>
+                    	</div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>   
+        
+        <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3" data-widget-colorbutton="false" 
+   			data-widget-editbutton="false" style="margin:0px;">
+        	<header>
+            	<span class="widget-icon"><i class="fa fa-table"></i> </span>
+            	<h2>详细信息</h2>
+        	</header>
+            <div style="padding:10px;">
+            	<div class="dataTables_wrapper form-inline">
+            	<form name="extradayEditForm" novalidate>
+                   	<div class="row" style="margin-bottom:10px;">
+                   		<div class="col-sm-1 text-right"><label style="margin-top:6px;">类型：</label></div>
+                        <div class="col-sm-2">
+                        	<select id="type" class="form-control is-edit" ng-model="vm.extraday.type" style="width:99%;" 
+                        		ng-change="vm.changeAgingType()" required>
+                        		<option value="分拨">分拨</option>
+                        		<option value="网点">网点</option>
+                        	</select>
+                    	</div>
+                    	
+                   		<div  ng-class="vm.formValidator.getValidationClass(extradayEditForm.siteName)">
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">名称：</label></div>
+                        <div class="col-sm-2">
+                        	<input id="siteId" name="siteId" ng-model="vm.extraday.id" ng-show="false">
+                        	<input id="siteName" name="siteName" class="form-control is-edit" ng-model="vm.extraday.siteName"
+                        		ng-click="vm.chooseName(vm.extraday.type)" editable="false" required>
+                    	</div>
+                    	<p class="help-block" ng-show="vm.formValidator.isValidatedOf(extradayEditForm.siteName , 'required')">必填</p>
+                    	</div>
+                    	
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">属性：</label></div>
+                        <div class="col-sm-2">
+                        	<input id="siteProperty" class="form-control" ng-model="vm.extraday.siteProperty" disabled="disabled">
+                    	</div>
+                    	
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">时效类型：</label></div>
+                        <div class="col-sm-2">
+                        	<select id="agingType" class="form-control is-edit" ng-model="vm.extraday.agingType" style="width:99%;" 
+                        		ng-options="op2.codeName as op2.codeName for op2 in vm.typeTemp" required>
+                        	</select>
+                    	</div>
+                    	
+                    	<!-- <div class="col-sm-1 text-right"><label style="margin-top:6px;">额外天数：</label></div>
+                        <div class="col-sm-2">
+                        	<input id="extraDays" type="number" name="extraDays" class="form-control is-edit" ng-model="vm.extraday.extraDays" required>
+                    	</div> -->
+                    </div>
+                    <div class="row" style="margin-bottom:10px;">
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">额外天数：</label></div>
+                        <div class="col-sm-2">
+                        	<input id="extraDays" type="number" name="extraDays" class="form-control is-edit" ng-model="vm.extraday.extraDays" required>
+                    	</div>
+                    	
+                    	<div class="col-sm-1 text-right"><label style="margin-top:6px;">备注：</label></div>
+                        <div class="col-sm-8">
+                        	<textarea id="memo" class="form-control is-edit" ng-model="vm.extraday.memo" style="width:100%;"></textarea>
+                    	</div>
+                  	</div>
+                </form>
+                </div>
+            </div>
+        </div>   
+               
+		<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-4" data-widget-colorbutton="false" 
+			data-widget-editbutton="false" style="margin:0px;">
+           	<header>
+               	<span class="widget-icon"><i class="fa fa-table"></i> </span>
+               	<h2>数据列表</h2>
+           	</header>
+            <div class="widget-body no-padding" style="margin:0px;">
+                <table class="table table-striped table-bordered table-hover dataTable no-footer">
+                    <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>属性</th>
+                            <th>类型</th>
+                            <th>时效类型</th>
+                            <th>额外天数</th>
+                            <th>备注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="extraday in vm.extradays.result" ng-click="vm.chooseRow(extraday)">
+                            <td>{{extraday.siteName}}</td>
+                            <td>{{extraday.siteProperty}}</td>
+                            <td>{{extraday.type}}</td>
+                            <td>{{extraday.agingType}}</td>
+                            <td>{{extraday.extraDays}}</td>
+                            <td>{{extraday.memo}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="dt-toolbar-footer">
+                    <div class="row">
+                        <div class="col-sm-2 col-xs-12 hidden-xs">
+                            <div class="dataTables_length pull-left">
+                                <select name="dt_basic_length" aria-controls="dt_basic" class="form-control" ng-change="vm.pageNumHandler(vm.s)" ng-model="vm.s">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 col-xs-12 text-right">
+                            <div class="dataTables_paginate">
+                                <div ng-pagination="vm.paginationHandler"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 信息删除确认 -->  
+		<div class="modal fade" id="delModal">  
+		    <div class="modal-dialog">  
+		        <div class="modal-content message_align">  
+			        <div class="modal-header">  
+			          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+			          <h4 class="modal-title">提示信息</h4>  
+			        </div>  
+			        <div class="modal-body">  
+			          <p>您确认要删除吗？</p>  
+			        </div>  
+			        <div class="modal-footer">  
+			           <input type="hidden" id="url"/>  
+			           <a ng-click="vm.deleteExtraDay()" class="btn btn-primary" data-dismiss="modal">确定</a>  
+			           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>  
+			        </div>  
+		       </div><!-- /.modal-content -->  
+		    </div><!-- /.modal-dialog -->  
+		</div><!-- /.modal --> 
+		
+		 <!-- 分拨/网点名称选择 -->  
+		<div class="modal fade" id="nameChooseModal">  
+		    <div class="modal-dialog" style="width:45%;">  
+		        <div class="modal-content message_align">  
+			        <div class="modal-header">  
+			          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>  
+			          <h4 class="modal-title">分拨选择</h4>  
+			        </div>  
+			        
+			        <div class="modal-body">
+			        <form name="siteDialogForm">
+			       		<div class="dataTables_wrapper form-inline">
+	                   		<div class="row">
+	                   			<div class="col-sm-2 text-right"><label style="margin-top:6px;">名称：</label></div>
+		                        <div class="col-sm-4">
+		                        	<input id="nameDialog" class="form-control" ng-model="vm.dialog.org_name">
+		                        	<input id="idDialog" class="form-control" ng-model="vm.dialog.org_id" ng-show="false">
+		                    		<input id="typeNameDialog" class="form-control" ng-model="vm.dialog.org_type_name" ng-show="false">
+		                    	</div>
+					            <div class="col-sm-6 text-left"">
+					            	<button type="submit" class="btn btn-default" ng-click="vm.querySite()" style="margin-left:20px;"> 查询 </button>
+					            	<button type="button" data-dismiss="modal" class="btn btn-primary" ng-click="vm.confirmName()" style="margin-left:5px;"> 确认 </button>
+					            </div>
+					        </div>
+					    </div>
+					</form>
+			        </div>  
+			        <div class="widget-body no-padding" style="margin:0px;">
+		                <table id="siteTable" class="table table-bordered table-hover dataTable no-footer">
+		                    <thead>
+		                        <tr>
+		                            <th>名称</th>
+		                            <th>属性</th>
+		                            <th>类型</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                        <tr ng-repeat="org in vm.organizations.result" ng-click="vm.clickName(org,$index)">
+		                            <td>{{org.org_name}}</td>
+		                            <td>{{org.org_type_name}}</td>
+		                            <td>{{vm.extraday.type}}</td>
+		                        </tr>
+		                    </tbody>
+		                </table>
+		                <div class="dt-toolbar-footer">
+		                    <div class="row">
+		                        <div class="col-sm-2 col-xs-12 hidden-xs">
+		                            <div class="dataTables_length pull-left">
+		                                <select name="dt_basic_length2" aria-controls="dt_basic" class="form-control">
+		                                    <option value="10">10</option>
+		                                </select>
+		                            </div>
+		                        </div>
+		                        <div class="col-sm-10 col-xs-12 text-right">
+		                            <div class="dataTables_paginate">
+		                                <div ng-pagination="vm.orgPagehandler"></div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+			        
+		       </div><!-- /.modal-content -->  
+		    </div><!-- /.modal-dialog -->  
+		</div><!-- /.modal --> 
+       
+    </article>
+</div>

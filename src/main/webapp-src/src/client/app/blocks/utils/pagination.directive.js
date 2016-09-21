@@ -106,11 +106,12 @@
             return ser;
 
             function totalPage(){
-                var p = total/ limit;
-                if (total % limit != 0 ) {
-                    p++;
-                } 
-                return p;
+//                var p = total/ limit;
+//                if (total % limit != 0 ) {
+//                    p++;
+//                } 
+//                return p;
+            	  return Math.ceil(total/limit);
             }
 
             function hasPrev(aCurrent, aLimit) {

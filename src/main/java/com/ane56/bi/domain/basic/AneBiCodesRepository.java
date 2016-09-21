@@ -29,7 +29,7 @@ public interface AneBiCodesRepository {
 	 * @param codeValue
 	 * @return
 	 */
-	AneBiCodes findCodeByTypeAndValue(String codeType,String codeValue);
+	AneBiCodes findCodeByTypeAndValue(String codeType,int codeValue);
 	/**
 	 * 新增字典项
 	 * @param aneBiCodes

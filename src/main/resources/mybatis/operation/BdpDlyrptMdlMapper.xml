@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BdpDlyrptMdlMapper" >
+  <resultMap id="BaseResultMap" type="com.ane56.bi.domain.operation.BdpDlyrptMdl" >
+    <result column="MDL_ID" property="mdlId" jdbcType="VARCHAR" />
+    <result column="CRT_USER_ID" property="crtUserId" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime"/>
+    <result column="CRT_APP_SYS_ID" property="crtAppSysId" jdbcType="VARCHAR" />
+    <result column="MODF_USER_ID" property="modfUserId" jdbcType="VARCHAR" />
+    <result column="MODF_TIME" property="modfTime"/>
+    <result column="MODF_APP_SYS_ID" property="modfAppSysId" jdbcType="VARCHAR" />
+    <result column="MDL_NM" property="mdlNm" jdbcType="VARCHAR" />
+    <result column="SUPR_MDL_ID" property="suprMdlId" jdbcType="VARCHAR" />
+    <result column="SHOW_SEQNO" property="showSeqno" jdbcType="DECIMAL" />
+    <result column="VALID_FLAG" property="validFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MDL_ID, CRT_USER_ID, CRT_TIME, CRT_APP_SYS_ID, MODF_USER_ID, MODF_TIME, MODF_APP_SYS_ID, 
+    MDL_NM, SUPR_MDL_ID, SHOW_SEQNO, VALID_FLAG
+  </sql>
+   <delete id="delete" parameterType="java.util.Map">
+    delete from BDP_DLYRPT_MDL
+    WHERE
+	MDL_ID = #{mdlId,jdbcType=VARCHAR}
+  </delete>  
+  <insert id="insertSelective" parameterType="com.ane56.bi.domain.operation.BdpDlyrptMdl" >
+    insert into BDP_DLYRPT_MDL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        MDL_ID,
+      <if test="crtUserId != null" >
+        CRT_USER_ID,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="crtAppSysId != null" >
+        CRT_APP_SYS_ID,
+      </if>
+      <if test="modfUserId != null" >
+        MODF_USER_ID,
+      </if>
+      <if test="modfTime != null" >
+        MODF_TIME,
+      </if>
+      <if test="modfAppSysId != null" >
+        MODF_APP_SYS_ID,
+      </if>
+      <if test="mdlNm != null" >
+        MDL_NM,
+      </if>
+      <if test="suprMdlId != null" >
+        SUPR_MDL_ID,
+      </if>
+      <if test="showSeqno != null" >
+        SHOW_SEQNO,
+      </if>
+      <if test="validFlag != null" >
+        VALID_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+       SEQ_BDP_DLYRPT_MDL.nextval,
+      <if test="crtUserId != null" >
+        #{crtUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=DATE},
+      </if>
+      <if test="crtAppSysId != null" >
+        #{crtAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="modfUserId != null" >
+        #{modfUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modfTime != null" >
+        #{modfTime,jdbcType=DATE},
+      </if>
+      <if test="modfAppSysId != null" >
+        #{modfAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="mdlNm != null" >
+        #{mdlNm,jdbcType=VARCHAR},
+      </if>
+      <if test="suprMdlId != null" >
+        #{suprMdlId,jdbcType=VARCHAR},
+      </if>
+      <if test="showSeqno != null" >
+        #{showSeqno,jdbcType=DECIMAL},
+      </if>
+      <if test="validFlag != null" >
+        #{validFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insert" parameterType="com.ane56.bi.domain.operation.BdpDlyrptMdl" >
+    insert into BDP_DLYRPT_MDL (MDL_ID, CRT_USER_ID, CRT_TIME, 
+      CRT_APP_SYS_ID, MODF_USER_ID, MODF_TIME, 
+      MODF_APP_SYS_ID, MDL_NM, SUPR_MDL_ID, 
+      SHOW_SEQNO, VALID_FLAG)
+     values (SEQ_BDP_DLYRPT_MDL.nextval, #{crtUserId,jdbcType=VARCHAR},sysdate, 
+      #{crtAppSysId,jdbcType=VARCHAR}, #{modfUserId,jdbcType=VARCHAR}, #{modfTime,jdbcType=DATE}, 
+      #{modfAppSysId,jdbcType=VARCHAR}, #{mdlNm,jdbcType=VARCHAR}, #{suprMdlId,jdbcType=VARCHAR}, 
+      #{showSeqno,jdbcType=DECIMAL}, #{validFlag,jdbcType=CHAR})
+  </insert>
+  <update id="update" parameterType="com.ane56.bi.domain.operation.BdpDlyrptMdl" >
+    update BDP_DLYRPT_MDL
+    <set >
+      <if test="crtUserId != null" >
+        CRT_USER_ID = #{crtUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=DATE},
+      </if>
+      <if test="crtAppSysId != null" >
+        CRT_APP_SYS_ID = #{crtAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="modfUserId != null" >
+        MODF_USER_ID = #{modfUserId,jdbcType=VARCHAR},
+      </if>
+        MODF_TIME = sysdate,
+      <if test="modfAppSysId != null" >
+        MODF_APP_SYS_ID = #{modfAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="mdlNm != null" >
+        MDL_NM = #{mdlNm,jdbcType=VARCHAR},
+      </if>
+      <if test="suprMdlId != null" >
+        SUPR_MDL_ID = #{suprMdlId,jdbcType=VARCHAR},
+      </if>
+      <if test="showSeqno != null" >
+        SHOW_SEQNO = #{showSeqno,jdbcType=DECIMAL},
+      </if>
+      <if test="validFlag != null" >
+        VALID_FLAG = #{validFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where MDL_ID = #{mdlId,jdbcType=VARCHAR}
+  </update>
+  <select id="findByParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM BDP_DLYRPT_MDL where 1=1
+		<if test="mdlId !=null" >
+		  AND MDL_ID = #{mdlId,jdbcType=VARCHAR}
+		</if>
+		<if test="mdlNm !=null">
+		  AND MDL_NM = #{mdlNm,jdbcType=VARCHAR}
+		</if>
+		<if test="showSeqno !=null">
+		  AND SHOW_SEQNO = #{showSeqno,jdbcType=DECIMAL}
+		</if>
+	</select>
+	<select id="queryPagedCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		count(1) 
+		FROM BDP_DLYRPT_MDL where 1=1
+		<if test="mdlId !=null and mdlId !=''">
+			AND	MDL_ID = #{mdlId,jdbcType=VARCHAR}
+		</if> -->
+		<if test="mdlNm != null and mdlNm !=''" >
+           AND MDL_NM = #{mdlNm,jdbcType=VARCHAR}
+         </if>
+		<if test="showSeqno !=null and showSeqno !=''">
+		   AND SHOW_SEQNO = #{showSeqno,jdbcType=DECIMAL}
+		</if> 
+	</select>
+	<select id="queryPagedList" resultMap="BaseResultMap" parameterType="com.ane56.bi.domain.operation.BdpDlyrptMdl">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM BDP_DLYRPT_MDL where 1=1
+		<if test="mdlId !=null and mdlId !=''">
+			AND	MDL_ID = #{mdlId,jdbcType=VARCHAR}
+		</if> -->
+		<if test="mdlNm != null and mdlNm !='' " >
+           AND MDL_NM = #{mdlNm,jdbcType=VARCHAR}
+         </if>
+	    <if test="showSeqno !=null and showSeqno !=''">
+		   AND SHOW_SEQNO = #{showSeqno,jdbcType=DECIMAL}
+		</if> 
+		ORDER BY CRT_TIME DESC
+	</select>
+</mapper>

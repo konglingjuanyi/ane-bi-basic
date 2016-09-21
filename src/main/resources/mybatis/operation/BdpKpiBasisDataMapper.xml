@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="BdpKpiBasisDataMapper" >
+  <resultMap id="BaseResultMap" type="com.ane56.bi.domain.operation.BdpKpiBasisData" >
+    <result column="KPI_ID" property="kpiId" jdbcType="VARCHAR" />
+    <result column="CRT_USER_ID" property="crtUserId" jdbcType="VARCHAR" />
+    <result column="CRT_TIME" property="crtTime"/>
+    <result column="CRT_APP_SYS_ID" property="crtAppSysId" jdbcType="VARCHAR" />
+    <result column="MODF_USER_ID" property="modfUserId" jdbcType="VARCHAR" />
+    <result column="MODF_TIME" property="modfTime"/>
+    <result column="MODF_APP_SYS_ID" property="modfAppSysId" jdbcType="VARCHAR" />
+    <result column="KPI_NM" property="kpiNm" jdbcType="VARCHAR" />
+    <result column="KPI_ABBR" property="kpiAbbr" jdbcType="VARCHAR" />
+    <result column="KPI_TYPE_CD" property="kpiTypeCd" jdbcType="VARCHAR" />
+    <result column="VALID_BGN_TIME" property="validBgnTime"/>
+    <result column="VALID_END_TIME" property="validEndTime"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    KPI_ID, CRT_USER_ID, CRT_TIME, CRT_APP_SYS_ID, MODF_USER_ID, MODF_TIME, MODF_APP_SYS_ID, 
+    KPI_NM, KPI_ABBR, KPI_TYPE_CD, VALID_BGN_TIME, VALID_END_TIME
+  </sql>
+  
+  <delete id="delete" parameterType="java.util.Map">
+    delete from BDP_KPI_BASIS_DATA
+    WHERE
+	KPI_ID = #{kpiId,jdbcType=VARCHAR}
+  </delete>
+   <insert id="insert" parameterType="com.ane56.bi.domain.operation.BdpKpiBasisData" >
+    insert into BDP_KPI_BASIS_DATA (KPI_ID, VALID_BGN_TIME, VALID_END_TIME, 
+      CRT_USER_ID, CRT_TIME, CRT_APP_SYS_ID, 
+      MODF_USER_ID, MODF_TIME, MODF_APP_SYS_ID, 
+      KPI_NM, KPI_ABBR, KPI_TYPE_CD
+      )
+      values (SEQ_BDP_KPI_BASIS_DATA.nextval, #{validBgnTime,jdbcType=DATE}, #{validEndTime,jdbcType=DATE}, 
+      #{crtUserId,jdbcType=VARCHAR}, sysdate, #{crtAppSysId,jdbcType=VARCHAR}, 
+      #{modfUserId,jdbcType=VARCHAR}, #{modfTime,jdbcType=DATE}, #{modfAppSysId,jdbcType=VARCHAR}, 
+      #{kpiNm,jdbcType=VARCHAR}, #{kpiAbbr,jdbcType=VARCHAR}, #{kpiTypeCd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ane56.bi.domain.operation.BdpKpiBasisData" >
+    insert into BDP_KPI_BASIS_DATA
+    <selectKey resultType="long" keyProperty="operationId" order="BEFORE">
+	   	SELECT SEQ_BDP_KPI_BASIS_DATA.nextval FROM dual
+	 </selectKey>
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        KPI_ID,
+      <if test="crtUserId != null" >
+        CRT_USER_ID,
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME,
+      </if>
+      <if test="crtAppSysId != null" >
+        CRT_APP_SYS_ID,
+      </if>
+      <if test="modfUserId != null" >
+        MODF_USER_ID,
+      </if>
+      <if test="modfTime != null" >
+        MODF_TIME,
+      </if>
+      <if test="modfAppSysId != null" >
+        MODF_APP_SYS_ID,
+      </if>
+      <if test="kpiNm != null" >
+        KPI_NM,
+      </if>
+      <if test="kpiAbbr != null" >
+        KPI_ABBR,
+      </if>
+      <if test="kpiTypeCd != null" >
+        KPI_TYPE_CD,
+      </if>
+      <if test="validBgnTime != null" >
+        VALID_BGN_TIME,
+      </if>
+      <if test="validEndTime != null" >
+        VALID_END_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+       #{operationId}, 
+      <if test="crtUserId != null" >
+        #{crtUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=DATE},
+      </if>
+      <if test="crtAppSysId != null" >
+        #{crtAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="modfUserId != null" >
+        #{modfUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modfTime != null" >
+        #{modfTime,jdbcType=DATE},
+      </if>
+      <if test="modfAppSysId != null" >
+        #{modfAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="kpiNm != null" >
+        #{kpiNm,jdbcType=VARCHAR},
+      </if>
+      <if test="kpiAbbr != null" >
+        #{kpiAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="kpiTypeCd != null" >
+        #{kpiTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="validBgnTime != null" >
+        #{validBgnTime,jdbcType=DATE},
+      </if>
+      <if test="validEndTime != null" >
+        #{validEndTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.ane56.bi.domain.operation.BdpKpiBasisData" >
+    update BDP_KPI_BASIS_DATA
+    <set >
+      <if test="crtUserId != null" >
+        CRT_USER_ID = #{crtUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="crtTime != null" >
+        CRT_TIME = #{crtTime,jdbcType=DATE},
+      </if>
+      <if test="crtAppSysId != null" >
+        CRT_APP_SYS_ID = #{crtAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="modfUserId != null" >
+        MODF_USER_ID = #{modfUserId,jdbcType=VARCHAR},
+      </if>
+       MODF_TIME = sysdate,
+      <if test="modfAppSysId != null" >
+        MODF_APP_SYS_ID = #{modfAppSysId,jdbcType=VARCHAR},
+      </if>
+      <if test="kpiNm != null" >
+        KPI_NM = #{kpiNm,jdbcType=VARCHAR},
+      </if>
+      <if test="kpiAbbr != null" >
+        KPI_ABBR = #{kpiAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="kpiTypeCd != null" >
+        KPI_TYPE_CD = #{kpiTypeCd,jdbcType=VARCHAR},
+      </if>
+      <if test="validBgnTime != null" >
+        VALID_BGN_TIME = #{validBgnTime,jdbcType=DATE},
+      </if>
+      <if test="validEndTime != null" >
+        VALID_END_TIME = #{validEndTime,jdbcType=DATE},
+      </if>
+    </set>
+    where KPI_ID = #{kpiId}
+  </update>
+  <select id="findByParams" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM BDP_KPI_BASIS_DATA WHERE 1=1
+		<if test="kpiNm !=null and kpiNm !=''">
+		   AND KPI_NM = #{kpiNm,jdbcType=VARCHAR}
+		</if>
+		<if test="kpiAbbr != null and kpiAbbr !=''" >
+           AND  KPI_ABBR = #{kpiAbbr,jdbcType=VARCHAR}
+         </if>
+	</select>
+	<select id="queryPagedCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		count(1) 
+		FROM BDP_KPI_BASIS_DATA where 1=1
+		<if test="kpiNm !=null and kpiNm !=''">
+		   AND KPI_NM = #{kpiNm,jdbcType=VARCHAR}
+		</if> -->
+		<if test="kpiAbbr != null and kpiAbbr !=''" >
+           AND  KPI_ABBR = #{kpiAbbr,jdbcType=VARCHAR}
+         </if>
+	</select>
+	<select id="queryPagedList" resultMap="BaseResultMap" parameterType="com.ane56.bi.domain.operation.BdpKpiBasisData">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM BDP_KPI_BASIS_DATA where 1=1
+		<if test="kpiNm !=null and kpiNm !=''">
+		   AND KPI_NM = #{kpiNm,jdbcType=VARCHAR}
+		</if>
+		<if test="kpiAbbr != null and kpiAbbr !=''" >
+           AND  KPI_ABBR = #{kpiAbbr,jdbcType=VARCHAR}
+         </if>
+		ORDER BY CRT_TIME DESC
+	</select>
+</mapper>

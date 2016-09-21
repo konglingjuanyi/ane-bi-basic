@@ -4,6 +4,7 @@ module.exports = {
 	getUser : getUser,
 	getExtradays : getExtradays,
 	getCodesWithPage : getCodesWithPage,
+	getCodesByType : getCodesByType,
 };
 
 function getUser() {
@@ -117,17 +118,19 @@ function getExtradays() {
 		"status" : "SUCCESS",
 		"result" : {
 			"result" : [ {
-				"id" : "1",
+				"id" : 0,
 				"siteName" : "上海分拨中心",
-				"siteType" : "一级分拨中心",
-				"agingType" : 1,
+				"siteProperty" : "一级分拨中心分拨",
+				"type" : "分拨",
+				"agingType" : "干线时效",
 				"extraDays" : -1,
 				"memo" : "233",
 			}, {
-				"id" : "2",
-				"siteName" : "杭州分拨中心",
-				"siteType" : "二级分拨中心",
-				"agingType" : 3,
+				"id" : 1,
+				"siteName" : "杭州网点",
+				"siteProperty" : "二级网点",
+				"type" : "网点",
+				"agingType" : "交件时效",
 				"extraDays" : 2,
 				"memo" : "nono",
 			}],
@@ -157,6 +160,29 @@ function getCodesWithPage() {
 			"offset" : 2,
 			"limit" : 2,
 			"current" : 2
+		}
+	};	
+}
+function getCodesByType() {
+	return {
+		"status" : "SUCCESS",
+		"result" : {
+			"result" : [ {
+				"id" : "1",
+				"codeType" : "aging_type_all",
+				"description" : "全部时效类型",
+				"codeName" : "交件时效",
+			}, {
+				"id" : "2",
+				"codeType" : "aging_type_all",
+				"description" : "全部时效类型",
+				"codeName" : "派件时效",
+			},{
+				"id" : "3",
+				"codeType" : "aging_type_all",
+				"description" : "全部时效类型",
+				"codeName" : "干线时效",
+			}]
 		}
 	};	
 }

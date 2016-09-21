@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ane56.bi.application.UserApplicationService;
-import com.ane56.bi.application.command.user.CreateUserCommand;
 import com.ane56.bi.application.command.user.UpdateUserCommand;
 import com.ane56.bi.domain.user.User;
 import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;

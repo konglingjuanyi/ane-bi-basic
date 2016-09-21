@@ -9,89 +9,89 @@ public class PlanTime extends Entity {
 	 * 
 	 */
 	private static final long serialVersionUID = -6034913536407140700L;
-	private int operationId;
-	private int siteId;
-	private String siteName;
-	private String carTypeName;
-	private int carType;
-	private double unloadCarTime;
-	private double loadCarTime;
-	private Date createTime;
-	private Date updateTime;
-	private int createdId;
-	private String createdName;
-	private int status;
-	public int getOperationId() {
-		return operationId;
-	}
-	public void setOperationId(int operationId) {
-		this.operationId = operationId;
-	}
-	public int getSiteId() {
+	private String siteId; 
+	private String siteTypeCd; 
+	private String veTypeCd; 
+	private String crtUserId; 
+	private Date crtTime;
+	private String crtAppSysId; 
+	private String modfUserId; 
+	private Date modfTime; 
+	private String modfAppSysId;
+	private String shmtOpCtime;
+	private String unldOpCtime; 
+	private String validFlag;
+	public String getSiteId() {
 		return siteId;
 	}
-	public void setSiteId(int siteId) {
+	public void setSiteId(String siteId) {
 		this.siteId = siteId;
 	}
-	public String getSiteName() {
-		return siteName;
+	public String getSiteTypeCd() {
+		return siteTypeCd;
 	}
-	public void setSiteName(String siteName) {
-		this.siteName = siteName;
+	public void setSiteTypeCd(String siteTypeCd) {
+		this.siteTypeCd = siteTypeCd;
 	}
-	public String getCarTypeName() {
-		return carTypeName;
+	public String getVeTypeCd() {
+		return veTypeCd;
 	}
-	public void setCarTypeName(String carTypeName) {
-		this.carTypeName = carTypeName;
+	public void setVeTypeCd(String veTypeCd) {
+		this.veTypeCd = veTypeCd;
 	}
-	public int getCarType() {
-		return carType;
+	public String getCrtUserId() {
+		return crtUserId;
 	}
-	public void setCarType(int carType) {
-		this.carType = carType;
+	public void setCrtUserId(String crtUserId) {
+		this.crtUserId = crtUserId;
 	}
-	public double getUnloadCarTime() {
-		return unloadCarTime;
+	public Date getCrtTime() {
+		return crtTime;
 	}
-	public void setUnloadCarTime(double unloadCarTime) {
-		this.unloadCarTime = unloadCarTime;
+	public void setCrtTime(Date crtTime) {
+		this.crtTime = crtTime;
 	}
-	public double getLoadCarTime() {
-		return loadCarTime;
+	public String getCrtAppSysId() {
+		return crtAppSysId;
 	}
-	public void setLoadCarTime(double loadCarTime) {
-		this.loadCarTime = loadCarTime;
+	public void setCrtAppSysId(String crtAppSysId) {
+		this.crtAppSysId = crtAppSysId;
 	}
-	public Date getCreateTime() {
-		return createTime;
+	public String getModfUserId() {
+		return modfUserId;
 	}
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setModfUserId(String modfUserId) {
+		this.modfUserId = modfUserId;
 	}
-	public Date getUpdateTime() {
-		return updateTime;
+	public Date getModfTime() {
+		return modfTime;
 	}
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
+	public void setModfTime(Date modfTime) {
+		this.modfTime = modfTime;
 	}
-	public int getCreatedId() {
-		return createdId;
+	public String getModfAppSysId() {
+		return modfAppSysId;
 	}
-	public void setCreatedId(int createdId) {
-		this.createdId = createdId;
+	public void setModfAppSysId(String modfAppSysId) {
+		this.modfAppSysId = modfAppSysId;
 	}
-	public String getCreatedName() {
-		return createdName;
+	public String getShmtOpCtime() {
+		return shmtOpCtime;
 	}
-	public void setCreatedName(String createdName) {
-		this.createdName = createdName;
+	public void setShmtOpCtime(String shmtOpCtime) {
+		this.shmtOpCtime = shmtOpCtime;
 	}
-	public int getStatus() {
-		return status;
+	public String getUnldOpCtime() {
+		return unldOpCtime;
 	}
-	public void setStatus(int status) {
-		this.status = status;
+	public void setUnldOpCtime(String unldOpCtime) {
+		this.unldOpCtime = unldOpCtime;
+	}
+	public String getValidFlag() {
+		return validFlag;
+	}
+	public void setValidFlag(String validFlag) {
+		this.validFlag = validFlag;
 	}
 	
 }

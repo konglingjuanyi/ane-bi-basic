@@ -7,8 +7,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ane56.bi.common.pager.PageBean;
+import com.ane56.bi.port.adapter.utils.PageUtils;
 import com.ane56.db.mybatis.MybatisRepository;
 import com.ane56.db.mybatis.MybatisRepositorySupport;
+import com.ane56.db.mybatis.core.Pagination;
 import com.ane56.db.mybatis.query.QueryBuilder;
 
 public class SpringMybatisRepositorySupport {
@@ -44,4 +46,19 @@ public class SpringMybatisRepositorySupport {
 		}
 		return pb;
 	  }
+	/**
+	 * 分页查询
+	 * @param nameSpace
+	 * @param searchMap
+	 * @param offset
+	 * @param limit
+	 * @return
+	 */
+	public <T> Pagination<T> queryWithPage(String nameSpace,Map<String,Object> searchMap, int offset, int limit){
+		Integer total =  (Integer) this.repository().queryBy(nameSpace+".queryPagedCount", searchMap);
+		searchMap.put("start", offset);
+		searchMap.put("end", PageUtils.getEnd(offset, limit));
+		List<T> result = this.repository().query(nameSpace+".queryPagedList", searchMap);
+		return new Pagination<T>(result, total, offset, limit);
+	}
 }

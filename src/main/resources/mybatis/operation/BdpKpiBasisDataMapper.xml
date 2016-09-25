@@ -31,7 +31,7 @@
       MODF_USER_ID, MODF_TIME, MODF_APP_SYS_ID, 
       KPI_NM, KPI_ABBR, KPI_TYPE_CD
       )
-      values (SEQ_BDP_KPI_BASIS_DATA.nextval, #{validBgnTime,jdbcType=DATE}, #{validEndTime,jdbcType=DATE}, 
+      values (SEQ_BDP_KEY_GEN.nextval, #{validBgnTime,jdbcType=DATE}, #{validEndTime,jdbcType=DATE}, 
       #{crtUserId,jdbcType=VARCHAR}, sysdate, #{crtAppSysId,jdbcType=VARCHAR}, 
       #{modfUserId,jdbcType=VARCHAR}, #{modfTime,jdbcType=DATE}, #{modfAppSysId,jdbcType=VARCHAR}, 
       #{kpiNm,jdbcType=VARCHAR}, #{kpiAbbr,jdbcType=VARCHAR}, #{kpiTypeCd,jdbcType=VARCHAR}

@@ -22,7 +22,6 @@ public class MybatisAneBiSiteExtraDaysRepository extends SpringMybatisRepository
 	 * 获取全国时效额外天数list
 	 * @return
 	 */
-	@Override
 	public List<AneBiSiteExtraDays> getExtraDaysAll() {
 		return this.repository().query(new QueryBuilder(AneBiSiteExtraDays.class).build());
 	}
@@ -31,7 +30,6 @@ public class MybatisAneBiSiteExtraDaysRepository extends SpringMybatisRepository
 	 * 分页查询全国时效额外天数
 	 * @return
 	 */
-	@Override
 	public Pagination<AneBiSiteExtraDays> getExtraDaysWithPage(int start,int limit,String siteName,String agingType) {
 		QueryBuilder sqlBuilder = new QueryBuilder(AneBiSiteExtraDays.class);
 		if(StringUtils.isNotBlank(siteName)){
@@ -53,7 +51,6 @@ public class MybatisAneBiSiteExtraDaysRepository extends SpringMybatisRepository
 	 * 新增全国时效额外天数
 	 * @param entity
 	 */
-	@Override
 	public void addExtraDay(AneBiSiteExtraDays entity) {
 		this.repository().insert(entity);
 	}
@@ -62,7 +59,6 @@ public class MybatisAneBiSiteExtraDaysRepository extends SpringMybatisRepository
 	 * 更新全国时效额外天数
 	 * @param entity
 	 */
-	@Override
 	public void updateExtraDay(AneBiSiteExtraDays entity) {
 		this.repository().update(entity);
 	}
@@ -71,7 +67,6 @@ public class MybatisAneBiSiteExtraDaysRepository extends SpringMybatisRepository
 	 * （物理）删除全国时效额外天数
 	 * @param entity
 	 */
-	@Override
 	public void deleteExtraDay(AneBiSiteExtraDays entity) {
 		this.repository().delete(entity);
 	}
@@ -81,7 +76,6 @@ public class MybatisAneBiSiteExtraDaysRepository extends SpringMybatisRepository
 	 * @param id
 	 * @return
 	 */
-	@Override
 	public AneBiSiteExtraDays findById(long id) {
 		return findByProp(AneBiSiteExtraDays.class, "id", id+"");
 	}
@@ -89,7 +83,6 @@ public class MybatisAneBiSiteExtraDaysRepository extends SpringMybatisRepository
 	/**
 	 * 根据分拨名称,时效类型查询全国时效额外天数
 	 */
-	@Override
 	public AneBiSiteExtraDays findIsUnique(String siteName, String agingType) {
 		QueryBuilder sqlBuilder = new QueryBuilder(AneBiSiteExtraDays.class);
 		sqlBuilder = sqlBuilder.eq("site_name", siteName).eq("aging_type", agingType);

@@ -9,7 +9,7 @@
         var service = {
     		getDataWithPage : getDataWithPage,
     		updateOrgBrnchClfc : updateOrgBrnchClfc,
-    		getCodesByType : getCodesByType,
+//    		getCodesByType : getCodesByType,
         };
         return service;
         
@@ -22,8 +22,8 @@
         	return restfulHelper.put(SERVER_API_URL + "api/updateOrgBrnchClfc", orgBrnchClfc);
         }
         
-        function getCodesByType(codeType){
-        	return restfulHelper.get(SERVER_API_URL + "api/getCodesByType?codeType=" + codeType);
-        }
+//        function getCodesByType(codeType){
+//        	return restfulHelper.get(SERVER_API_URL + "api/getCodesByType?codeType=" + codeType);
+//        }
     }
 })();

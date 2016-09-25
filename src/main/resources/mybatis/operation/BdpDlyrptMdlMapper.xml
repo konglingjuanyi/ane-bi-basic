@@ -97,7 +97,7 @@
       CRT_APP_SYS_ID, MODF_USER_ID, MODF_TIME, 
       MODF_APP_SYS_ID, MDL_NM, SUPR_MDL_ID, 
       SHOW_SEQNO, VALID_FLAG)
-     values (SEQ_BDP_DLYRPT_MDL.nextval, #{crtUserId,jdbcType=VARCHAR},sysdate, 
+     values (SEQ_BDP_KEY_TAG.nextval, #{crtUserId,jdbcType=VARCHAR},sysdate, 
       #{crtAppSysId,jdbcType=VARCHAR}, #{modfUserId,jdbcType=VARCHAR}, #{modfTime,jdbcType=DATE}, 
       #{modfAppSysId,jdbcType=VARCHAR}, #{mdlNm,jdbcType=VARCHAR}, #{suprMdlId,jdbcType=VARCHAR}, 
       #{showSeqno,jdbcType=DECIMAL}, #{validFlag,jdbcType=CHAR})

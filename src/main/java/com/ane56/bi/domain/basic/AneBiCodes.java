@@ -2,6 +2,10 @@ package com.ane56.bi.domain.basic;
 
 import java.util.Date;
 
+import org.apache.ibatis.annotations.Update;
+
+import com.ane56.bi.domain.Entity;
+
 public class AneBiCodes{
 	private static final long serialVersionUID = 1L;
 	private long id;

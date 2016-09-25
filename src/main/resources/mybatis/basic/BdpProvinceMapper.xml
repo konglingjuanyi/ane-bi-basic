@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Bdp_Province">
+	<resultMap id="provDistrtResult" type="com.ane56.bi.domain.basic.BdpProvDistrtBasicDataVO">
+		<result property="orgBrnchId" column="ORG_BRNCH_ID" />
+		<result property="crtUserId" column="CRT_USER_ID" />
+		<result property="crtTime" column="CRT_TIME" />
+		<result property="crtAppSysId" column="CRT_APP_SYS_ID" />
+		<result property="modfUserId" column="MODF_USER_ID" />
+		<result property="modfTime" column="MODF_TIME" />
+		<result property="modfAppSysId" column="MODF_APP_SYS_ID" />
+		<result property="orgBrnchLvlCd" column="ORG_BRNCH_LVL_CD" />
+		<result property="orgBrnchShowCdVal" column="ORG_BRNCH_SHOW_CD_VAL" />
+		<result property="orgBrnchNm" column="ORG_BRNCH_NM" />
+		<result property="orgBrnchPinyin" column="ORG_BRNCH_PINYIN" />
+		<result property="orgBrnchSeqno" column="ORG_BRNCH_SEQNO" />
+		<result property="orgBrnchTypeCd" column="ORG_BRNCH_TYPE_CD" />
+		<result property="validFlag" column="VALID_FLAG" />
+		<result property="rmk" column="RMK" />
+		<result property="suprOrgBrnchId" column="SUPR_ORG_BRNCH_ID" />
+		<result property="suprOrgBrnchNm" column="SUPR_ORG_BRNCH_NM" />
+	</resultMap>
+	
+	<sql id="start_page">
+		SELECT * FROM ( SELECT row_.*, ROWNUM rownum_ FROM (
+	</sql>
+	<sql id="end_page">
+		) row_ ) WHERE rownum_ &lt;= #{end} AND rownum_ &gt; #{start}
+	</sql>
+	
+	<select id="queryPagedList" resultMap="provDistrtResult" parameterType="java.util.Map">
+		<include refid="start_page" />
+		SELECT A.*, T.AREA_NAME AS SUPR_ORG_BRNCH_NM
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		LEFT JOIN ODS_LB.HS_BASIC_AREA T ON A.SUPR_ORG_BRNCH_ID = T.AREA_ID
+		<where>
+			A.VALID_FLAG = 1 AND A.ORG_BRNCH_LVL_CD = 22 AND A.ORG_BRNCH_TYPE_CD='20'
+			<if test="orgBrnchNm !='' and orgBrnchNm !=null">
+				AND A.ORG_BRNCH_NM like '%'||#{orgBrnchNm}||'%'
+			</if>
+			<if test="orgBrnchPinyin !='' and orgBrnchPinyin !=null">
+				AND A.ORG_BRNCH_PINYIN like '%'||#{orgBrnchPinyin}||'%'
+			</if>
+		</where>
+		ORDER BY A.ORG_BRNCH_SEQNO
+		<include refid="end_page" />
+	</select>
+	
+	<select id="queryPagedCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(1)
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		LEFT JOIN ODS_LB.HS_BASIC_AREA T ON A.SUPR_ORG_BRNCH_ID = T.AREA_ID
+		<where>
+			A.VALID_FLAG = 1 AND A.ORG_BRNCH_LVL_CD = 22 AND A.ORG_BRNCH_TYPE_CD='20'
+			<if test="orgBrnchNm !='' and orgBrnchNm !=null">
+				AND A.ORG_BRNCH_NM like '%'||#{orgBrnchNm}||'%'
+			</if>
+			<if test="orgBrnchPinyin !='' and orgBrnchPinyin !=null">
+				AND A.ORG_BRNCH_PINYIN like '%'||#{orgBrnchPinyin}||'%'
+			</if>
+		</where>
+	</select>
+	
+</mapper>

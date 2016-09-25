@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Basic_OrgBrnchClfcDao">
+	<resultMap id="orgBrnchClfcResult" type="com.ane56.bi.domain.basic.OrgBrnchClfcVO">
+		<result property="orgBrnchId" column="ORG_BRNCH_ID" />
+		<result property="orgBrnchLvlCd" column="ORG_BRNCH_LVL_CD" />
+		<result property="clfcTypeCd" column="CLFC_TYPE_CD" />
+		<result property="clfcDtldCd" column="CLFC_DTLD_CD" />
+		<result property="crtUserId" column="CRT_USER_ID" />
+		<result property="crtTime" column="CRT_TIME" />
+		<result property="crtAppSysId" column="CRT_APP_SYS_ID" />
+		<result property="modfUserId" column="MODF_USER_ID" />
+		<result property="modfTime" column="MODF_TIME" />
+		<result property="modfAppSysId" column="MODF_APP_SYS_ID" />
+		<result property="siteSrvTypeCd" column="SITE_SRV_TYPE_CD" />
+		<result property="dlvryModeCd" column="DLVRY_MODE_CD" />
+		<result property="statFlag" column="STAT_FLAG" />
+		<result property="siteName" column="SITE_NAME" />
+		<result property="clfcTypeCdStr" column="CLFC_TYPE_CD_STR" />
+		<result property="clfcDtldCdStr" column="CLFC_DTLD_CD_STR" />
+		<result property="statFlagStr" column="STAT_FLAG_STR" />
+	</resultMap>
+	
+	<sql id="start_page">
+		SELECT * FROM ( SELECT row_.*, ROWNUM rownum_ FROM (
+	</sql>
+	<sql id="end_page">
+		) row_ ) WHERE rownum_ &lt;= #{end} AND rownum_ &gt; #{start}
+	</sql>
+	
+	<select id="queryPagedList" resultMap="orgBrnchClfcResult" parameterType="java.util.Map">
+		<include refid="start_page" />
+		SELECT A.*,B.SITE_NAME 
+		FROM ODS_BDP.DW_PT_ORG_BRNCH_CLFC A LEFT JOIN ODS_LB.HS_BASIC_SITE B ON A.ORG_BRNCH_ID = B.SITE_ID
+		<where>
+			A.ORG_BRNCH_LVL_CD = '12' AND B.RD_STATUS = '1' 
+			<if test="siteName !='' and siteName !=null">
+				AND B.SITE_NAME like '%'||#{siteName}||'%'
+			</if>
+			<if test="statFlag !='' and statFlag !=null">
+				AND A.STAT_FLAG = #{statFlag}
+			</if>
+		</where>
+		ORDER BY A.ORG_BRNCH_ID
+		<include refid="end_page" />
+	</select>
+	
+	<select id="queryPagedCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(1)
+		FROM ODS_BDP.DW_PT_ORG_BRNCH_CLFC A LEFT JOIN ODS_LB.HS_BASIC_SITE B ON A.ORG_BRNCH_ID = B.SITE_ID
+		<where>
+			A.ORG_BRNCH_LVL_CD = '12' AND B.RD_STATUS = '1' 
+			<if test="siteName !='' and siteName !=null">
+				AND B.SITE_NAME like '%'||#{siteName}||'%'
+			</if>
+			<if test="statFlag !='' and statFlag !=null">
+				AND A.STAT_FLAG = #{statFlag}
+			</if>
+		</where>
+	</select>
+	
+	<update id="update" parameterType="com.ane56.bi.domain.basic.OrgBrnchClfc">
+		UPDATE ODS_BDP.DW_PT_ORG_BRNCH_CLFC A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="clfcTypeCd !='' and clfcTypeCd !=null">
+				A.CLFC_TYPE_CD = #{clfcTypeCd},
+			</if>
+			<if test="clfcDtldCd !='' and clfcDtldCd !=null">
+				A.CLFC_DTLD_CD = #{clfcDtldCd},
+			</if>
+			<if test="statFlag !='' and statFlag !=null">
+				A.STAT_FLAG = #{statFlag},
+			</if>
+			<if test="modfUserId !='' and modfUserId !=null">
+				A.MODF_USER_ID = #{modfUserId},
+			</if>
+			<if test="modfTime !='' and modfTime !=null">
+				A.MODF_TIME = #{modfTime},
+			</if>
+			<if test="modfAppSysId !='' and modfAppSysId !=null">
+				A.MODF_APP_SYS_ID = #{modfAppSysId}
+			</if>
+		</trim>
+		WHERE A.ORG_BRNCH_LVL_CD = 12 
+			AND A.ORG_BRNCH_ID = #{orgBrnchId}
+	</update>
+	
+</mapper>

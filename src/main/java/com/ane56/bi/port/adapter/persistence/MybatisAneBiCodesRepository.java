@@ -22,7 +22,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param codeType
 	 * @return
 	 */
-	@Override
 	public List<AneBiCodes> getCodesByType(String codeType) {
 		QueryBuilder sqlQuery = new QueryBuilder(AneBiCodes.class);
 		return this.repository().query(sqlQuery.eq("code_type", codeType).build());
@@ -34,7 +33,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param codeValue
 	 * @return
 	 */
-	@Override
 	public AneBiCodes findCodeByTypeAndValue(String codeType, int codeValue) {
 		QueryBuilder sqlQuery = new QueryBuilder(AneBiCodes.class);
 		sqlQuery = sqlQuery.eq("code_type", codeType).eq("code_value", codeValue);
@@ -45,7 +43,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * 新增字典项
 	 * @param aneBiCodes
 	 */
-	@Override
 	public void addCode(AneBiCodes aneBiCodes) {
 		this.repository().insert(aneBiCodes);
 	}
@@ -54,7 +51,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * 删除字典项
 	 * @param aneBiCodes
 	 */
-	@Override
 	public void deleteCode(AneBiCodes aneBiCodes) {
 		this.repository().delete(aneBiCodes);
 	}
@@ -63,7 +59,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * 更新字典项
 	 * @param aneBiCodes
 	 */
-	@Override
 	public void updateCode(AneBiCodes aneBiCodes) {
 		this.repository().update(aneBiCodes);
 	}
@@ -74,7 +69,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param limit
 	 * @return
 	 */
-	@Override
 	public Pagination<AneBiCodes> getCodesWithPage(int start, int limit,String codeType,String description,String codeName) {
 		QueryBuilder sqlBuilder = new QueryBuilder(AneBiCodes.class);
 		if(StringUtils.isNotBlank(codeType)){
@@ -94,7 +88,6 @@ public class MybatisAneBiCodesRepository extends SpringMybatisRepositorySupport 
 	 * @param id
 	 * @return
 	 */
-	@Override
 	public AneBiCodes findById(long id) {
 		return findByProp(AneBiCodes.class, "id", id+"");
 	}

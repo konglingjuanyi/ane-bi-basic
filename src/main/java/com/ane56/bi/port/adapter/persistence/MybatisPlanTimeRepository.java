@@ -3,8 +3,11 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Component;
 import com.ane56.bi.common.pager.PageBean;
+import com.ane56.bi.common.pager.Pagination;
+import com.ane56.bi.domain.operation.BdpDlyrptMdl;
 import com.ane56.bi.domain.operation.BdpDstrbPlanOpTime;
 import com.ane56.bi.domain.operation.PlanTimeRepository;
+import com.github.pagehelper.PageHelper;
 
 @Component
 public class MybatisPlanTimeRepository extends SpringMybatisRepositorySupport implements PlanTimeRepository {
@@ -27,33 +30,25 @@ public class MybatisPlanTimeRepository extends SpringMybatisRepositorySupport im
 		return result;
 	}
 
-	/*@Override
-	public PageBean<PlanTime> queryDataByPage(Map<String,Object> paramObject,int offset, int limit) {
-		//每页记录数
-		Integer total =  (Integer) this.repository().queryBy("BdpDstrbPlanOpTimeMapper.queryPageCount", paramObject);
-		Pagination<PlanTime> pageResult= this.repository().queryPage("BdpDstrbPlanOpTimeMapper.queryDataByPage", paramObject, offset, limit);
-		List<PlanTime> dataList = pageResult.getResult();
-		
-		 * 5. 创建PageBean，设置参数
-		 
-		PageBean<PlanTime> pb = new PageBean<PlanTime>();
-		
-		 * 其中PageBean没有url，这个任务由Servlet完成
-		 
-		pb.setBeanList(dataList);
-		pb.setTotal(total);
-		return pb;
-	}*/
 	@Override
-	public PageBean<BdpDstrbPlanOpTime> queryDataByPage(Map<String,Object> searchMap,int offset, int limit) {
-		 PageBean<BdpDstrbPlanOpTime> pageList = null;
+	public Pagination<BdpDstrbPlanOpTime> queryDataByPage(Map<String,Object> searchMap,int pageNum,int pageSize) {
+		Pagination<BdpDstrbPlanOpTime> pageList =  new Pagination<BdpDstrbPlanOpTime>();
 		try {
-			pageList = this.queryPagedList("BdpDstrbPlanOpTimeMapper", BdpDstrbPlanOpTime.class, searchMap, offset, limit);
+			int offset = (pageNum-1)*pageSize;
+			int limit = pageSize;
+			Integer total =  (Integer) this.repository().queryBy("BdpDstrbPlanOpTimeMapper.queryPagedCount", searchMap);
+			PageHelper.startPage(pageNum, pageSize); 	
+			List<BdpDstrbPlanOpTime> result = this.repository().query("BdpDstrbPlanOpTimeMapper.queryPagedList", searchMap);
+			pageList.setResult(result);
+			pageList.setCurrent(pageNum);
+			pageList.setLimit(limit);
+			pageList.setOffset(offset);
+			pageList.setTotal(total);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return pageList;
-	}
+	};
 	@Override
 	public List<BdpDstrbPlanOpTime> findByParams(Map<String,Object> condition) {
 		List<BdpDstrbPlanOpTime> result = this.repository().query("BdpDstrbPlanOpTimeMapper.findByParams", condition);

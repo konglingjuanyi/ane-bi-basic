@@ -28,7 +28,6 @@ public class MybatisRoleSourceRepository extends MybatisRepositorySupport implem
 	 * @param QueryBuilder:查询条件
 	 * @author hanyong
 	 */
-	@Override
 	public List<RoleRource> allRoleSources(QueryBuilder qb) {
 		return query(qb.build());
 	}
@@ -38,7 +37,6 @@ public class MybatisRoleSourceRepository extends MybatisRepositorySupport implem
 	 * @param useRrole:角色权限关联类
 	 * @author hanyong
 	 */
-	@Override
 	public void add(RoleRource roleSource) {
 		insert(roleSource);
 	}
@@ -48,7 +46,6 @@ public class MybatisRoleSourceRepository extends MybatisRepositorySupport implem
 	 * @param useRrole:角色权限关联类
 	 * @author hanyong
 	 */
-	@Override
 	public void remove(RoleRource roleSource) {
 		delete(roleSource);
 	}

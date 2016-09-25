@@ -2,6 +2,7 @@ package com.ane56.bi.domain.operation;
 import java.util.List;
 import java.util.Map;
 import com.ane56.bi.common.pager.PageBean;
+import com.ane56.bi.common.pager.Pagination;
 
 public interface PlanTimeRepository {
 
@@ -10,9 +11,7 @@ public interface PlanTimeRepository {
 	int update(BdpDstrbPlanOpTime entity);
 
 	int delete(Map<String, Object> condition);
-
-	PageBean<BdpDstrbPlanOpTime> queryDataByPage(Map<String,Object> paramObject,int offset, int limit);
-
+	Pagination<BdpDstrbPlanOpTime> queryDataByPage(Map<String,Object> paramObject,int pageNum, int pageSize);
 	List<BdpDstrbPlanOpTime> findByParams(Map<String,Object> condition);
 
 }

@@ -289,15 +289,7 @@
             		} , function(){	           			
                        return;
             		});
-            	}else{
-            		$.smallBox({
-            			title : "提示" ,
-            			content : "保存失败!"  ,
-            			timeout : 1000 ,
-            		} , function(){	           			
-                       return;
-            		});
-            	};
+            	}
 	            });       		
    
         	}

@@ -13,8 +13,10 @@ import com.alibaba.fastjson.JSON;
 import com.ane56.bi.application.BdpDstrbPlanOpTimeService;
 import com.ane56.bi.common.data.RequestParameter;
 import com.ane56.bi.common.pager.PageBean;
+import com.ane56.bi.common.pager.Pagination;
 import com.ane56.bi.common.util.JSONUtils;
 import com.ane56.bi.common.util.StringUtils;
+import com.ane56.bi.domain.operation.BdpDlyrptMdl;
 import com.ane56.bi.domain.operation.BdpDstrbPlanOpTime;
 import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;
 import com.ane56.bi.port.adapter.rest.RestResultResponse;
@@ -79,17 +81,8 @@ public class BdpDstrbPlanOpTimeControll extends ResourceResponseSupport {
 		int pageNum = parameter.getPageNum();
 		//每页记录数
 		int pageSize = parameter.getPageSize();
-		Map<String,Object> condition = JSONUtils.convertJson2Object(conditonStr, HashMap.class);
-		int offset = (pageNum-1)*pageSize;
-		int limit = pageSize;
-		PageBean<BdpDstrbPlanOpTime> result = bdpDstrbPlanOpTimeService.queryDataByPage(condition,offset,limit);
-		result.setOffset(limit);
-		result.setCurrent(pageNum);
-		result.setPageSize(pageSize);
-		System.out.println(JSON.toJSONString(result));
-		RestResultResponse response = new RestResultResponse();
-		response.setResult(JSON.toJSONString(result));
-		response.setStatus(RestResultStatus.SUCCESS);
-		return response;
+		HashMap condition = JSONUtils.convertJson2Object(conditonStr, HashMap.class);
+		Pagination<BdpDstrbPlanOpTime> result = bdpDstrbPlanOpTimeService.queryDataByPage(condition,pageNum,pageSize);
+		return this.buildSuccessRestResultResponse(result);
 	}
 }

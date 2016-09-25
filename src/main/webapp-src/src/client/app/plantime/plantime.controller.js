@@ -30,11 +30,11 @@
       			};
         	 var promise = PlantimeService.queryDataByPage(jsonData);
 	          promise.then(function(results) {
-	              vm.result = JSON.parse(results);
-	              var current =  vm.result.current;
-	              var limit = vm.result.pageSize;
-	              var total = vm.result.total;
-	              var offset = vm.result.offset;
+	        	  vm.result = results.result;
+	              var current = results.current;
+	              var limit = results.limit;
+	              var total = results.total;
+	              var offset = results.offset;
 	              var object = {
 	      				"current":current,
 	      				"limit":limit,
@@ -141,9 +141,19 @@
       			};
         	  var promise = PlantimeService.queryDataByPage(jsonData);
               promise.then(function(results) {
-                  vm.result = JSON.parse(results);
-                  var length = vm.result.beanList.length;
-                  if(length<=0){
+            	   vm.result = results.result;
+	              var current = results.current;
+	              var limit = results.limit;
+	              var total = results.total;
+	              var offset = results.offset;
+	              var object = {
+	      				"current":current,
+	      				"limit":limit,
+	      				"total":total,
+	      				"offset":offset
+	    			};
+	              vm.codes = object;
+                  if(total<=0){
                 	  $("#warn").show();
                   }else{
                 	  $("#warn").hide();
@@ -193,9 +203,7 @@
 		            	};
 		            });
 				}
-			});
-        	
-        	
+			});        	
         };
         vm.addData = function(){
         	var siteId = vm.data.siteId;
@@ -234,7 +242,7 @@
         	if(siteId != ""){
         		var promise = PlantimeService.addData(dataParams);//新增
         		promise.then(function(result) {
-            	if(result==1){
+            		if(result==1){
             		$.smallBox({
             			title : "提示" ,
             			content : "保存成功!"  ,
@@ -245,21 +253,13 @@
             	}if(result==-1){
             		$.smallBox({
             			title : "提示" ,
-            			content : "该分拨中心数据已经存在!"  ,
+            			content : "该分拨数据已经存在!"  ,
             			timeout : 1000 ,
             		} , function(){	           			
                        return;
             		});
-            	}else{
-            		$.smallBox({
-            			title : "提示" ,
-            			content : "保存失败!"  ,
-            			timeout : 1000 ,
-            		} , function(){	           			
-                       return;
-            		});
-            	};
-	            });       		
+            	}
+	            });   		
    
         	}
         };        

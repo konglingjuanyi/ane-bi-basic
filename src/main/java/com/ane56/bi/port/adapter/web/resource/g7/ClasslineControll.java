@@ -1,8 +1,13 @@
 package com.ane56.bi.port.adapter.web.resource.g7;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +32,11 @@ public class ClasslineControll  extends ResourceResponseSupport{
 	private ClasslineService classlineService = new ClasslineService();
 	
 	@RequestMapping(value = "/sync", method = RequestMethod.GET)
-	public int insertG7DataToDB() {
+	public int insertG7DataToDB(HttpServletRequest request,HttpServletResponse response) {
      PageResult pageResult=null;
      G7QueryVO g7Vo = new G7QueryVO();
      int res = 0;
-	 for(int i=1;i<110;i++){
+	 for(int i=1;i<10;i++){
 		ApiResult result  = null;
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
 		ObjectMapper mapper = new ObjectMapper();
@@ -55,7 +60,8 @@ public class ClasslineControll  extends ResourceResponseSupport{
 				System.out.println("成功新增第"+i+"页数据!");
 				if(rest){
 					res =  i;
-					System.out.println("成功新增第"+i+"页数据!");
+					String str = "成功新增第"+i+"页数据!";
+					System.out.println(str);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

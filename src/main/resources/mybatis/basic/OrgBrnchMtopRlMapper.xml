@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Bdp_OrgBrnchMtopRl">
+	<resultMap id="OrgBrnchMtopRlResult" type="com.ane56.bi.domain.basic.OrgBrnchQueryVO">
+		<result property="orgBrnchId" column="ORG_BRNCH_ID" />
+		<result property="orgBrnchLvlCd" column="ORG_BRNCH_LVL_CD" />
+		<result property="crtUserId" column="CRT_USER_ID" />
+		<result property="crtTime" column="CRT_TIME" />
+		<result property="crtAppSysId" column="CRT_APP_SYS_ID" />
+		<result property="modfUserId" column="MODF_USER_ID" />
+		<result property="modfTime" column="MODF_TIME" />
+		<result property="modfAppSysId" column="MODF_APP_SYS_ID" />
+		<result property="suprMtopId" column="SUPR_MTOP_ID" />
+		<result property="suprMtopLvlCd" column="SUPR_MTOP_LVL_CD" />
+		<result property="orgBrnchNm" column="ORG_BRNCH_NM" />
+		<result property="suprMtopNm" column="SUPR_MTOP_NM" />
+		<result property="areaId" column="AREA_ID" />
+		<result property="areaName" column="AREA_NAME" />
+		<result property="provinceId" column="PROVINCE_ID" />
+		<result property="provinceName" column="PROVINCE_NAME" />
+		<result property="dictId" column="DICT_ID" />
+		<result property="dictName" column="DICT_NAME" />
+		<result property="siteId" column="SITE_ID" />
+		<result property="siteName" column="SITE_NAME" />
+		<result property="area" column="AREA" />
+		<result property="province" column="PROVINCE" />
+		<result property="dict" column="DICT" />
+		<result property="site" column="SITE" />
+	</resultMap>
+	<sql id="orgBrnchMtopRlColumn">
+		ORG_BRNCH_ID,ORG_BRNCH_LVL_CD,CRT_USER_ID
+		,CRT_TIME,CRT_APP_SYS_ID,MODF_USER_ID
+		,MODF_TIME,MODF_APP_SYS_ID,SUPR_MTOP_ID
+		,SUPR_MTOP_LVL_CD,ORG_BRNCH_NM
+	</sql>
+	
+	<sql id="start_page">
+		SELECT * FROM ( SELECT row_.*, ROWNUM rownum_ FROM (
+	</sql>
+	<sql id="end_page">
+		) row_ ) WHERE rownum_ &lt;= #{end} AND rownum_ &gt; #{start}
+	</sql>
+	
+	<select id="queryPagedList" resultMap="OrgBrnchMtopRlResult" parameterType="java.util.Map">
+		<include refid="start_page" />
+		SELECT T1.ORG_BRNCH_ID AS SITE_ID,T1.ORG_BRNCH_NM AS SITE_NAME,
+			T2.ORG_BRNCH_ID AS DICT_ID,T2.ORG_BRNCH_NM AS DICT_NAME,
+			T3.ORG_BRNCH_ID AS PROVINCE_ID,T3.ORG_BRNCH_NM AS PROVINCE_NAME,
+			T4.ORG_BRNCH_ID AS AREA_ID,T4.ORG_BRNCH_NM AS AREA_NAME
+		FROM ODS_BDP.ORG_BRNCH_MTOP_RL T1,
+			 ODS_BDP.ORG_BRNCH_MTOP_RL T2,
+			 ODS_BDP.ORG_BRNCH_MTOP_RL T3,
+			 ODS_BDP.ORG_BRNCH_MTOP_RL T4
+		<where>
+			T1.SUPR_MTOP_ID = T2.ORG_BRNCH_ID 
+			AND T2.SUPR_MTOP_ID = T3.ORG_BRNCH_ID
+			AND T3.SUPR_MTOP_ID = T4.ORG_BRNCH_ID
+			AND T1.ORG_BRNCH_LVL_CD = '12'
+			AND T2.ORG_BRNCH_LVL_CD = '23'
+			AND T3.ORG_BRNCH_LVL_CD = '22'
+			AND T4.ORG_BRNCH_LVL_CD = '21'
+			<if test="siteName !='' and siteName !=null">
+				AND T1.ORG_BRNCH_NM	 like '%'||#{siteName}||'%'
+			</if>
+			<if test="dictName !='' and dictName !=null">
+				AND T2.ORG_BRNCH_NM like '%'||#{dictName}||'%'
+			</if>
+			<if test="provinceName !='' and provinceName !=null">
+				AND T3.ORG_BRNCH_NM like '%'||#{provinceName}||'%'
+			</if>
+			<if test="areaName !='' and areaName !=null">
+				AND T4.ORG_BRNCH_NM like '%'||#{areaName}||'%'
+			</if>
+		</where>
+		ORDER BY T4.ORG_BRNCH_ID,T3.ORG_BRNCH_ID,T2.ORG_BRNCH_ID,T1.ORG_BRNCH_ID
+		<include refid="end_page" />
+	</select>
+	
+	<select id="queryPagedCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(1)
+		FROM ODS_BDP.ORG_BRNCH_MTOP_RL T1,
+			 ODS_BDP.ORG_BRNCH_MTOP_RL T2,
+			 ODS_BDP.ORG_BRNCH_MTOP_RL T3,
+			 ODS_BDP.ORG_BRNCH_MTOP_RL T4
+		<where>
+			T1.SUPR_MTOP_ID = T2.ORG_BRNCH_ID 
+			AND T2.SUPR_MTOP_ID = T3.ORG_BRNCH_ID
+			AND T3.SUPR_MTOP_ID = T4.ORG_BRNCH_ID
+			AND T1.ORG_BRNCH_LVL_CD = '12'
+			AND T2.ORG_BRNCH_LVL_CD = '23'
+			AND T3.ORG_BRNCH_LVL_CD = '22'
+			AND T4.ORG_BRNCH_LVL_CD = '21'
+			<if test="siteName !='' and siteName !=null">
+				AND T1.ORG_BRNCH_NM	 like '%'||#{siteName}||'%'
+			</if>
+			<if test="dictName !='' and dictName !=null">
+				AND T2.ORG_BRNCH_NM like '%'||#{dictName}||'%'
+			</if>
+			<if test="provinceName !='' and provinceName !=null">
+				AND T3.ORG_BRNCH_NM like '%'||#{provinceName}||'%'
+			</if>
+			<if test="areaName !='' and areaName !=null">
+				AND T4.ORG_BRNCH_NM like '%'||#{areaName}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<update id="update" parameterType="com.ane56.bi.domain.basic.OrgBrnchMtopRl">
+		UPDATE ODS_BDP.ORG_BRNCH_MTOP_RL A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="suprMtopId !='' and suprMtopId !=null">
+				A.SUPR_MTOP_ID = #{suprMtopId},
+			</if>
+			<if test="modfUserId !='' and modfUserId !=null">
+				A.MODF_USER_ID = #{modfUserId},
+			</if>
+			<if test="modfTime !='' and modfTime !=null">
+				A.MODF_TIME = #{modfTime},
+			</if>
+			<if test="modfAppSysId !='' and modfAppSysId !=null">
+				A.MODF_APP_SYS_ID = #{modfAppSysId}
+			</if>
+		</trim>
+		WHERE A.ORG_BRNCH_ID = #{orgBrnchId} 
+			AND A.ORG_BRNCH_LVL_CD = #{orgBrnchLvlCd}
+	</update>
+	
+	<insert id="add" parameterType="com.ane56.bi.domain.basic.OrgBrnchMtopRl">
+		INSERT INTO ODS_BDP.ORG_BRNCH_MTOP_RL (<include refid="orgBrnchMtopRlColumn" />)
+		VALUES
+		(
+		#{orgBrnchId,jdbcType=VARCHAR},
+		#{orgBrnchLvlCd,jdbcType=VARCHAR},
+		#{crtUserId,jdbcType=VARCHAR},
+		#{crtTime,jdbcType=DATE},
+		#{crtAppSysId,jdbcType=VARCHAR},
+		#{modfUserId,jdbcType=VARCHAR},
+		#{modfTime,jdbcType=DATE},
+		#{modfAppSysId,jdbcType=VARCHAR},
+		#{suprMtopId,jdbcType=VARCHAR},
+		#{suprMtopLvlCd,jdbcType=VARCHAR},
+		#{orgBrnchNm,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="findById" resultType="com.ane56.bi.domain.basic.OrgBrnchMtopRl"
+	 parameterType="com.ane56.bi.domain.basic.OrgBrnchMtopRl">
+		SELECT A.*
+		FROM ODS_BDP.ORG_BRNCH_MTOP_RL A
+		<where>
+			A.ORG_BRNCH_ID = #{orgBrnchId} 
+			AND A.ORG_BRNCH_LVL_CD = #{orgBrnchLvlCd}
+			<if test="suprMtopId !='' and suprMtopId !=null">
+				AND A.SUPR_MTOP_ID = #{suprMtopId}
+			</if>
+		</where>
+	</select>
+	
+</mapper>

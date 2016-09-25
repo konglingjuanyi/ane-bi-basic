@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Bdp_OrgBrnchQuery">
+	<resultMap id="OrgBrnchQueryResult" type="com.ane56.bi.domain.basic.OrgBrnchQueryVO">
+		<result property="orgBrnchId" column="ORG_BRNCH_ID" />
+		<result property="orgBrnchLvlCd" column="ORG_BRNCH_LVL_CD" />
+		<result property="crtUserId" column="CRT_USER_ID" />
+		<result property="crtTime" column="CRT_TIME" />
+		<result property="crtAppSysId" column="CRT_APP_SYS_ID" />
+		<result property="modfUserId" column="MODF_USER_ID" />
+		<result property="modfTime" column="MODF_TIME" />
+		<result property="modfAppSysId" column="MODF_APP_SYS_ID" />
+		<result property="suprMtopId" column="SUPR_MTOP_ID" />
+		<result property="suprMtopLvlCd" column="SUPR_MTOP_LVL_CD" />
+		<result property="orgBrnchNm" column="ORG_BRNCH_NM" />
+		<result property="suprMtopNm" column="SUPR_MTOP_NM" />
+		<result property="areaId" column="AREA_ID" />
+		<result property="areaName" column="AREA_NAME" />
+		<result property="provinceId" column="PROVINCE_ID" />
+		<result property="provinceName" column="PROVINCE_NAME" />
+		<result property="dictId" column="DICT_ID" />
+		<result property="dictName" column="DICT_NAME" />
+		<result property="siteId" column="SITE_ID" />
+		<result property="siteName" column="SITE_NAME" />
+		<result property="area" column="AREA" />
+		<result property="province" column="PROVINCE" />
+		<result property="dict" column="DICT" />
+		<result property="site" column="SITE" />
+	</resultMap>
+	
+	<sql id="start_page">
+		SELECT * FROM ( SELECT row_.*, ROWNUM rownum_ FROM (
+	</sql>
+	<sql id="end_page">
+		) row_ ) WHERE rownum_ &lt;= #{end} AND rownum_ &gt; #{start}
+	</sql>
+	
+	<select id="querySiteList" resultMap="OrgBrnchQueryResult" parameterType="java.util.Map">
+		SELECT A.SITE_ID,A.SITE_NAME
+		FROM ODS_LB.HS_BASIC_SITE A
+		<where>
+			A.RD_STATUS = 1 
+			AND A.SITE_TYPE_ID IN (143, 144, 145)
+		</where>
+	</select>
+	
+	<select id="queryDistrtList" resultMap="OrgBrnchQueryResult" parameterType="java.util.Map">
+		SELECT A.ORG_BRNCH_ID AS DICT_ID,A.ORG_BRNCH_NM AS DICT_NAME
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		<where>
+			A.ORG_BRNCH_LVL_CD='23' 
+			AND A.ORG_BRNCH_TYPE_CD='20'
+		</where>
+	</select>
+	
+	<select id="queryProvList" resultMap="OrgBrnchQueryResult" parameterType="java.util.Map">
+		SELECT A.ORG_BRNCH_ID AS PROVINCE_ID,A.ORG_BRNCH_NM AS PROVINCE_NAME
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		<where>
+			A.ORG_BRNCH_LVL_CD='22' 
+			AND A.ORG_BRNCH_TYPE_CD='20'
+		</where>
+	</select>
+	
+	<select id="queryAreaList" resultMap="OrgBrnchQueryResult" parameterType="java.util.Map">
+		SELECT A.AREA_ID,A.AREA_NAME  
+		FROM ODS_LB.HS_BASIC_AREA A 
+		<where>
+			A.RD_STATUS = 1
+		</where>
+	</select>
+	
+</mapper>

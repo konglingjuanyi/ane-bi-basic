@@ -146,7 +146,7 @@
 							<td>{{data.kpiTypeName}}</td>
 							<td>{{data.kpiTypeCd}}</td>
 							<td>{{data.updatedName}}</td>
-							<td>{{data.modfTime}}</td>
+							<td>{{data.modfTime |  date:'yyyy-MM-dd HH:mm:ss'}}</td>
 							<td>{{data.statusName}}</td>
 							<td>
 							<button type="button" class="btn btn-success" ng-click="vm.deleteData(data)">删除</button>

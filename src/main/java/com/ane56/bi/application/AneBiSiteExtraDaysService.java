@@ -1,5 +1,6 @@
 package com.ane56.bi.application;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.ane56.bi.domain.extraDays.AneBiSiteExtraDays;
 import com.ane56.bi.domain.extraDays.AneBiSiteExtraDaysRepository;
+import com.ane56.bi.port.adapter.utils.IdUtils;
+import com.ane56.bi.port.adapter.utils.LetterUtils;
 import com.ane56.db.mybatis.core.Pagination;
 
 @Service

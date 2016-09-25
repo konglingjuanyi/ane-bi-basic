@@ -8,10 +8,8 @@
             </header>
             <div class="form-actions text-left" style="padding:10px;">
             	<button type="submit" class="btn btn-default" ng-click="vm.query()"> 查询 </button>
-                <!-- <button type="button" class="btn btn-default" ng-click="vm.add()"> 新增 </button> -->
                 <button type="button" class="btn btn-default" ng-click="vm.edit()"> 编辑 </button>
                 <button type="button" class="btn btn-default" ng-click="vm.save()"> 保存 </button>
-                <!-- <button type="button" class="btn btn-default" ng-click="vm.deleteModal()"> 删除 </button> -->
             </div>
         </div>  
         
@@ -32,7 +30,7 @@
 	                    	
                     	<div class="col-sm-1 text-right"><label style="margin-top:6px;">是否统计：</label></div>
                         <div class="col-sm-2">
-                        	<select id="stat_flagQuery" class="form-control" ng-model="vm.queryData.stat_flag" style="width:99%;">
+                        	<select id="statFlagQuery" class="form-control" ng-model="vm.queryData.statFlag" style="width:99%;">
                         		<option value="">全部</option>
                         		<option value="1">是</option>
                         		<option value="0">否</option>
@@ -60,13 +58,13 @@
                    	<div class="row" style="margin-bottom:10px;">
                     	<div class="col-sm-1 text-right"><label style="margin-top:6px;">分拨名称：</label></div>
                         <div class="col-sm-2">
-                        	<input id="org_brnch_id" name="org_brnch_id" ng-model="vm.editData.org_brnch_id" ng-show="false" >
-                        	<input id="site_name" name="site_name" class="form-control" ng-model="vm.editData.site_name" disabled="disabled" required>
+                        	<input id="orgBrnchId" name="orgBrnchId" ng-model="vm.editData.orgBrnchId" ng-show="false" >
+                        	<input id="siteName" name="siteName" class="form-control" ng-model="vm.editData.siteName" disabled="disabled" required>
                     	</div>
                     	
                     	<div class="col-sm-1 text-right"><label style="margin-top:6px;">分拨类型：</label></div>
                         <div class="col-sm-2">
-                        	<select id="clfc_type_cd" class="form-control is-edit" ng-model="vm.editData.clfc_type_cd" style="width:99%;">
+                        	<select id="clfcTypeCd" class="form-control is-edit" ng-model="vm.editData.clfcTypeCd" style="width:99%;">
                         		<option value="10">综合</option>
                         		<option value="20">运营</option>
                         		<option value="30">网络</option>
@@ -75,7 +73,7 @@
                     	
                     	<div class="col-sm-1 text-right"><label style="margin-top:6px;">分拨功能：</label></div>
                         <div class="col-sm-2">
-                        	<select id="clfc_dtld_cd" class="form-control is-edit" ng-model="vm.editData.clfc_dtld_cd" style="width:99%;">
+                        	<select id="clfcDtldCd" class="form-control is-edit" ng-model="vm.editData.clfcDtldCd" style="width:99%;">
                         		<option value="121">集散</option>
                         		<option value="122">枢纽</option>
                         		<option value="123">转运</option>
@@ -84,7 +82,7 @@
                     	
                     	<div class="col-sm-1 text-right"><label style="margin-top:6px;">是否统计：</label></div>
                         <div class="col-sm-2">
-                        	<select id="stat_flag" class="form-control is-edit" ng-model="vm.editData.stat_flag" style="width:99%;">
+                        	<select id="statFlag" class="form-control is-edit" ng-model="vm.editData.statFlag" style="width:99%;">
                         		<option value="1">是</option>
                         		<option value="0">否</option>
                         	</select>
@@ -113,10 +111,10 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="row in vm.queryResult.result" ng-click="vm.chooseRow(row)">
-                            <td>{{row.site_name}}</td>
-                            <td>{{row.clfc_type_cdStr}}</td>
-                            <td>{{row.clfc_dtld_cdStr}}</td>
-                            <td>{{row.stat_flagStr}}</td>
+                            <td>{{row.siteName}}</td>
+                            <td>{{row.clfcTypeCdStr}}</td>
+                            <td>{{row.clfcDtldCdStr}}</td>
+                            <td>{{row.statFlagStr}}</td>
                         </tr>
                     </tbody>
                 </table>

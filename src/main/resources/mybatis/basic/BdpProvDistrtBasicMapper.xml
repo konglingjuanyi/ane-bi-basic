@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Bdp_ProvDistrt">
+	<resultMap id="provDistrtResult" type="com.ane56.bi.domain.basic.BdpProvDistrtBasicDataVO">
+		<result property="orgBrnchId" column="ORG_BRNCH_ID" />
+		<result property="crtUserId" column="CRT_USER_ID" />
+		<result property="crtTime" column="CRT_TIME" />
+		<result property="crtAppSysId" column="CRT_APP_SYS_ID" />
+		<result property="modfUserId" column="MODF_USER_ID" />
+		<result property="modfTime" column="MODF_TIME" />
+		<result property="modfAppSysId" column="MODF_APP_SYS_ID" />
+		<result property="orgBrnchLvlCd" column="ORG_BRNCH_LVL_CD" />
+		<result property="orgBrnchShowCdVal" column="ORG_BRNCH_SHOW_CD_VAL" />
+		<result property="orgBrnchNm" column="ORG_BRNCH_NM" />
+		<result property="orgBrnchPinyin" column="ORG_BRNCH_PINYIN" />
+		<result property="orgBrnchSeqno" column="ORG_BRNCH_SEQNO" />
+		<result property="orgBrnchTypeCd" column="ORG_BRNCH_TYPE_CD" />
+		<result property="validFlag" column="VALID_FLAG" />
+		<result property="rmk" column="RMK" />
+		<result property="suprOrgBrnchId" column="SUPR_ORG_BRNCH_ID" />
+		<result property="suprOrgBrnchNm" column="SUPR_ORG_BRNCH_NM" />
+	</resultMap>
+	<sql id="provDistrtColumn">
+		ORG_BRNCH_ID,CRT_USER_ID,CRT_TIME,
+		CRT_APP_SYS_ID,MODF_USER_ID,MODF_TIME,
+		MODF_APP_SYS_ID,ORG_BRNCH_LVL_CD,ORG_BRNCH_SHOW_CD_VAL,
+		ORG_BRNCH_NM,ORG_BRNCH_PINYIN,ORG_BRNCH_SEQNO,
+		ORG_BRNCH_TYPE_CD,VALID_FLAG,RMK,
+		SUPR_ORG_BRNCH_ID
+	</sql>
+	
+	<sql id="start_page">
+		SELECT * FROM ( SELECT row_.*, ROWNUM rownum_ FROM (
+	</sql>
+	<sql id="end_page">
+		) row_ ) WHERE rownum_ &lt;= #{end} AND rownum_ &gt; #{start}
+	</sql>
+	
+	<select id="queryPagedList" resultMap="provDistrtResult" parameterType="java.util.Map">
+		<include refid="start_page" />
+		SELECT A.*, T.ORG_BRNCH_NM AS SUPR_ORG_BRNCH_NM
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		LEFT JOIN ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA T ON A.SUPR_ORG_BRNCH_ID = T.ORG_BRNCH_ID
+		<where>
+			A.VALID_FLAG = 1 AND A.ORG_BRNCH_LVL_CD = 23 AND A.ORG_BRNCH_TYPE_CD='20'
+			AND T.ORG_BRNCH_LVL_CD = 22
+			<if test="orgBrnchNm !='' and orgBrnchNm !=null">
+				AND A.ORG_BRNCH_NM like '%'||#{orgBrnchNm}||'%'
+			</if>
+			<if test="orgBrnchPinyin !='' and orgBrnchPinyin !=null">
+				AND A.ORG_BRNCH_PINYIN like '%'||#{orgBrnchPinyin}||'%'
+			</if>
+		</where>
+		ORDER BY A.ORG_BRNCH_SEQNO
+		<include refid="end_page" />
+	</select>
+	
+	<select id="queryPagedCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT COUNT(1)
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		LEFT JOIN ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA T ON A.SUPR_ORG_BRNCH_ID = T.ORG_BRNCH_ID
+		<where>
+			A.VALID_FLAG = 1 AND A.ORG_BRNCH_LVL_CD = 23 AND A.ORG_BRNCH_TYPE_CD='20'
+			AND T.ORG_BRNCH_LVL_CD = 22
+			<if test="orgBrnchNm !='' and orgBrnchNm !=null">
+				AND A.ORG_BRNCH_NM like '%'||#{orgBrnchNm}||'%'
+			</if>
+			<if test="orgBrnchPinyin !='' and orgBrnchPinyin !=null">
+				AND A.ORG_BRNCH_PINYIN like '%'||#{orgBrnchPinyin}||'%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryAreaList" resultMap="provDistrtResult" parameterType="java.util.Map">
+		SELECT A.AREA_ID AS ORG_BRNCH_ID, A.AREA_NAME AS ORG_BRNCH_NM 
+		FROM ODS_LB.HS_BASIC_AREA A 
+		WHERE A.RD_STATUS = 1
+	</select>
+	
+	<select id="queryProvinceList" resultMap="provDistrtResult" parameterType="java.util.Map">
+		SELECT A.ORG_BRNCH_ID,A.ORG_BRNCH_NM 
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		WHERE A.VALID_FLAG = 1 AND A.ORG_BRNCH_LVL_CD = 22 AND A.ORG_BRNCH_TYPE_CD='20'
+	</select>
+	
+	<!-- 更新 -->
+	<update id="update" parameterType="com.ane56.bi.domain.basic.BdpProvDistrtBasicData">
+		UPDATE ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="suprOrgBrnchId !='' and suprOrgBrnchId !=null">
+				A.SUPR_ORG_BRNCH_ID = #{suprOrgBrnchId},
+			</if>
+			<if test="rmk !=null">
+				A.RMK = #{rmk},
+			</if>
+			<if test="modfUserId !='' and modfUserId !=null">
+				A.MODF_USER_ID = #{modfUserId},
+			</if>
+			<if test="modfTime !='' and modfTime !=null">
+				A.MODF_TIME = #{modfTime},
+			</if>
+			<if test="modfAppSysId !='' and modfAppSysId !=null">
+				A.MODF_APP_SYS_ID = #{modfAppSysId}
+			</if>
+		</trim>
+		WHERE A.ORG_BRNCH_ID = #{orgBrnchId} 
+			AND A.ORG_BRNCH_LVL_CD = #{orgBrnchLvlCd}
+			AND A.ORG_BRNCH_TYPE_CD = #{orgBrnchTypeCd}
+	</update>
+	
+	<!-- 逻辑删除 -->
+	<update id="delete" parameterType="com.ane56.bi.domain.basic.BdpProvDistrtBasicData">
+		UPDATE ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		<trim prefix="set" suffixOverrides=",">
+			<if test="validFlag !='' and validFlag !=null">
+				A.VALID_FLAG = #{validFlag},
+			</if>
+			<if test="modfUserId !='' and modfUserId !=null">
+				A.MODF_USER_ID = #{modfUserId},
+			</if>
+			<if test="modfTime !='' and modfTime !=null">
+				A.MODF_TIME = #{modfTime},
+			</if>
+			<if test="modfAppSysId !='' and modfAppSysId !=null">
+				A.MODF_APP_SYS_ID = #{modfAppSysId}
+			</if>
+		</trim>
+		WHERE A.ORG_BRNCH_ID = #{orgBrnchId} 
+			AND A.ORG_BRNCH_LVL_CD = #{orgBrnchLvlCd}
+			AND A.ORG_BRNCH_TYPE_CD = #{orgBrnchTypeCd}
+	</update>
+	
+	<select id="findById" resultType="com.ane56.bi.domain.basic.BdpProvDistrtBasicData" parameterType="com.ane56.bi.domain.basic.BdpProvDistrtBasicData">
+		SELECT A.*
+		FROM ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA A
+		<where>
+			A.ORG_BRNCH_ID = #{orgBrnchId} 
+				AND A.ORG_BRNCH_LVL_CD = #{orgBrnchLvlCd}
+			<if test="orgBrnchTypeCd !='' and orgBrnchTypeCd !=null">
+				AND A.ORG_BRNCH_TYPE_CD = #{orgBrnchTypeCd}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="add" parameterType="com.ane56.bi.domain.basic.BdpProvDistrtBasicData">
+		INSERT INTO ODS_BDP.BDP_PROV_DISTRT_BASIS_DATA (<include refid="provDistrtColumn" />)
+		VALUES
+		(
+		#{orgBrnchId,jdbcType=VARCHAR},
+		#{crtUserId,jdbcType=VARCHAR},
+		#{crtTime,jdbcType=DATE},
+		#{crtAppSysId,jdbcType=VARCHAR},
+		#{modfUserId,jdbcType=VARCHAR},
+		#{modfTime,jdbcType=DATE},
+		#{modfAppSysId,jdbcType=VARCHAR},
+		#{orgBrnchLvlCd,jdbcType=VARCHAR},
+		#{orgBrnchShowCdVal,jdbcType=VARCHAR},
+		#{orgBrnchNm,jdbcType=VARCHAR},
+		#{orgBrnchPinyin,jdbcType=VARCHAR},
+		#{orgBrnchSeqno,jdbcType=NUMERIC},
+		#{orgBrnchTypeCd,jdbcType=VARCHAR},
+		#{validFlag,jdbcType=CHAR},
+		#{rmk,jdbcType=VARCHAR},
+		#{suprOrgBrnchId,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+</mapper>

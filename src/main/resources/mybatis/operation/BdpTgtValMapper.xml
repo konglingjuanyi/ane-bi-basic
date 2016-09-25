@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ane56.mapper.BdpTgtValMapper" >
+<mapper namespace="BdpTgtValMapper" >
   <resultMap id="BaseResultMap" type="com.ane56.bi.domain.operation.BdpTgtVal" >
     <result column="ORG_BRNCH_ID" property="orgBrnchId" jdbcType="VARCHAR" />
     <result column="ORG_BRNCH_LVL_CD" property="orgBrnchLvlCd" jdbcType="VARCHAR" />
     <result column="TGT_VAL_TYPE_CD" property="tgtValTypeCd" jdbcType="VARCHAR" />
     <result column="PRID_TYPE_CD" property="pridTypeCd" jdbcType="VARCHAR" />
-    <result column="TGT_VAL_DATE" property="tgtValDate" jdbcType="DATE" />
+    <result column="TGT_VAL_DATE" property="tgtValDate"/>
     <result column="CRT_USER_ID" property="crtUserId" jdbcType="VARCHAR" />
-    <result column="CRT_TIME" property="crtTime" jdbcType="DATE" />
+    <result column="CRT_TIME" property="crtTime"/>
     <result column="CRT_APP_SYS_ID" property="crtAppSysId" jdbcType="VARCHAR" />
     <result column="MODF_USER_ID" property="modfUserId" jdbcType="VARCHAR" />
-    <result column="MODF_TIME" property="modfTime" jdbcType="DATE" />
+    <result column="MODF_TIME" property="modfTime"/>
     <result column="MODF_APP_SYS_ID" property="modfAppSysId" jdbcType="VARCHAR" />
     <result column="TGT_VAL" property="tgtVal" jdbcType="DECIMAL" />
   </resultMap>
@@ -24,7 +24,19 @@
     WHERE
 	ORG_BRNCH_ID = #{orgBrnchId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.ane56.bi.domain.operation.BdpTgtVal" >
+   <insert id="insert" parameterType="com.ane56.bi.domain.operation.BdpTgtVal" >
+    insert into BDP_TGT_VAL (ORG_BRNCH_ID, ORG_BRNCH_LVL_CD, TGT_VAL_TYPE_CD, 
+      PRID_TYPE_CD, TGT_VAL_DATE, CRT_USER_ID, 
+      CRT_TIME, CRT_APP_SYS_ID, MODF_USER_ID, 
+      MODF_TIME, MODF_APP_SYS_ID, TGT_VAL
+      )
+    values (SEQ_BDP_KEY_TAG.nextval, #{orgBrnchLvlCd,jdbcType=VARCHAR}, #{tgtValTypeCd,jdbcType=VARCHAR}, 
+      #{pridTypeCd,jdbcType=VARCHAR}, #{tgtValDate,jdbcType=DATE}, #{crtUserId,jdbcType=VARCHAR}, 
+      sysdate, #{crtAppSysId,jdbcType=VARCHAR}, #{modfUserId,jdbcType=VARCHAR}, 
+      #{modfTime,jdbcType=DATE}, #{modfAppSysId,jdbcType=VARCHAR}, #{tgtVal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ane56.bi.domain.operation.BdpTgtVal" >
     insert into BDP_TGT_VAL
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orgBrnchId != null" >
@@ -143,6 +155,7 @@
         TGT_VAL = #{tgtVal,jdbcType=DECIMAL},
       </if>
     </set>
+     where ORG_BRNCH_ID = #{orgBrnchId,jdbcType=VARCHAR}
   </update>
    <select id="findByParams" resultMap="BaseResultMap" parameterType="java.util.Map">
 		SELECT

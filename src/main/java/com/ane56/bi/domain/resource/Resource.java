@@ -2,7 +2,10 @@ package com.ane56.bi.domain.resource;
 
 import java.util.Date;
 
+import org.springframework.util.StringUtils;
+
 import com.ane56.bi.domain.Entity;
+import com.ane56.bi.port.adapter.utils.IdUtils;
 
 public class Resource extends Entity {
 	private static final long serialVersionUID = 1L;

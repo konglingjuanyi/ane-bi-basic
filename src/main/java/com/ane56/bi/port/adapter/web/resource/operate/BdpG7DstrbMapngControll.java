@@ -17,7 +17,7 @@ import com.ane56.bi.port.adapter.rest.ResourceResponseSupport;
 import com.ane56.bi.port.adapter.rest.RestResultResponse;
 
 @RestController
-@RequestMapping(value="module")
+@RequestMapping(value="provDistrt")
 public class BdpG7DstrbMapngControll extends ResourceResponseSupport {
 
 	@Autowired

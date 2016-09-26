@@ -1,10 +1,8 @@
 package com.ane56.bi.common.util;
 
 import java.io.OutputStream;
+import java.text.NumberFormat;
 import java.util.Map;
-
-import jxl.write.NumberFormat;
-import jxl.write.WritableSheet;
 
 public class VerifyUtil {
 
@@ -62,13 +60,13 @@ public class VerifyUtil {
         return true;
     }
 
-    public static boolean isNullObject(WritableSheet sheet) {
+   /* public static boolean isNullObject(WritableSheet sheet) {
         // TODO Auto-generated method stub
         if(sheet != null)
         {
             return false;
         }
         return true;
-    }
+    }*/
 
 }

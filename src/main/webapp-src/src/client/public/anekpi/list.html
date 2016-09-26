@@ -8,10 +8,10 @@
 				<h2>功能按钮</h2>
 			</header>
 			<div class="form-actions text-left" style="padding:10px;">
-				<button type="button" class="btn btn-primary" ng-click="vm.addData()">
-					新增</button>
-				<button type="button" class="btn btn-default btn-success" ng-click="vm.saveData()">
-					保存</button>
+				<button type="button" class="btn btn-primary"
+					ng-click="vm.addData()">新增</button>
+				<button type="button" class="btn btn-default btn-success"
+					ng-click="vm.saveData()">保存</button>
 			</div>
 		</div>
 		<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2"
@@ -29,8 +29,7 @@
 								<label style="margin-top:6px;">kpi名称：</label>
 							</div>
 							<div class="col-sm-2">
-								<input id="kpiNm" class="form-control"
-									ng-model="vm.Query.kpiNm">
+								<input id="kpiNm" class="form-control" ng-model="vm.Query.kpiNm">
 							</div>
 
 							<div class="col-sm-1 text-right">
@@ -45,13 +44,15 @@
 								<label style="margin-top:6px;">是否禁用：</label>
 							</div>
 							<div class="col-sm-2">
-							<select id="status" class="form-control is-edit" style="width:99%;"
-                        		ng-model="vm.Query.status" ng-options="a.value as a.label for a in vm.status">    
-                        		<option value="">全部</option>            
-                        	</select>
+								<select id="status" class="form-control is-edit"
+									style="width:99%;" ng-model="vm.Query.status"
+									ng-options="a.value as a.label for a in vm.status">
+									<option value="">全部</option>
+								</select>
 							</div>
 							<div class="col-sm-1 text-right">
-								<button type="submit" class="btn btn-warning" ng-click="vm.queryDataByPage()">查询</button>
+								<button type="submit" class="btn btn-warning"
+									ng-click="vm.queryDataByPage()">查询</button>
 							</div>
 						</div>
 					</div>
@@ -69,14 +70,13 @@
 			<div style="padding:10px 10px 20px 10px;">
 				<div class="dataTables_wrapper form-inline">
 					<form name="codeEditForm" novalidate>
-						<div class="row">
-						    <div class="col-sm-1 text-right">
+						<div class="row" style="margin-bottom:10px;">
+							<div class="col-sm-1 text-right">
 								<label style="margin-top:6px;">名称:</label>
 							</div>
 							<div class="col-sm-2">
 								<input id="kpiNmText" name="kpiNmText"
-									class="form-control is-edit" ng-model="vm.data.kpiNm"
-									required>
+									class="form-control is-edit" ng-model="vm.data.kpiNm" required>
 							</div>
 							<div class="col-sm-1 text-right">
 								<label style="margin-top:6px;">简称:</label>
@@ -86,29 +86,34 @@
 									class="form-control is-edit" ng-model="vm.data.kpiAbbr"
 									required>
 							</div>
-                           <div class="col-sm-1 text-right"><label style="margin-top:6px;">类型：</label></div>	                  
-	                    	<div class="col-sm-2">
-                        	<select id="kpiTypeCdText" class="form-control" ng-model="vm.data.kpiTypeCd" style="width:99%;"
-                        		ng-options="type.value as type.label for type in vm.typeAll">     
-                        		<option value="">无</option>       
-                        	</select>
-                            </div>
 							<div class="col-sm-1 text-right">
-								<label style="margin-top:6px;">操作开始时间:</label>
+								<label style="margin-top:6px;">类型：</label>
 							</div>
 							<div class="col-sm-2">
-								<input id="validBgnTimeText" name=validBgnTime
-									class="form-control is-edit datepicker" ng-model="vm.data.validBgnTime"
-									required>
+								<select id="kpiTypeCdText" class="form-control"
+									ng-model="vm.data.kpiTypeCd" style="width:99%;"
+									ng-options="type.value as type.label for type in vm.typeAll">
+									<option value="">无</option>
+								</select>
 							</div>
-                            <div class="col-sm-1 text-right"   style="margin-top:15px" >
-								<label style="margin-top:6px;">操作结束时间:</label>
+							<div class="row" style="margin-bottom:10px;">
+								<div class="col-sm-1 text-left">
+									<label style="margin-top:6px;">操作开始时间:</label>
+								</div>
+								<div class="col-sm-2">
+									<input id="validBgnTimeText" name=validBgnTime
+										class="form-control is-edit datepicker"
+										ng-model="vm.data.validBgnTime" required>
+								</div>
+								<div class="col-sm-1 text-left" style="margin-top:15px">
+									<label style="margin-top:6px;">操作结束时间:</label>
+								</div>
+								<div class="col-sm-2" style="margin-top:15px">
+									<input id="validEndTimeText" name="validEndTime"
+										class="form-control is-edit datepicker"
+										ng-model="vm.data.validEndTime" required>
+								</div>
 							</div>
-							<div class="col-sm-2"  style="margin-top:15px">
-								<input id="validEndTimeText" name="validEndTime"
-									class="form-control is-edit datepicker" ng-model="vm.data.validEndTime"
-									required>
-							</div>				
 					</form>
 				</div>
 			</div>
@@ -138,28 +143,29 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="data in vm.result"
-							ng-click="vm.chooseRow(data)">
+						<tr ng-repeat="data in vm.result" ng-click="vm.chooseRow(data)">
 							<td>{{data.kpiId}}</td>
 							<td>{{data.kpiNm}}</td>
 							<td>{{data.kpiAbbr}}</td>
 							<td>{{data.kpiTypeName}}</td>
 							<td>{{data.kpiTypeCd}}</td>
 							<td>{{data.updatedName}}</td>
-							<td>{{data.modfTime |  date:'yyyy-MM-dd HH:mm:ss'}}</td>
+							<td>{{data.modfTime | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 							<td>{{data.statusName}}</td>
 							<td>
-							<button type="button" class="btn btn-success" ng-click="vm.deleteData(data)">删除</button>
-							<button type="button" class="btn btn-success" ng-click="vm.updateData(data)">编辑</button>
-							</td>
+								<button type="button" class="btn btn-success"
+									ng-click="vm.deleteData(data)">删除</button>
+								<button type="button" class="btn btn-success"
+									ng-click="vm.updateData(data)">编辑</button></td>
 						</tr>
 					</tbody>
 				</table>
-				<table id="warn" class="table table-striped table-bordered table-hover dataTable no-footer" style="display:none">
+				<table id="warn"
+					class="table table-striped table-bordered table-hover dataTable no-footer"
+					style="display:none">
 					<tbody>
 						<tr>
-							<td colspan="8"><center style="color:red">未查询到数据</center>
-							</td>
+							<td colspan="8"><center style="color:red">未查询到数据</center></td>
 						</tr>
 					</tbody>
 				</table>

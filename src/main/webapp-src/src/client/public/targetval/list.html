@@ -57,7 +57,7 @@
 				<div class="dataTables_wrapper form-inline">
 					<form name="codeEditForm" novalidate>
 						<div class="row">
-						    <div class="col-sm-1 text-right">
+							<div class="col-sm-1 text-right">
 								<label style="margin-top:6px;">组织机构:</label>
 							</div>
 							<div class="col-sm-2">
@@ -70,8 +70,7 @@
 							</div>
 							<div class="col-sm-2">
 								<input id="tgtValText" name="tgtValText"
-									class="form-control is-edit" ng-model="vm.data.tgtVal"
-									required>
+									class="form-control is-edit" ng-model="vm.data.tgtVal" required>
 							</div>
 							<div class="col-sm-1 text-right">
 								<label style="margin-top:6px;">组织机构等级:</label>
@@ -81,34 +80,40 @@
 									class="form-control is-edit" ng-model="vm.data.orgBrnchLvlCd"
 									required>
 							</div>
-                           <div class="col-sm-1 text-right"><label style="margin-top:6px;">目标值类型：</label></div>	                  
-	                    	<div class="col-sm-2">
-	                    	<input id="tgtValTypeCdText" name="tgtValTypeCdText"
+							<div class="col-sm-1 text-right">
+								<label style="margin-top:6px;">目标值类型：</label>
+							</div>
+							<div class="col-sm-2">
+								<input id="tgtValTypeCdText" name="tgtValTypeCdText"
 									class="form-control is-edit" ng-model="vm.data.tgtValTypeCd"
 									required>
-                        	<!-- <select id="tgtValTypeCdText" class="form-control" ng-model="vm.data.tgtValTypeCd" style="width:99%;"
+								<!-- <select id="tgtValTypeCdText" class="form-control" ng-model="vm.data.tgtValTypeCd" style="width:99%;"
                         		ng-options="type.value as type.label for type in vm.typeAll">     
                         		<option value="">无</option>       
                         	</select> -->
-                            </div>
-                             <div class="col-sm-1 text-right"><label style="margin-top:6px;">周期类型：</label></div>	                  
-	                    	<div class="col-sm-2">
-	                    	<input id="pridTypeCdText" name="pridTypeCdText"
+							</div>
+							<div class="row">
+							<div class="col-sm-1 text-left">
+								<label style="margin-top:6px;">周期类型：</label>
+							</div>
+							<div class="col-sm-2">
+								<input id="pridTypeCdText" name="pridTypeCdText"
 									class="form-control is-edit" ng-model="vm.data.pridTypeCd"
 									required>
-                        <!-- 	<select id="pridTypeCdText" class="form-control" ng-model="vm.data.pridTypeCd" style="width:99%;"
+								<!-- 	<select id="pridTypeCdText" class="form-control" ng-model="vm.data.pridTypeCd" style="width:99%;"
                         		ng-options="type.value as type.label for type in vm.typeAll">     
                         		<option value="">无</option>       
                         	</select> -->
-                            </div>
-							<div class="col-sm-1 text-right">
+							</div>
+							<div class="col-sm-1 text-left">
 								<label style="margin-top:6px;">目标值日期:</label>
 							</div>
 							<div class="col-sm-2">
 								<input id="tgtValDateText" name="tgtValDate"
-									class="form-control is-edit datepicker" ng-model="vm.data.tgtValDate"
-									required>
-							</div>                           			
+									class="form-control is-edit datepicker"
+									ng-model="vm.data.tgtValDate" required>
+							</div>
+							</div>
 					</form>
 				</div>
 			</div>
